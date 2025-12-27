@@ -3,6 +3,18 @@
     <version>1</version>
 
     <category title="System" />
-    <item drawable="ic_launcher_foreground" name="Win95 Mode" />
+    <item drawable="ic_my_computer" name="My Computer" />
+    <item drawable="ic_recycle_bin" name="Recycle Bin" />
+    <item drawable="ic_explorer" name="Explorer" />
+    <item drawable="ic_disk" name="Disk" />
+
+    <category title="Apps" />
+    <item drawable="ic_paint" name="Paint" />
+    <item drawable="ic_wordpad" name="Wordpad" />
+    <item drawable="ic_contact" name="Contact" />
+    <item drawable="ic_translate" name="Translate" />
+    <item drawable="ic_gpt" name="GPT" />
+    <item drawable="ic_travel" name="Travel" />
+    <item drawable="ic_langjump" name="Language" />
 
 </resources>
