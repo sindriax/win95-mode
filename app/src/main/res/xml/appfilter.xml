@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <iconback img1="iconback" />
-    <iconmask img1="iconmask" />
-    <iconupon img1="iconupon" />
     <scale factor="1.0" />
 
     <item component="ComponentInfo{com.google.android.apps.translate/com.google.android.apps.translate.TranslateActivity}" drawable="ic_translate" />
