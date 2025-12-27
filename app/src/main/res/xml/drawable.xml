@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <version>1</version>
+
+    <category title="System" />
+    <item drawable="ic_launcher_foreground" name="Win95 Mode" />
+
+</resources>
