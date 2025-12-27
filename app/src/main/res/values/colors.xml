@@ -2,4 +2,12 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="win95_gray">#C0C0C0</color>
+    <color name="win95_dark_gray">#808080</color>
+    <color name="win95_light_gray">#DFDFDF</color>
+    <color name="win95_navy">#000080</color>
+    <color name="win95_teal">#008080</color>
+    <color name="win95_button_shadow">#808080</color>
+    <color name="win95_button_highlight">#FFFFFF</color>
 </resources>
