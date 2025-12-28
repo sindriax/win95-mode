@@ -8,6 +8,43 @@
     <item drawable="ic_explorer" name="Explorer" />
     <item drawable="ic_disk" name="Disk" />
 
+    <category title="Social" />
+    <item drawable="ic_instagram" name="Instagram" />
+    <item drawable="ic_tiktok" name="TikTok" />
+    <item drawable="ic_reddit" name="Reddit" />
+    <item drawable="ic_snapchat" name="Snapchat" />
+    <item drawable="ic_x" name="X (Twitter)" />
+    <item drawable="ic_linkedin" name="LinkedIn" />
+    <item drawable="ic_pinterest" name="Pinterest" />
+    <item drawable="ic_tumblr" name="Tumblr" />
+    <item drawable="ic_discord" name="Discord" />
+
+    <category title="Communication" />
+    <item drawable="ic_whatsapp" name="WhatsApp" />
+    <item drawable="ic_slack" name="Slack" />
+
+    <category title="Dating" />
+    <item drawable="ic_tinder" name="Tinder" />
+    <item drawable="ic_bumble" name="Bumble" />
+    <item drawable="ic_hinge" name="Hinge" />
+
+    <category title="Music" />
+    <item drawable="ic_spotify" name="Spotify" />
+
+    <category title="Video" />
+    <item drawable="ic_youtube" name="YouTube" />
+    <item drawable="ic_netflix" name="Netflix" />
+
+    <category title="Browser" />
+    <item drawable="ic_chrome" name="Chrome" />
+
+    <category title="Shopping" />
+    <item drawable="ic_amazon" name="Amazon" />
+    <item drawable="ic_uber" name="Uber" />
+
+    <category title="Education" />
+    <item drawable="ic_duolingo" name="Duolingo" />
+
     <category title="Apps" />
     <item drawable="ic_paint" name="Paint" />
     <item drawable="ic_wordpad" name="Wordpad" />
