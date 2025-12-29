@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/win95_teal"
     android:padding="16dp"
     tools:context=".MainActivity">
@@ -27,16 +26,17 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@drawable/ic_my_computer"
-                android:contentDescription="Win95 Mode icon" />
+                android:contentDescription="@string/app_icon_desc" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Win95 Mode"
+                android:text="@string/app_name"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:paddingStart="8dp"
+                android:paddingEnd="8dp"
                 android:textSize="14sp" />
 
             <TextView
@@ -44,7 +44,7 @@
                 android:layout_height="20dp"
                 android:background="@color/win95_gray"
                 android:gravity="center"
-                android:text="×"
+                android:text="@string/close_button"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
@@ -60,7 +60,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Welcome to Win95 Mode!"
+                android:text="@string/welcome_title"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -69,7 +69,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Icon Preview:"
+                android:text="@string/icon_preview"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:layout_marginBottom="8dp" />
@@ -86,30 +86,117 @@
                     android:layout_height="48dp"
                     android:src="@drawable/ic_my_computer"
                     android:layout_margin="8dp"
-                    android:contentDescription="My Computer" />
+                    android:contentDescription="@string/my_computer" />
 
                 <ImageView
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:src="@drawable/ic_recycle_bin"
                     android:layout_margin="8dp"
-                    android:contentDescription="Recycle Bin" />
+                    android:contentDescription="@string/recycle_bin" />
 
                 <ImageView
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:src="@drawable/ic_explorer"
                     android:layout_margin="8dp"
-                    android:contentDescription="Explorer" />
+                    android:contentDescription="@string/explorer" />
 
                 <ImageView
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:src="@drawable/ic_paint"
                     android:layout_margin="8dp"
-                    android:contentDescription="Paint" />
+                    android:contentDescription="@string/paint" />
 
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/win95_dark_gray"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/wallpapers"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:layout_marginBottom="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="8dp">
+
+                <ImageView
+                    android:id="@+id/wall_teal"
+                    android:layout_width="56dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/wall_teal"
+                    android:layout_margin="4dp"
+                    android:background="@color/win95_dark_gray"
+                    android:padding="2dp"
+                    android:contentDescription="@string/wall_teal_desc" />
+
+                <ImageView
+                    android:id="@+id/wall_clouds"
+                    android:layout_width="56dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/wall_clouds"
+                    android:layout_margin="4dp"
+                    android:background="@color/win95_dark_gray"
+                    android:padding="2dp"
+                    android:contentDescription="@string/wall_clouds_desc" />
+
+                <ImageView
+                    android:id="@+id/wall_setup"
+                    android:layout_width="56dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/wall_setup"
+                    android:layout_margin="4dp"
+                    android:background="@color/win95_dark_gray"
+                    android:padding="2dp"
+                    android:contentDescription="@string/wall_setup_desc" />
+
+                <ImageView
+                    android:id="@+id/wall_stars"
+                    android:layout_width="56dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/wall_stars"
+                    android:layout_margin="4dp"
+                    android:background="@color/win95_dark_gray"
+                    android:padding="2dp"
+                    android:contentDescription="@string/wall_stars_desc" />
+
+                <ImageView
+                    android:id="@+id/wall_matrix"
+                    android:layout_width="56dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/wall_matrix"
+                    android:layout_margin="4dp"
+                    android:background="@color/win95_dark_gray"
+                    android:padding="2dp"
+                    android:contentDescription="@string/wall_matrix_desc" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tap_wallpaper"
+                android:textColor="@color/win95_dark_gray"
+                android:textSize="11sp"
+                android:gravity="center"
+                android:layout_marginBottom="16dp" />
 
             <View
                 android:layout_width="match_parent"
@@ -128,7 +215,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="How to Apply:"
+                    android:text="@string/how_to_apply"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:textSize="14sp"
@@ -137,7 +224,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="1. Open your launcher settings\n2. Go to Icon Pack or Theme\n3. Select 'Win95 Mode'\n4. Enjoy the nostalgia!"
+                    android:text="@string/apply_instructions"
                     android:textColor="@color/black"
                     android:textSize="13sp"
                     android:lineSpacingExtra="4dp" />
@@ -147,7 +234,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Supported: Nova, Lawnchair, Action, Apex, Smart Launcher"
+                android:text="@string/supported_launchers"
                 android:textColor="@color/win95_dark_gray"
                 android:textSize="11sp"
                 android:gravity="center" />
@@ -156,4 +243,4 @@
 
     </LinearLayout>
 
-</LinearLayout>
+</ScrollView>
