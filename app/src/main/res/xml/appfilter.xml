@@ -24,6 +24,7 @@
     <item component="ComponentInfo{com.android.chrome/com.google.android.apps.chrome.Main}" drawable="ic_chrome" />
     <item component="ComponentInfo{com.google.android.apps.youtube.music/com.google.android.apps.youtube.music.activities.MusicActivity}" drawable="ic_youtube" />
     <item component="ComponentInfo{com.linkedin.android/com.linkedin.android.authenticator.LaunchActivity}" drawable="ic_linkedin" />
+    <item component="ComponentInfo{com.linkedin.android/com.linkedin.android.home.MainActivity}" drawable="ic_linkedin" />
     <item component="ComponentInfo{com.netflix.mediaclient/com.netflix.mediaclient.ui.launch.UIWebViewActivity}" drawable="ic_netflix" />
     <item component="ComponentInfo{com.snapchat.android/com.snapchat.android.LandingPageActivity}" drawable="ic_snapchat" />
     <item component="ComponentInfo{com.discord/com.discord.main.MainActivity}" drawable="ic_discord" />
@@ -36,5 +37,22 @@
     <item component="ComponentInfo{com.tinder/com.tinder.activities.LauncherActivity}" drawable="ic_tinder" />
     <item component="ComponentInfo{com.bumble.app/com.bumble.app.ui.main.MainActivity}" drawable="ic_bumble" />
     <item component="ComponentInfo{co.hinge.app/co.hinge.app.ui.main.MainActivity}" drawable="ic_hinge" />
+
+    <item component="ComponentInfo{com.google.android.dialer/com.google.android.dialer.extensions.GoogleDialtactsActivity}" drawable="ic_phone" />
+    <item component="ComponentInfo{com.google.android.apps.messaging/com.google.android.apps.messaging.ui.ConversationListActivity}" drawable="ic_messages" />
+    <item component="ComponentInfo{com.google.android.GoogleCamera/com.android.camera.CameraLauncher}" drawable="ic_camera" />
+    <item component="ComponentInfo{com.google.android.GoogleCamera/com.google.android.GoogleCamera.CameraActivity}" drawable="ic_camera" />
+    <item component="ComponentInfo{com.google.android.calendar/com.android.calendar.AllInOneActivity}" drawable="ic_calendar" />
+    <item component="ComponentInfo{com.google.android.apps.docs/com.google.android.apps.docs.app.NewMainProxyActivity}" drawable="ic_drive" />
+    <item component="ComponentInfo{com.google.android.apps.docs/com.google.android.apps.docs.drive.startup.StartupActivity}" drawable="ic_drive" />
+    <item component="ComponentInfo{com.android.vending/com.android.vending.AssetBrowserActivity}" drawable="ic_playstore" />
+    <item component="ComponentInfo{com.android.vending/com.google.android.finsky.activities.MainActivity}" drawable="ic_playstore" />
+    <item component="ComponentInfo{com.google.android.apps.maps/com.google.android.maps.MapsActivity}" drawable="ic_travel" />
+    <item component="ComponentInfo{com.google.android.apps.nbu.files/com.google.android.apps.nbu.files.home.HomeActivity}" drawable="ic_files" />
+    <item component="ComponentInfo{com.android.settings/com.android.settings.Settings}" drawable="ic_start" />
+    <item component="ComponentInfo{com.teslacoilsw.launcher/com.teslacoilsw.launcher.NovaSettings}" drawable="ic_my_computer" />
+    <item component="ComponentInfo{com.teslacoilsw.launcher/com.android.launcher2.Launcher}" drawable="ic_my_computer" />
+    <item component="ComponentInfo{com.riotgames.league.teamfighttactics/com.riotgames.league.teamfighttactics.RiotNativeActivity}" drawable="ic_tft" />
+    <item component="ComponentInfo{com.riotgames.league.teamfighttactics/com.riotgames.league.teamfighttactics.TftMainActivity}" drawable="ic_tft" />
 
 </resources>
