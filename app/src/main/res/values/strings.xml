@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Win95 Mode</string>
     <string name="close_button">×</string>
+    <string name="minimize_button">_</string>
+    <string name="maximize_button">□</string>
     <string name="app_icon_desc">Win95 Mode icon</string>
     <string name="welcome_title">Welcome to Win95 Mode!</string>
     <string name="icon_preview">Icon Preview:</string>
@@ -8,6 +10,10 @@
     <string name="recycle_bin">Recycle Bin</string>
     <string name="explorer">Explorer</string>
     <string name="paint">Paint</string>
+    <string name="spotify">Spotify</string>
+    <string name="instagram">Instagram</string>
+    <string name="discord">Discord</string>
+    <string name="chrome">Chrome</string>
     <string name="wallpapers">Wallpapers:</string>
     <string name="wall_teal_desc">Teal wallpaper</string>
     <string name="wall_clouds_desc">Clouds wallpaper</string>
@@ -18,4 +24,7 @@
     <string name="how_to_apply">How to Apply Icons:</string>
     <string name="apply_instructions">1. Open your launcher settings\n2. Go to Icon Pack or Theme\n3. Select \'Win95 Mode\'\n4. Enjoy the nostalgia!</string>
     <string name="supported_launchers">Supported: Nova, Lawnchair, Action, Apex, Smart Launcher</string>
+    <string name="start_button">Start</string>
+    <string name="start_button_desc">Start button</string>
+    <string name="clock_time">12:00 PM</string>
 </resources>
