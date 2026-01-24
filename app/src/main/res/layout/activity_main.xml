@@ -5,242 +5,395 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/win95_teal"
-    android:padding="16dp"
+    android:fillViewport="true"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/win95_gray"
-        android:padding="3dp">
+        android:padding="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/win95_navy"
-            android:padding="4dp"
-            android:gravity="center_vertical">
+            android:layout_gravity="center"
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_my_computer"
-                android:contentDescription="@string/app_icon_desc" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/app_name"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp"
-                android:textSize="14sp" />
-
-            <TextView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="@color/win95_gray"
-                android:gravity="center"
-                android:text="@string/close_button"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp"
-            android:background="@color/win95_gray">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/welcome_title"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="16dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/icon_preview"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:layout_marginBottom="8dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_marginBottom="16dp">
-
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@drawable/ic_my_computer"
-                    android:layout_margin="8dp"
-                    android:contentDescription="@string/my_computer" />
-
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@drawable/ic_recycle_bin"
-                    android:layout_margin="8dp"
-                    android:contentDescription="@string/recycle_bin" />
-
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@drawable/ic_explorer"
-                    android:layout_margin="8dp"
-                    android:contentDescription="@string/explorer" />
-
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@drawable/ic_paint"
-                    android:layout_margin="8dp"
-                    android:contentDescription="@string/paint" />
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/win95_dark_gray"
-                android:layout_marginBottom="16dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/wallpapers"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:layout_marginBottom="8dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_marginBottom="8dp">
-
-                <ImageView
-                    android:id="@+id/wall_teal"
-                    android:layout_width="56dp"
-                    android:layout_height="100dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/wall_teal"
-                    android:layout_margin="4dp"
-                    android:background="@color/win95_dark_gray"
-                    android:padding="2dp"
-                    android:contentDescription="@string/wall_teal_desc" />
-
-                <ImageView
-                    android:id="@+id/wall_clouds"
-                    android:layout_width="56dp"
-                    android:layout_height="100dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/wall_clouds"
-                    android:layout_margin="4dp"
-                    android:background="@color/win95_dark_gray"
-                    android:padding="2dp"
-                    android:contentDescription="@string/wall_clouds_desc" />
-
-                <ImageView
-                    android:id="@+id/wall_setup"
-                    android:layout_width="56dp"
-                    android:layout_height="100dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/wall_setup"
-                    android:layout_margin="4dp"
-                    android:background="@color/win95_dark_gray"
-                    android:padding="2dp"
-                    android:contentDescription="@string/wall_setup_desc" />
-
-                <ImageView
-                    android:id="@+id/wall_stars"
-                    android:layout_width="56dp"
-                    android:layout_height="100dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/wall_stars"
-                    android:layout_margin="4dp"
-                    android:background="@color/win95_dark_gray"
-                    android:padding="2dp"
-                    android:contentDescription="@string/wall_stars_desc" />
-
-                <ImageView
-                    android:id="@+id/wall_matrix"
-                    android:layout_width="56dp"
-                    android:layout_height="100dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/wall_matrix"
-                    android:layout_margin="4dp"
-                    android:background="@color/win95_dark_gray"
-                    android:padding="2dp"
-                    android:contentDescription="@string/wall_matrix_desc" />
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/tap_wallpaper"
-                android:textColor="@color/win95_dark_gray"
-                android:textSize="11sp"
-                android:gravity="center"
-                android:layout_marginBottom="16dp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/win95_dark_gray"
-                android:layout_marginBottom="16dp" />
-
+            <!-- Window with beveled border -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@color/white"
-                android:padding="12dp"
-                android:layout_marginBottom="16dp">
+                android:background="@drawable/win95_window_border"
+                android:padding="4dp">
 
-                <TextView
+                <!-- Title bar with gradient -->
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/how_to_apply"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="14sp"
-                    android:layout_marginBottom="8dp" />
+                    android:background="@drawable/win95_titlebar"
+                    android:padding="3dp"
+                    android:gravity="center_vertical">
 
-                <TextView
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_my_computer"
+                        android:contentDescription="@string/app_icon_desc" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/app_name"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:paddingStart="6dp"
+                        android:paddingEnd="6dp"
+                        android:textSize="12sp" />
+
+                    <!-- Window control buttons -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <!-- Minimize button -->
+                        <TextView
+                            android:layout_width="16dp"
+                            android:layout_height="14dp"
+                            android:background="@drawable/win95_button"
+                            android:gravity="center"
+                            android:text="@string/minimize_button"
+                            android:textColor="@color/black"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:layout_marginEnd="2dp" />
+
+                        <!-- Maximize button -->
+                        <TextView
+                            android:layout_width="16dp"
+                            android:layout_height="14dp"
+                            android:background="@drawable/win95_button"
+                            android:gravity="center"
+                            android:text="@string/maximize_button"
+                            android:textColor="@color/black"
+                            android:textSize="8sp"
+                            android:layout_marginEnd="2dp" />
+
+                        <!-- Close button -->
+                        <TextView
+                            android:layout_width="16dp"
+                            android:layout_height="14dp"
+                            android:background="@drawable/win95_button"
+                            android:gravity="center"
+                            android:text="@string/close_button"
+                            android:textColor="@color/black"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- Content area -->
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/apply_instructions"
-                    android:textColor="@color/black"
-                    android:textSize="13sp"
-                    android:lineSpacingExtra="4dp" />
+                    android:orientation="vertical"
+                    android:padding="12dp"
+                    android:background="@color/win95_gray">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/welcome_title"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="12dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/icon_preview"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:layout_marginBottom="8dp" />
+
+                    <!-- Icon grid - Row 1: Win95 system icons -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="8dp"
+                            android:src="@drawable/ic_my_computer"
+                            android:contentDescription="@string/my_computer" />
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="8dp"
+                            android:src="@drawable/ic_recycle_bin"
+                            android:contentDescription="@string/recycle_bin" />
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="8dp"
+                            android:src="@drawable/ic_explorer"
+                            android:contentDescription="@string/explorer" />
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="8dp"
+                            android:src="@drawable/ic_paint"
+                            android:contentDescription="@string/paint" />
+
+                    </LinearLayout>
+
+                    <!-- Icon grid - Row 2: Modern app icons -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:layout_marginBottom="12dp">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="8dp"
+                            android:src="@drawable/ic_spotify"
+                            android:contentDescription="@string/spotify" />
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="8dp"
+                            android:src="@drawable/ic_instagram"
+                            android:contentDescription="@string/instagram" />
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="8dp"
+                            android:src="@drawable/ic_discord"
+                            android:contentDescription="@string/discord" />
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="8dp"
+                            android:src="@drawable/ic_chrome"
+                            android:contentDescription="@string/chrome" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@color/win95_dark_gray"
+                        android:layout_marginBottom="12dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/wallpapers"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:layout_marginBottom="8dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:layout_marginBottom="4dp">
+
+                        <ImageView
+                            android:id="@+id/wall_teal"
+                            android:layout_width="48dp"
+                            android:layout_height="85dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/wall_teal"
+                            android:layout_margin="3dp"
+                            android:background="@color/win95_dark_gray"
+                            android:padding="2dp"
+                            android:contentDescription="@string/wall_teal_desc" />
+
+                        <ImageView
+                            android:id="@+id/wall_clouds"
+                            android:layout_width="48dp"
+                            android:layout_height="85dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/wall_clouds"
+                            android:layout_margin="3dp"
+                            android:background="@color/win95_dark_gray"
+                            android:padding="2dp"
+                            android:contentDescription="@string/wall_clouds_desc" />
+
+                        <ImageView
+                            android:id="@+id/wall_setup"
+                            android:layout_width="48dp"
+                            android:layout_height="85dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/wall_setup"
+                            android:layout_margin="3dp"
+                            android:background="@color/win95_dark_gray"
+                            android:padding="2dp"
+                            android:contentDescription="@string/wall_setup_desc" />
+
+                        <ImageView
+                            android:id="@+id/wall_stars"
+                            android:layout_width="48dp"
+                            android:layout_height="85dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/wall_stars"
+                            android:layout_margin="3dp"
+                            android:background="@color/win95_dark_gray"
+                            android:padding="2dp"
+                            android:contentDescription="@string/wall_stars_desc" />
+
+                        <ImageView
+                            android:id="@+id/wall_matrix"
+                            android:layout_width="48dp"
+                            android:layout_height="85dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/wall_matrix"
+                            android:layout_margin="3dp"
+                            android:background="@color/win95_dark_gray"
+                            android:padding="2dp"
+                            android:contentDescription="@string/wall_matrix_desc" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tap_wallpaper"
+                        android:textColor="@color/win95_dark_gray"
+                        android:textSize="10sp"
+                        android:gravity="center"
+                        android:layout_marginBottom="12dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@color/win95_dark_gray"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- Instructions box with inset style -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="@drawable/win95_inset"
+                        android:padding="10dp"
+                        android:layout_marginBottom="12dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/how_to_apply"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textSize="12sp"
+                            android:layout_marginBottom="6dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/apply_instructions"
+                            android:textColor="@color/black"
+                            android:textSize="11sp"
+                            android:lineSpacingExtra="3dp" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/supported_launchers"
+                        android:textColor="@color/win95_dark_gray"
+                        android:textSize="10sp"
+                        android:gravity="center" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
-            <TextView
+            <!-- Taskbar directly below window -->
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/supported_launchers"
-                android:textColor="@color/win95_dark_gray"
-                android:textSize="11sp"
-                android:gravity="center" />
+                android:layout_height="40dp"
+                android:background="@drawable/win95_taskbar"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp">
+
+                <!-- Start button -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:background="@drawable/win95_button"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="8dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_start"
+                        android:contentDescription="@string/start_button_desc" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/start_button"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textSize="12sp"
+                        android:layout_marginStart="4dp" />
+
+                </LinearLayout>
+
+                <!-- Spacer -->
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <!-- Clock area -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="26dp"
+                    android:background="@drawable/win95_clock_inset"
+                    android:gravity="center"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/clock_time"
+                        android:textColor="@color/black"
+                        android:textSize="11sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
+    </FrameLayout>
 
 </ScrollView>
