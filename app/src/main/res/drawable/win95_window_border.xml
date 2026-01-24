@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Outer light border (top/left highlight) -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/white" />
+        </shape>
+    </item>
+    <!-- Dark border (bottom/right shadow) -->
+    <item
+        android:left="2dp"
+        android:top="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/win95_dark_gray" />
+        </shape>
+    </item>
+    <!-- Inner light border -->
+    <item
+        android:bottom="2dp"
+        android:right="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/win95_light_gray" />
+        </shape>
+    </item>
+    <!-- Inner dark border -->
+    <item
+        android:left="3dp"
+        android:top="3dp"
+        android:bottom="1dp"
+        android:right="1dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/win95_button_shadow" />
+        </shape>
+    </item>
+    <!-- Gray fill -->
+    <item
+        android:left="4dp"
+        android:top="4dp"
+        android:right="4dp"
+        android:bottom="4dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/win95_gray" />
+        </shape>
+    </item>
+</layer-list>
