@@ -38,6 +38,12 @@
     <item component="ComponentInfo{com.twitter.android/com.twitter.android.StartActivity}" drawable="ic_x" />
     <item component="ComponentInfo{com.amazon.mShop.android.shopping/com.amazon.mShop.home.HomeActivity}" drawable="ic_amazon" />
     <item component="ComponentInfo{com.pinterest/com.pinterest.activity.PinterestActivity}" drawable="ic_pinterest" />
+    <item component="ComponentInfo{org.telegram.messenger/org.telegram.ui.LaunchActivity}" drawable="ic_telegram" />
+    <item component="ComponentInfo{org.thoughtcrime.securesms/org.thoughtcrime.securesms.RoutingActivity}" drawable="ic_signal" />
+    <item component="ComponentInfo{tv.twitch.android.app/tv.twitch.android.app.core.LandingActivity}" drawable="ic_twitch" />
+    <item component="ComponentInfo{org.mozilla.firefox/org.mozilla.fenix.HomeActivity}" drawable="ic_firefox" />
+    <item component="ComponentInfo{org.mozilla.firefox/org.mozilla.gecko.BrowserApp}" drawable="ic_firefox" />
+    <item component="ComponentInfo{com.google.android.keep/com.google.android.keep.activities.BrowseActivity}" drawable="ic_notes" />
     <item component="ComponentInfo{com.Slack/com.Slack.ui.HomeActivity}" drawable="ic_slack" />
     <item component="ComponentInfo{com.Slack/slack.features.home.HomeActivity}" drawable="ic_slack" />
     <item component="ComponentInfo{com.tumblr/com.tumblr.ui.activity.TumblrActivity}" drawable="ic_tumblr" />

@@ -40,6 +40,8 @@
     <category title="Communication" />
     <item drawable="ic_whatsapp" name="WhatsApp" />
     <item drawable="ic_slack" name="Slack" />
+    <item drawable="ic_telegram" name="Telegram" />
+    <item drawable="ic_signal" name="Signal" />
 
     <category title="Dating" />
     <item drawable="ic_tinder" name="Tinder" />
@@ -53,9 +55,11 @@
     <category title="Video" />
     <item drawable="ic_youtube" name="YouTube" />
     <item drawable="ic_netflix" name="Netflix" />
+    <item drawable="ic_twitch" name="Twitch" />
 
     <category title="Browser" />
     <item drawable="ic_chrome" name="Chrome" />
+    <item drawable="ic_firefox" name="Firefox" />
 
     <category title="Shopping" />
     <item drawable="ic_amazon" name="Amazon" />
@@ -75,5 +79,7 @@
     <item drawable="ic_gpt" name="GPT" />
     <item drawable="ic_travel" name="Travel" />
     <item drawable="ic_langjump" name="Language" />
+    <item drawable="ic_notes" name="Notes" />
+    <item drawable="ic_bank" name="Bank" />
 
 </resources>
