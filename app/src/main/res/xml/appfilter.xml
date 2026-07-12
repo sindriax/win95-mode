@@ -54,7 +54,6 @@
     <item component="ComponentInfo{com.tinder/com.tinder.ui.launch.LaunchActivity}" drawable="ic_tinder" />
     <item component="ComponentInfo{com.bumble.app/com.bumble.app.ui.main.MainActivity}" drawable="ic_bumble" />
     <item component="ComponentInfo{com.bumble.app/com.bumble.app.intro.IntroActivity}" drawable="ic_bumble" />
-    <item component="ComponentInfo{co.hinge.app/co.hinge.app.ui.main.MainActivity}" drawable="ic_hinge" />
 
     <item component="ComponentInfo{com.google.android.dialer/com.google.android.dialer.extensions.GoogleDialtactsActivity}" drawable="ic_phone" />
     <item component="ComponentInfo{com.google.android.apps.messaging/com.google.android.apps.messaging.ui.ConversationListActivity}" drawable="ic_messages" />

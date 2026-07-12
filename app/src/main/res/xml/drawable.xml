@@ -46,7 +46,6 @@
     <category title="Dating" />
     <item drawable="ic_tinder" name="Tinder" />
     <item drawable="ic_bumble" name="Bumble" />
-    <item drawable="ic_hinge" name="Hinge" />
 
     <category title="Music" />
     <item drawable="ic_spotify" name="Spotify" />

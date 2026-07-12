@@ -9,13 +9,22 @@ A nostalgic Windows 95-style icon pack and wallpaper manager for Android. Transf
 ## Screenshots
 
 <p align="center">
-  <img src="screenshots/app_view.png" width="300" alt="App View" />
-  <img src="screenshots/home_view.png" width="300" alt="Home Screen" />
+  <img src="screenshots/home_view.png" width="260" alt="Home Screen" />
+  <img src="screenshots/app_view.png" width="260" alt="App View" />
+  <img src="screenshots/wallpaper_dialog.png" width="260" alt="Wallpaper Dialog" />
 </p>
+
+## What's New in v2
+
+- Complete icon overhaul: every icon is now a real Win95-style object — a CRT television for Netflix, a cardboard box for Amazon, a camcorder for TikTok — instead of a pixelated modern logo
+- New icons and mappings: Telegram, Signal, Twitch, Firefox, Google Photos, Play Games, Clock and more
+- Fallback plaque for unthemed apps
+- MS Sans Serif pixel font and working window controls in the app
+- Wallpapers at phone resolution, applicable to home and lock screen
 
 ## Features
 
-- 45+ app icons styled like classic Windows 95
+- 50+ app icons styled like classic Windows 95
 - Apps without a themed icon get a beveled Win95 plaque, so the whole home screen stays coherent
 - Authentic Win95 UI elements (beveled borders, 3D buttons, MS Sans Serif pixel font)
 - Classic wallpapers (teal, clouds, setup, stars, matrix) for home and lock screen
