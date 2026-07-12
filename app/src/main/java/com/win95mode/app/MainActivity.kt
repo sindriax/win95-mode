@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupWindowControls() {
         findViewById<TextView>(R.id.btn_close).setOnClickListener { finish() }
-        findViewById<TextView>(R.id.btn_minimize).setOnClickListener { moveTaskToBack(true) }
+        findViewById<View>(R.id.btn_minimize).setOnClickListener { moveTaskToBack(true) }
         findViewById<TextView>(R.id.btn_maximize).setOnClickListener {
             Toast.makeText(this, R.string.already_maximized, Toast.LENGTH_SHORT).show()
         }

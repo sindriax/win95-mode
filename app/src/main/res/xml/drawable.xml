@@ -7,7 +7,8 @@
     <item drawable="ic_recycle_bin" name="Recycle Bin" />
     <item drawable="ic_explorer" name="Explorer" />
     <item drawable="ic_disk" name="Disk" />
-    <item drawable="ic_start" name="Start (Settings)" />
+    <item drawable="ic_start" name="Start" />
+    <item drawable="ic_settings" name="Settings" />
     <item drawable="ic_files" name="Files" />
 
     <category title="Phone" />
@@ -15,11 +16,15 @@
     <item drawable="ic_messages" name="Messages" />
     <item drawable="ic_camera" name="Camera" />
     <item drawable="ic_calendar" name="Calendar" />
+    <item drawable="ic_clock" name="Clock" />
 
     <category title="Google" />
     <item drawable="ic_drive" name="Google Drive" />
     <item drawable="ic_playstore" name="Play Store" />
-    <item drawable="ic_travel" name="Maps" />
+    <item drawable="ic_maps" name="Maps" />
+    <item drawable="ic_photos" name="Photos" />
+    <item drawable="ic_mail" name="Gmail" />
+    <item drawable="ic_games" name="Play Games" />
 
     <category title="Social" />
     <item drawable="ic_instagram" name="Instagram" />
@@ -43,6 +48,7 @@
 
     <category title="Music" />
     <item drawable="ic_spotify" name="Spotify" />
+    <item drawable="ic_music" name="YT Music" />
 
     <category title="Video" />
     <item drawable="ic_youtube" name="YouTube" />

@@ -44,6 +44,35 @@ BEVEL_SHADOW = (128, 128, 128, 255)
 BEVEL_DARK = (0, 0, 0, 255)
 
 
+def strip_background(img: Image.Image, tolerance: int = 40) -> Image.Image:
+    """Flood-fill from the image edges, turning the near-uniform background
+    transparent. For AI-generated icons, which come on a solid backdrop."""
+    img = img.convert("RGBA")
+    px = img.load()
+    w, h = img.size
+    bg = px[0, 0][:3]
+
+    def is_bg(c) -> bool:
+        return c[3] > 0 and sum(abs(a - b) for a, b in zip(c[:3], bg)) <= tolerance * 3
+
+    from collections import deque
+    queue = deque(
+        [(x, y) for x in range(w) for y in (0, h - 1)]
+        + [(x, y) for x in (0, w - 1) for y in range(h)]
+    )
+    seen = set()
+    while queue:
+        x, y = queue.popleft()
+        if (x, y) in seen or not (0 <= x < w and 0 <= y < h):
+            continue
+        seen.add((x, y))
+        c = px[x, y]
+        if is_bg(c):
+            px[x, y] = (c[0], c[1], c[2], 0)
+            queue.extend([(x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)])
+    return img
+
+
 def pad_to_square(img: Image.Image) -> Image.Image:
     """Center the image on a square transparent canvas."""
     side = max(img.size)
@@ -72,8 +101,11 @@ def quantize(img: Image.Image, colors: int, dither: bool) -> Image.Image:
     return out
 
 
-def win95ify(src: Image.Image, size: int, grid: int, colors: int, dither: bool) -> Image.Image:
-    img = pad_to_square(src.convert("RGBA"))
+def win95ify(src: Image.Image, size: int, grid: int, colors: int, dither: bool, strip_bg: bool) -> Image.Image:
+    img = src.convert("RGBA")
+    if strip_bg:
+        img = strip_background(img)
+    img = pad_to_square(img)
     img = img.resize((grid, grid), Image.Resampling.LANCZOS)
     img = quantize(img, colors, dither)
     return img.resize((size, size), Image.Resampling.NEAREST)
@@ -123,6 +155,7 @@ def main() -> int:
     parser.add_argument("--grid", type=int, default=32, help="pixel grid for win95ify (default 32)")
     parser.add_argument("--colors", type=int, default=16, choices=[16, 256], help="palette size for win95ify")
     parser.add_argument("--dither", action="store_true", help="Floyd-Steinberg dithering during quantization")
+    parser.add_argument("--strip-bg", action="store_true", help="flood-fill the solid background to transparent (win95ify mode)")
     args = parser.parse_args()
 
     out_dir = Path(args.out)
@@ -140,7 +173,7 @@ def main() -> int:
     for src_path in collect_inputs(Path(args.input)):
         src = Image.open(src_path)
         if args.mode == "win95ify":
-            result = win95ify(src, args.size, args.grid, args.colors, args.dither)
+            result = win95ify(src, args.size, args.grid, args.colors, args.dither, args.strip_bg)
         else:
             result = normalize(src, args.size)
         dest = out_dir / (src_path.stem + ".png")

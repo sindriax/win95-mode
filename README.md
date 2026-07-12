@@ -15,10 +15,10 @@ A nostalgic Windows 95-style icon pack and wallpaper manager for Android. Transf
 
 ## Features
 
-- 40+ app icons styled like classic Windows 95
-- Authentic Win95 UI elements (beveled borders, 3D buttons)
-- Classic wallpapers (teal, clouds, setup, stars, matrix)
-- One-tap wallpaper application
+- 45+ app icons styled like classic Windows 95
+- Apps without a themed icon get a beveled Win95 plaque, so the whole home screen stays coherent
+- Authentic Win95 UI elements (beveled borders, 3D buttons, MS Sans Serif pixel font)
+- Classic wallpapers (teal, clouds, setup, stars, matrix) for home and lock screen
 - Works with all major Android launchers
 
 ## Supported Launchers
@@ -47,3 +47,21 @@ A nostalgic Windows 95-style icon pack and wallpaper manager for Android. Transf
 - **Architecture:** Single-activity app with intent filters for launcher integration
 - **Icon Pack Protocol:** Supports ADW, Nova, Apex, Action, Lawnchair, and Smart Launcher icon pack formats via `appfilter.xml`
 - **Min SDK:** 24 | **Target SDK:** 36
+
+## Icon Tooling
+
+Icon artwork is normalized with `scripts/win95ify.py` (requires Python 3 with Pillow):
+
+```bash
+python3 -m venv .venv && .venv/bin/pip install Pillow
+.venv/bin/python scripts/win95ify.py win95ify <source-images> -o app/src/main/res/drawable --strip-bg
+```
+
+It converts any source image to a true 32px pixel grid with the classic 16-color
+palette on a 192x192 canvas. See [docs/ICON_PROMPTS.md](docs/ICON_PROMPTS.md)
+for the AI generation guide.
+
+## Credits
+
+- MS Sans Serif pixel font: [FontStruct recreation by "lou"](https://fontstruct.com/fontstructions/show/1384746) (CC BY-SA 3.0), via [98.css](https://github.com/jdan/98.css)
+- Classic system icons based on the Windows 95/98 originals
