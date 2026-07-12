@@ -105,9 +105,19 @@ def win95ify(src: Image.Image, size: int, grid: int, colors: int, dither: bool, 
     img = src.convert("RGBA")
     if strip_bg:
         img = strip_background(img)
+    # Crop to the artwork's bounding box so every icon fills its canvas the
+    # way the classic 32px originals do — AI generations come with generous
+    # empty margins that would otherwise render the icon visibly smaller.
+    bbox = img.getchannel("A").getbbox()
+    if bbox:
+        img = img.crop(bbox)
     img = pad_to_square(img)
-    img = img.resize((grid, grid), Image.Resampling.LANCZOS)
-    img = quantize(img, colors, dither)
+    margin = grid // 24
+    inner = grid - 2 * margin
+    scaled = img.resize((inner, inner), Image.Resampling.LANCZOS)
+    canvas = Image.new("RGBA", (grid, grid), (0, 0, 0, 0))
+    canvas.paste(scaled, (margin, margin))
+    img = quantize(canvas, colors, dither)
     return img.resize((size, size), Image.Resampling.NEAREST)
 
 
