@@ -16,3 +16,6 @@ local.properties
 *.keystore
 *.jks
 **/build
+# IDE and tooling
+/.idea
+/.venv
