@@ -3,6 +3,7 @@
     <version>1</version>
 
     <category title="System" />
+    <item drawable="ic_win95mode" name="Win95 Mode" />
     <item drawable="ic_my_computer" name="My Computer" />
     <item drawable="ic_recycle_bin" name="Recycle Bin" />
     <item drawable="ic_explorer" name="Explorer" />

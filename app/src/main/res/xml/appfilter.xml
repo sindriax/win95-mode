@@ -5,6 +5,8 @@
     <iconback img1="iconback" />
     <scale factor="0.72" />
 
+    <item component="ComponentInfo{com.win95mode.app/com.win95mode.app.MainActivity}" drawable="ic_win95mode" />
+
     <item component="ComponentInfo{com.instagram.android/com.instagram.android.activity.MainTabActivity}" drawable="ic_instagram" />
     <item component="ComponentInfo{com.instagram.android/com.instagram.mainactivity.LauncherActivity}" drawable="ic_instagram" />
 
