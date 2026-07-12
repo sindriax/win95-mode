@@ -51,6 +51,22 @@ class IconPackResourcesTest {
     }
 
     @Test
+    fun `every pack icon is mapped to an app or explicitly decorative`() {
+        val decorative = setOf(
+            "ic_recycle_bin", "ic_explorer", "ic_disk", "ic_start", "ic_paint",
+            "ic_wordpad", "ic_travel", "ic_langjump", "ic_bank"
+        )
+        val mapped = items("appfilter.xml").map { it.getAttribute("drawable") }.toSet()
+        val unmapped = items("drawable.xml")
+            .map { it.getAttribute("drawable") }
+            .filter { it.isNotEmpty() && it !in mapped && it !in decorative }
+        assertTrue(
+            "drawable.xml icons with no appfilter mapping (map them or add to the decorative list): $unmapped",
+            unmapped.isEmpty()
+        )
+    }
+
+    @Test
     fun `drawable list entries all exist`() {
         val missing = items("drawable.xml")
             .map { it.getAttribute("drawable") }
