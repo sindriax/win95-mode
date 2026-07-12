@@ -60,9 +60,10 @@
 
                         <!-- Minimize button -->
                         <TextView
-                            android:layout_width="16dp"
-                            android:layout_height="14dp"
-                            android:background="@drawable/win95_button"
+                            android:id="@+id/btn_minimize"
+                            android:layout_width="20dp"
+                            android:layout_height="18dp"
+                            android:background="@drawable/win95_button_selector"
                             android:gravity="center"
                             android:text="@string/minimize_button"
                             android:textColor="@color/black"
@@ -72,9 +73,10 @@
 
                         <!-- Maximize button -->
                         <TextView
-                            android:layout_width="16dp"
-                            android:layout_height="14dp"
-                            android:background="@drawable/win95_button"
+                            android:id="@+id/btn_maximize"
+                            android:layout_width="20dp"
+                            android:layout_height="18dp"
+                            android:background="@drawable/win95_button_selector"
                             android:gravity="center"
                             android:text="@string/maximize_button"
                             android:textColor="@color/black"
@@ -83,9 +85,10 @@
 
                         <!-- Close button -->
                         <TextView
-                            android:layout_width="16dp"
-                            android:layout_height="14dp"
-                            android:background="@drawable/win95_button"
+                            android:id="@+id/btn_close"
+                            android:layout_width="20dp"
+                            android:layout_height="18dp"
+                            android:background="@drawable/win95_button_selector"
                             android:gravity="center"
                             android:text="@string/close_button"
                             android:textColor="@color/black"
@@ -121,80 +124,14 @@
                         android:textSize="12sp"
                         android:layout_marginBottom="8dp" />
 
-                    <!-- Icon grid - Row 1: Win95 system icons -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <!-- Full icon set, populated from xml/drawable.xml at runtime -->
+                    <GridLayout
+                        android:id="@+id/icon_grid"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center">
-
-                        <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_margin="8dp"
-                            android:src="@drawable/ic_my_computer"
-                            android:contentDescription="@string/my_computer" />
-
-                        <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_margin="8dp"
-                            android:src="@drawable/ic_recycle_bin"
-                            android:contentDescription="@string/recycle_bin" />
-
-                        <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_margin="8dp"
-                            android:src="@drawable/ic_explorer"
-                            android:contentDescription="@string/explorer" />
-
-                        <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_margin="8dp"
-                            android:src="@drawable/ic_paint"
-                            android:contentDescription="@string/paint" />
-
-                    </LinearLayout>
-
-                    <!-- Icon grid - Row 2: Modern app icons -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        android:layout_marginBottom="12dp">
-
-                        <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_margin="8dp"
-                            android:src="@drawable/ic_spotify"
-                            android:contentDescription="@string/spotify" />
-
-                        <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_margin="8dp"
-                            android:src="@drawable/ic_instagram"
-                            android:contentDescription="@string/instagram" />
-
-                        <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_margin="8dp"
-                            android:src="@drawable/ic_discord"
-                            android:contentDescription="@string/discord" />
-
-                        <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_margin="8dp"
-                            android:src="@drawable/ic_chrome"
-                            android:contentDescription="@string/chrome" />
-
-                    </LinearLayout>
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="12dp"
+                        android:columnCount="5" />
 
                     <View
                         android:layout_width="match_parent"
@@ -341,9 +278,10 @@
 
                 <!-- Start button -->
                 <LinearLayout
+                    android:id="@+id/btn_start"
                     android:layout_width="wrap_content"
                     android:layout_height="28dp"
-                    android:background="@drawable/win95_button"
+                    android:background="@drawable/win95_button_selector"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
                     android:paddingStart="4dp"
@@ -381,10 +319,11 @@
                     android:paddingStart="8dp"
                     android:paddingEnd="8dp">
 
-                    <TextView
+                    <TextClock
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/clock_time"
+                        android:format12Hour="h:mm a"
+                        android:format24Hour="HH:mm"
                         android:textColor="@color/black"
                         android:textSize="11sp" />
 

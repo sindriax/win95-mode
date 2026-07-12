@@ -6,14 +6,6 @@
     <string name="app_icon_desc">Win95 Mode icon</string>
     <string name="welcome_title">Welcome to Win95 Mode!</string>
     <string name="icon_preview">Icon Preview:</string>
-    <string name="my_computer">My Computer</string>
-    <string name="recycle_bin">Recycle Bin</string>
-    <string name="explorer">Explorer</string>
-    <string name="paint">Paint</string>
-    <string name="spotify">Spotify</string>
-    <string name="instagram">Instagram</string>
-    <string name="discord">Discord</string>
-    <string name="chrome">Chrome</string>
     <string name="wallpapers">Wallpapers:</string>
     <string name="wall_teal_desc">Teal wallpaper</string>
     <string name="wall_clouds_desc">Clouds wallpaper</string>
@@ -26,5 +18,17 @@
     <string name="supported_launchers">Supported: Nova, Lawnchair, Action, Apex, Smart Launcher</string>
     <string name="start_button">Start</string>
     <string name="start_button_desc">Start button</string>
-    <string name="clock_time">12:00 PM</string>
+    <string name="set_wallpaper_title">Set Wallpaper</string>
+    <string name="wallpaper_preview_desc">Wallpaper preview</string>
+    <string name="apply_to">Apply this wallpaper to:</string>
+    <string name="home_screen">Home</string>
+    <string name="lock_screen">Lock</string>
+    <string name="both_screens">Both</string>
+    <string name="cancel">Cancel</string>
+    <string name="wallpaper_applied">Wallpaper applied!</string>
+    <string name="wallpaper_failed">Failed to set wallpaper</string>
+    <string name="already_maximized">This window is already maximized</string>
+    <string name="about_title">About Win95 Mode</string>
+    <string name="about_text">Win95 Mode v2\n\nA Windows 95-style icon pack and wallpaper manager.\n\nApply the icon pack from your launcher settings, tap a wallpaper to set it, and enjoy the nostalgia.</string>
+    <string name="ok">OK</string>
 </resources>

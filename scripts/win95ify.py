@@ -1,0 +1,154 @@
+#!/usr/bin/env python3
+"""win95ify - normalize icon artwork into a consistent Win95-style icon set.
+
+Every icon that ships in the pack should pass through this script so the
+whole set shares one canvas size, one pixel grid, and one palette treatment.
+
+Modes:
+  win95ify   Full retro treatment for AI-generated or modern source images:
+             downscale to a true pixel grid, quantize to the classic Win95
+             palette (16 colors) or an adaptive 256-color palette, optional
+             Floyd-Steinberg dithering, then upscale with hard pixels.
+  normalize  Gentle mode for art that is already Win95-styled: pad to a
+             square canvas and resize to the target size. No palette change.
+  iconback   Generate `iconback.png`, a beveled Win95 "plaque" used by
+             launchers as the backdrop for apps the pack does not theme.
+
+Usage:
+  .venv/bin/python scripts/win95ify.py win95ify  <in.png|dir> -o <outdir> [--grid 32] [--colors 16|256] [--dither]
+  .venv/bin/python scripts/win95ify.py normalize <in.png|dir> -o <outdir>
+  .venv/bin/python scripts/win95ify.py iconback -o app/src/main/res/drawable
+
+Output is always a <size>x<size> RGBA PNG (default 192x192, matching the
+existing pack).
+"""
+
+import argparse
+import sys
+from pathlib import Path
+
+from PIL import Image
+
+# The classic Windows 95 16-color VGA palette.
+WIN95_PALETTE = [
+    (0, 0, 0), (128, 0, 0), (0, 128, 0), (128, 128, 0),
+    (0, 0, 128), (128, 0, 128), (0, 128, 128), (192, 192, 192),
+    (128, 128, 128), (255, 0, 0), (0, 255, 0), (255, 255, 0),
+    (0, 0, 255), (255, 0, 255), (0, 255, 255), (255, 255, 255),
+]
+
+# Win95 bevel colors for the iconback plaque.
+BEVEL_LIGHT = (255, 255, 255, 255)
+BEVEL_FACE = (192, 192, 192, 255)
+BEVEL_SHADOW = (128, 128, 128, 255)
+BEVEL_DARK = (0, 0, 0, 255)
+
+
+def pad_to_square(img: Image.Image) -> Image.Image:
+    """Center the image on a square transparent canvas."""
+    side = max(img.size)
+    canvas = Image.new("RGBA", (side, side), (0, 0, 0, 0))
+    canvas.paste(img, ((side - img.width) // 2, (side - img.height) // 2))
+    return canvas
+
+
+def quantize(img: Image.Image, colors: int, dither: bool) -> Image.Image:
+    """Quantize RGB content to the Win95 16-color or an adaptive palette,
+    preserving the alpha channel (binarized, as real Win95 icons had)."""
+    alpha = img.getchannel("A").point(lambda a: 255 if a >= 128 else 0)
+    rgb = img.convert("RGB")
+
+    dither_mode = Image.Dither.FLOYDSTEINBERG if dither else Image.Dither.NONE
+    if colors == 16:
+        pal_img = Image.new("P", (1, 1))
+        flat = [c for rgb_ in WIN95_PALETTE for c in rgb_]
+        pal_img.putpalette(flat + flat[:3] * (256 - len(WIN95_PALETTE)))
+        rgb = rgb.quantize(palette=pal_img, dither=dither_mode)
+    else:
+        rgb = rgb.quantize(colors=colors, dither=dither_mode)
+
+    out = rgb.convert("RGBA")
+    out.putalpha(alpha)
+    return out
+
+
+def win95ify(src: Image.Image, size: int, grid: int, colors: int, dither: bool) -> Image.Image:
+    img = pad_to_square(src.convert("RGBA"))
+    img = img.resize((grid, grid), Image.Resampling.LANCZOS)
+    img = quantize(img, colors, dither)
+    return img.resize((size, size), Image.Resampling.NEAREST)
+
+
+def normalize(src: Image.Image, size: int) -> Image.Image:
+    img = pad_to_square(src.convert("RGBA"))
+    resample = (
+        Image.Resampling.NEAREST
+        if img.width % size == 0 or size % img.width == 0
+        else Image.Resampling.LANCZOS
+    )
+    return img.resize((size, size), resample)
+
+
+def iconback(size: int) -> Image.Image:
+    """A beveled raised gray plaque, like a Win95 button face."""
+    img = Image.new("RGBA", (size, size), BEVEL_FACE)
+    px = img.load()
+    bevel = max(2, size // 32)
+    for i in range(bevel):
+        for j in range(size):
+            px[j, i] = BEVEL_LIGHT if j >= i else px[j, i]          # top
+            px[i, j] = BEVEL_LIGHT if j >= i else px[i, j]          # left
+            px[j, size - 1 - i] = BEVEL_DARK if j <= size - 1 - i else px[j, size - 1 - i]  # bottom
+            px[size - 1 - i, j] = BEVEL_DARK if j <= size - 1 - i else px[size - 1 - i, j]  # right
+    inner = bevel
+    for i in range(inner, inner + bevel):
+        for j in range(inner, size - inner):
+            px[j, size - 1 - i] = BEVEL_SHADOW if j <= size - 1 - i else px[j, size - 1 - i]
+            px[size - 1 - i, j] = BEVEL_SHADOW if j <= size - 1 - i else px[size - 1 - i, j]
+    return img
+
+
+def collect_inputs(path: Path) -> list[Path]:
+    if path.is_dir():
+        return sorted(p for p in path.iterdir() if p.suffix.lower() in {".png", ".webp", ".jpg", ".jpeg"})
+    return [path]
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("mode", choices=["win95ify", "normalize", "iconback"])
+    parser.add_argument("input", nargs="?", help="source image or directory (not used by iconback)")
+    parser.add_argument("-o", "--out", required=True, help="output directory")
+    parser.add_argument("--size", type=int, default=192, help="output canvas size (default 192)")
+    parser.add_argument("--grid", type=int, default=32, help="pixel grid for win95ify (default 32)")
+    parser.add_argument("--colors", type=int, default=16, choices=[16, 256], help="palette size for win95ify")
+    parser.add_argument("--dither", action="store_true", help="Floyd-Steinberg dithering during quantization")
+    args = parser.parse_args()
+
+    out_dir = Path(args.out)
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    if args.mode == "iconback":
+        dest = out_dir / "iconback.png"
+        iconback(args.size).save(dest)
+        print(f"wrote {dest}")
+        return 0
+
+    if not args.input:
+        parser.error(f"mode '{args.mode}' requires an input image or directory")
+
+    for src_path in collect_inputs(Path(args.input)):
+        src = Image.open(src_path)
+        if args.mode == "win95ify":
+            result = win95ify(src, args.size, args.grid, args.colors, args.dither)
+        else:
+            result = normalize(src, args.size)
+        dest = out_dir / (src_path.stem + ".png")
+        result.save(dest)
+        print(f"{src_path.name}: {src.width}x{src.height} -> {dest} ({args.size}x{args.size})")
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
