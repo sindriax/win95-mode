@@ -27,7 +27,7 @@ import argparse
 import sys
 from pathlib import Path
 
-from PIL import Image
+from PIL import Image, ImageEnhance
 
 # The classic Windows 95 16-color VGA palette.
 WIN95_PALETTE = [
@@ -101,10 +101,16 @@ def quantize(img: Image.Image, colors: int, dither: bool) -> Image.Image:
     return out
 
 
-def win95ify(src: Image.Image, size: int, grid: int, colors: int, dither: bool, strip_bg: bool) -> Image.Image:
+def win95ify(src: Image.Image, size: int, grid: int, colors: int, dither: bool, strip_bg: bool, saturation: float = 1.0) -> Image.Image:
     img = src.convert("RGBA")
     if strip_bg:
         img = strip_background(img)
+    if saturation != 1.0:
+        # Quantization pulls muted midtones toward gray; boosting saturation
+        # first keeps the artwork's colors alive in the reduced palette.
+        alpha = img.getchannel("A")
+        img = ImageEnhance.Color(img.convert("RGB")).enhance(saturation).convert("RGBA")
+        img.putalpha(alpha)
     # Crop to the artwork's bounding box so every icon fills its canvas the
     # way the classic 32px originals do — AI generations come with generous
     # empty margins that would otherwise render the icon visibly smaller.
@@ -166,6 +172,7 @@ def main() -> int:
     parser.add_argument("--colors", type=int, default=16, choices=[16, 256], help="palette size for win95ify")
     parser.add_argument("--dither", action="store_true", help="Floyd-Steinberg dithering during quantization")
     parser.add_argument("--strip-bg", action="store_true", help="flood-fill the solid background to transparent (win95ify mode)")
+    parser.add_argument("--saturation", type=float, default=1.0, help="saturation boost before quantization, e.g. 1.3 (win95ify mode)")
     args = parser.parse_args()
 
     out_dir = Path(args.out)
@@ -183,7 +190,7 @@ def main() -> int:
     for src_path in collect_inputs(Path(args.input)):
         src = Image.open(src_path)
         if args.mode == "win95ify":
-            result = win95ify(src, args.size, args.grid, args.colors, args.dither, args.strip_bg)
+            result = win95ify(src, args.size, args.grid, args.colors, args.dither, args.strip_bg, args.saturation)
         else:
             result = normalize(src, args.size)
         dest = out_dir / (src_path.stem + ".png")

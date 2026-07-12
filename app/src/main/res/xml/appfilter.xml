@@ -28,6 +28,7 @@
     <item component="ComponentInfo{com.android.chrome/com.google.android.apps.chrome.Main}" drawable="ic_chrome" />
     <item component="ComponentInfo{com.google.android.apps.youtube.music/com.google.android.apps.youtube.music.activities.MusicActivity}" drawable="ic_music" />
     <item component="ComponentInfo{com.linkedin.android/com.linkedin.android.authenticator.LaunchActivity}" drawable="ic_linkedin" />
+    <item component="ComponentInfo{com.linkedin.android/com.linkedin.android.authenticator.LaunchActivityDefault}" drawable="ic_linkedin" />
     <item component="ComponentInfo{com.linkedin.android/com.linkedin.android.home.MainActivity}" drawable="ic_linkedin" />
     <item component="ComponentInfo{com.linkedin.android/com.linkedin.android.authentication.login.LoginActivity}" drawable="ic_linkedin" />
     <item component="ComponentInfo{com.netflix.mediaclient/com.netflix.mediaclient.ui.launch.UIWebViewActivity}" drawable="ic_netflix" />
@@ -35,6 +36,7 @@
     <item component="ComponentInfo{com.snapchat.android/com.snapchat.android.LandingPageActivity}" drawable="ic_snapchat" />
     <item component="ComponentInfo{com.discord/com.discord.main.MainActivity}" drawable="ic_discord" />
     <item component="ComponentInfo{com.discord/com.discord.app.AppActivity$Main}" drawable="ic_discord" />
+    <item component="ComponentInfo{com.discord/com.discord.main.MainDefault}" drawable="ic_discord" />
     <item component="ComponentInfo{com.twitter.android/com.twitter.android.StartActivity}" drawable="ic_x" />
     <item component="ComponentInfo{com.amazon.mShop.android.shopping/com.amazon.mShop.home.HomeActivity}" drawable="ic_amazon" />
     <item component="ComponentInfo{com.pinterest/com.pinterest.activity.PinterestActivity}" drawable="ic_pinterest" />
@@ -53,6 +55,7 @@
     <item component="ComponentInfo{com.tinder/com.tinder.activities.LauncherActivity}" drawable="ic_tinder" />
     <item component="ComponentInfo{com.tinder/com.tinder.ui.launch.LaunchActivity}" drawable="ic_tinder" />
     <item component="ComponentInfo{com.bumble.app/com.bumble.app.ui.main.MainActivity}" drawable="ic_bumble" />
+    <item component="ComponentInfo{com.bumble.app/com.bumble.app.ui.launcher.BumbleLauncherActivity}" drawable="ic_bumble" />
     <item component="ComponentInfo{com.bumble.app/com.bumble.app.intro.IntroActivity}" drawable="ic_bumble" />
 
     <item component="ComponentInfo{com.google.android.dialer/com.google.android.dialer.extensions.GoogleDialtactsActivity}" drawable="ic_phone" />
