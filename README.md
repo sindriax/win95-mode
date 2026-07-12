@@ -66,9 +66,8 @@ python3 -m venv .venv && .venv/bin/pip install Pillow
 .venv/bin/python scripts/win95ify.py win95ify <source-images> -o app/src/main/res/drawable --strip-bg
 ```
 
-It converts any source image to a true 32px pixel grid with the classic 16-color
-palette on a 192x192 canvas. See [docs/ICON_PROMPTS.md](docs/ICON_PROMPTS.md)
-for the AI generation guide.
+It converts any source image to a true pixel grid with a reduced retro palette
+on a 192x192 canvas. Run it with `--help` for all options.
 
 ## Credits
 
