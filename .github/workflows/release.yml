@@ -30,11 +30,17 @@ jobs:
       - name: Build release APK
         run: ./gradlew assembleRelease
 
+      # Two copies: versioned for humans browsing releases, stable so
+      # /releases/latest/download/win95-mode.apk always serves the newest build
       - name: Rename APK
-        run: cp app/build/outputs/apk/release/app-release.apk win95-mode-${{ github.ref_name }}.apk
+        run: |
+          cp app/build/outputs/apk/release/app-release.apk win95-mode-${{ github.ref_name }}.apk
+          cp app/build/outputs/apk/release/app-release.apk win95-mode.apk
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: win95-mode-${{ github.ref_name }}.apk
+          files: |
+            win95-mode-${{ github.ref_name }}.apk
+            win95-mode.apk
           generate_release_notes: true
