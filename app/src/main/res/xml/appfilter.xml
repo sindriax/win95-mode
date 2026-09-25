@@ -85,4 +85,110 @@
     <item component="ComponentInfo{com.riotgames.league.teamfighttactics/com.riotgames.league.teamfighttactics.RiotNativeActivity}" drawable="ic_tft" />
     <item component="ComponentInfo{com.riotgames.league.teamfighttactics/com.riotgames.league.teamfighttactics.TftMainActivity}" drawable="ic_tft" />
 
+    <!-- Samsung / One UI. Some entries appear twice because launchers report
+         components in both full and shortened form depending on device. -->
+    <item component="ComponentInfo{com.samsung.android.dialer/com.samsung.android.dialer.DialtactsActivity}" drawable="ic_phone" />
+    <item component="ComponentInfo{com.samsung.android.dialer/.DialtactsActivity}" drawable="ic_phone" />
+    <item component="ComponentInfo{com.samsung.android.messaging/com.android.mms.ui.ConversationComposer}" drawable="ic_messages" />
+    <item component="ComponentInfo{com.samsung.android.messaging/com.samsung.android.messaging.ui.ConversationList}" drawable="ic_messages" />
+    <item component="ComponentInfo{com.samsung.android.messaging/com.samsung.android.messaging.ui.ConversationListActivity}" drawable="ic_messages" />
+    <item component="ComponentInfo{com.sec.android.app.camera/com.sec.android.app.camera.Camera}" drawable="ic_camera" />
+    <item component="ComponentInfo{com.sec.android.app.camera/.Camera}" drawable="ic_camera" />
+    <item component="ComponentInfo{com.sec.android.gallery3d/com.sec.android.gallery3d.app.GalleryActivity}" drawable="ic_photos" />
+    <item component="ComponentInfo{com.sec.android.gallery3d/com.sec.android.gallery3d.app.Gallery}" drawable="ic_photos" />
+    <item component="ComponentInfo{com.sec.android.gallery3d/com.sec.android.gallery3d.app.GalleryOpaqueActivity}" drawable="ic_photos" />
+    <item component="ComponentInfo{com.sec.android.gallery3d/com.samsung.android.gallery.app.activity.GalleryActivity}" drawable="ic_photos" />
+    <item component="ComponentInfo{com.sec.android.app.clockpackage/com.sec.android.app.clockpackage.ClockPackage}" drawable="ic_clock" />
+    <item component="ComponentInfo{com.sec.android.app.clockpackage/com.sec.android.app.clockpackage.common.activity.ClockPackage}" drawable="ic_clock" />
+    <item component="ComponentInfo{com.sec.android.app.myfiles/com.sec.android.app.myfiles.external.ui.MainActivity}" drawable="ic_explorer" />
+    <item component="ComponentInfo{com.sec.android.app.myfiles/com.sec.android.app.myfiles.common.MainActivity}" drawable="ic_explorer" />
+    <item component="ComponentInfo{com.sec.android.app.myfiles/com.sec.android.app.myfiles.ui.MainActivity}" drawable="ic_explorer" />
+    <item component="ComponentInfo{com.sec.android.app.myfiles/com.sec.android.app.myfiles.MainActivity}" drawable="ic_explorer" />
+    <item component="ComponentInfo{com.sec.android.app.myfiles/com.sec.android.app.myfiles.ui.ForMyFilesAppIconInHomeScreenActivity}" drawable="ic_explorer" />
+    <item component="ComponentInfo{com.samsung.android.app.contacts/com.samsung.android.contacts.contactslist.PeopleActivity}" drawable="ic_contact" />
+    <item component="ComponentInfo{com.samsung.android.calendar/com.android.calendar.AllInOneActivity}" drawable="ic_calendar" />
+    <item component="ComponentInfo{com.samsung.android.calendar/com.samsung.android.app.calendar.activity.MainActivity}" drawable="ic_calendar" />
+    <item component="ComponentInfo{com.samsung.android.app.notes/com.samsung.android.app.notes.memolist.MemoListActivity}" drawable="ic_wordpad" />
+    <item component="ComponentInfo{com.samsung.android.app.notes/.memolist.MemoListActivity}" drawable="ic_wordpad" />
+    <item component="ComponentInfo{com.sec.android.app.samsungapps/com.sec.android.app.samsungapps.Main}" drawable="ic_playstore" />
+    <item component="ComponentInfo{com.sec.android.app.samsungapps/com.sec.android.app.samsungapps.SamsungAppsMainActivity}" drawable="ic_playstore" />
+
+    <!-- Xiaomi / MIUI / HyperOS -->
+    <item component="ComponentInfo{com.android.contacts/com.android.contacts.activities.TwelveKeyDialer}" drawable="ic_phone" />
+    <item component="ComponentInfo{com.android.contacts/.activities.TwelveKeyDialer}" drawable="ic_phone" />
+    <item component="ComponentInfo{com.android.mms/com.android.mms.ui.MmsTabActivity}" drawable="ic_messages" />
+    <item component="ComponentInfo{com.android.mms/.ui.MmsTabActivity}" drawable="ic_messages" />
+    <item component="ComponentInfo{com.android.camera/com.android.camera.Camera}" drawable="ic_camera" />
+    <item component="ComponentInfo{com.android.camera/.Camera}" drawable="ic_camera" />
+    <item component="ComponentInfo{com.miui.gallery/com.miui.gallery.activity.HomePageActivity}" drawable="ic_photos" />
+    <item component="ComponentInfo{com.miui.gallery/.activity.HomePageActivity}" drawable="ic_photos" />
+    <item component="ComponentInfo{com.miui.gallery/com.miui.gallery.MainActivity}" drawable="ic_photos" />
+    <item component="ComponentInfo{com.mi.android.globalFileexplorer/com.android.fileexplorer.FileExplorerTabActivity}" drawable="ic_explorer" />
+    <item component="ComponentInfo{com.mi.android.globalFileexplorer/com.android.fileexplorer.MainActivity}" drawable="ic_explorer" />
+    <item component="ComponentInfo{com.android.fileexplorer/com.android.fileexplorer.FileExplorerTabActivity}" drawable="ic_explorer" />
+    <item component="ComponentInfo{com.android.fileexplorer/com.android.fileexplorer.MainActivity}" drawable="ic_explorer" />
+    <item component="ComponentInfo{com.miui.notes/com.miui.notes.ui.NotesListActivity}" drawable="ic_notes" />
+    <item component="ComponentInfo{com.miui.notes/.ui.NotesListActivity}" drawable="ic_notes" />
+    <item component="ComponentInfo{com.android.settings/com.android.settings.MainSettings}" drawable="ic_settings" />
+    <item component="ComponentInfo{com.android.settings/.MainSettings}" drawable="ic_settings" />
+    <item component="ComponentInfo{com.android.deskclock/com.android.deskclock.AlarmsMainActivity}" drawable="ic_clock" />
+    <item component="ComponentInfo{com.android.deskclock/.AlarmsMainActivity}" drawable="ic_clock" />
+
+    <!-- OnePlus / Oppo (ColorOS) -->
+    <item component="ComponentInfo{com.oplus.dialer/com.android.contacts.DialtactsActivityAlias}" drawable="ic_phone" />
+    <item component="ComponentInfo{com.oplus.camera/com.oplus.camera.Camera}" drawable="ic_camera" />
+    <item component="ComponentInfo{com.oplus.camera/com.oplus.camera.OPCameraActivity}" drawable="ic_camera" />
+    <item component="ComponentInfo{com.oneplus.camera/com.oneplus.camera.OPCameraActivity}" drawable="ic_camera" />
+    <item component="ComponentInfo{com.oneplus.camera/com.oneplus.camera.MainActivity}" drawable="ic_camera" />
+    <item component="ComponentInfo{com.oplus.calendar/com.android.calendar.AllInOneActivity}" drawable="ic_calendar" />
+    <item component="ComponentInfo{com.coloros.gallery3d/com.coloros.gallery3d.app.MainActivity}" drawable="ic_photos" />
+    <item component="ComponentInfo{com.oneplus.gallery/com.oneplus.gallery.app.MainActivity}" drawable="ic_photos" />
+    <item component="ComponentInfo{com.oneplus.gallery/com.coloros.gallery3d.app.MainActivity}" drawable="ic_photos" />
+    <item component="ComponentInfo{com.coloros.filemanager/com.oplus.filemanager.main.ui.MainActivity}" drawable="ic_explorer" />
+    <item component="ComponentInfo{com.coloros.filemanager/com.coloros.filemanager.filerefactor.ui.main.MainActivity}" drawable="ic_explorer" />
+    <item component="ComponentInfo{com.coloros.filemanager/com.coloros.filemanager.Main}" drawable="ic_explorer" />
+    <item component="ComponentInfo{com.oneplus.filemanager/com.oneplus.filemanager.HomePageActivity}" drawable="ic_explorer" />
+    <item component="ComponentInfo{com.oneplus.filemanager/com.oplus.filemanager.main.ui.MainActivity}" drawable="ic_explorer" />
+    <item component="ComponentInfo{com.coloros.alarmclock/com.coloros.alarmclock.AlarmClock}" drawable="ic_clock" />
+    <item component="ComponentInfo{com.coloros.alarmclock/com.oplus.alarmclock.AlarmClock}" drawable="ic_clock" />
+    <item component="ComponentInfo{com.oneplus.deskclock/com.oneplus.deskclock.DeskClock}" drawable="ic_clock" />
+    <item component="ComponentInfo{com.oneplus.deskclock/com.oplus.alarmclock.AlarmClock}" drawable="ic_clock" />
+    <item component="ComponentInfo{com.coloros.note/com.nearme.note.main.MainActivity}" drawable="ic_notes" />
+    <item component="ComponentInfo{com.coloros.note/com.nearme.note.view.AllNoteActivity}" drawable="ic_notes" />
+
+    <!-- AOSP / generic builds -->
+    <item component="ComponentInfo{com.android.dialer/com.android.dialer.DialtactsActivity}" drawable="ic_phone" />
+    <item component="ComponentInfo{com.android.dialer/.DialtactsActivity}" drawable="ic_phone" />
+    <item component="ComponentInfo{com.android.dialer/.main.impl.MainActivity}" drawable="ic_phone" />
+    <item component="ComponentInfo{com.android.contacts/com.android.contacts.activities.PeopleActivity}" drawable="ic_contact" />
+    <item component="ComponentInfo{com.android.contacts/.activities.PeopleActivity}" drawable="ic_contact" />
+    <item component="ComponentInfo{com.android.messaging/com.android.messaging.ui.conversationlist.ConversationListActivity}" drawable="ic_messages" />
+    <item component="ComponentInfo{com.android.camera2/com.android.camera.CameraLauncher}" drawable="ic_camera" />
+    <item component="ComponentInfo{com.android.camera2/com.android.camera.CameraActivity}" drawable="ic_camera" />
+    <item component="ComponentInfo{com.android.gallery3d/com.android.gallery3d.app.GalleryActivity}" drawable="ic_photos" />
+    <item component="ComponentInfo{com.android.gallery3d/.app.Gallery}" drawable="ic_photos" />
+    <item component="ComponentInfo{com.android.documentsui/com.android.documentsui.files.FilesActivity}" drawable="ic_files" />
+    <item component="ComponentInfo{com.android.documentsui/com.android.documentsui.files.LauncherActivity}" drawable="ic_files" />
+    <item component="ComponentInfo{com.android.documentsui/.LauncherActivity}" drawable="ic_files" />
+    <item component="ComponentInfo{com.android.calendar/com.android.calendar.AllInOneActivity}" drawable="ic_calendar" />
+
+    <!-- Banking -->
+    <item component="ComponentInfo{com.revolut.revolut/com.revolut.ui.login.pin.LoginActivity}" drawable="ic_bank" />
+    <item component="ComponentInfo{com.transferwise.android/com.transferwise.android.activity.SplashActivity}" drawable="ic_bank" />
+    <item component="ComponentInfo{de.number26.android/com.n26.home.presentation.HomeActivity}" drawable="ic_bank" />
+    <item component="ComponentInfo{com.bbva.bbvacontigo/com.bbva.buzz.modules.startup.StartActivity}" drawable="ic_bank" />
+    <item component="ComponentInfo{com.bbva.bbvacontigo/com.bbva.woody.app.modules.initial.splash.view.SplashActivity}" drawable="ic_bank" />
+    <item component="ComponentInfo{es.bancosantander.apps/es.bancosantander.apps.mobile.android.activities.SplashActivity}" drawable="ic_bank" />
+    <item component="ComponentInfo{es.bancosantander.apps/es.bancosantander.apps.mobile.android.activities.PublicActivity}" drawable="ic_bank" />
+
+    <!-- Travel -->
+    <item component="ComponentInfo{com.booking/com.booking.activity.SplashActivity}" drawable="ic_travel" />
+    <item component="ComponentInfo{com.booking/com.booking.activity.StartActivity}" drawable="ic_travel" />
+    <item component="ComponentInfo{com.airbnb.android/com.airbnb.android.activities.HomeActivityAlias}" drawable="ic_travel" />
+    <item component="ComponentInfo{com.airbnb.android/com.airbnb.android.activities.MainActivity}" drawable="ic_travel" />
+    <item component="ComponentInfo{net.skyscanner.android.main/net.skyscanner.app.presentation.globalnav.activity.GlobalNavActivity}" drawable="ic_travel" />
+    <item component="ComponentInfo{net.skyscanner.android.main/net.skyscanner.app.presentation.globalnav.activity.HomeActivity}" drawable="ic_travel" />
+
+    <item component="ComponentInfo{com.google.android.apps.docs.editors.docs/com.google.android.apps.docs.app.NewMainProxyActivity}" drawable="ic_wordpad" />
+
 </resources>
