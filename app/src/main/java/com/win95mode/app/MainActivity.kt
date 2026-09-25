@@ -10,9 +10,12 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.view.Window
 import android.widget.CheckBox
+import android.widget.EditText
 import android.widget.GridLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -293,6 +296,27 @@ class MainActivity : AppCompatActivity() {
             }
             parser.next()
         }
+        setupIconSearch(grid)
+    }
+
+    private fun setupIconSearch(grid: GridLayout) {
+        val emptyNote = findViewById<TextView>(R.id.icon_search_empty)
+        findViewById<EditText>(R.id.icon_search).addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, a: Int, b: Int, c: Int) {}
+            override fun onTextChanged(s: CharSequence?, a: Int, b: Int, c: Int) {}
+            override fun afterTextChanged(s: Editable?) {
+                val query = s?.toString()?.trim().orEmpty()
+                var visible = 0
+                for (i in 0 until grid.childCount) {
+                    val icon = grid.getChildAt(i)
+                    val matches = query.isEmpty() ||
+                        icon.contentDescription?.contains(query, ignoreCase = true) == true
+                    icon.visibility = if (matches) View.VISIBLE else View.GONE
+                    if (matches) visible++
+                }
+                emptyNote.visibility = if (visible == 0) View.VISIBLE else View.GONE
+            }
+        })
     }
 
     private fun setupWallpaperClicks() {

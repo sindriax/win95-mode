@@ -130,6 +130,25 @@
                         android:textSize="12sp"
                         android:layout_marginBottom="8dp" />
 
+                    <EditText
+                        android:id="@+id/icon_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/win95_inset"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:paddingTop="6dp"
+                        android:paddingBottom="6dp"
+                        android:hint="@string/icon_search_hint"
+                        android:textColorHint="@color/win95_dark_gray"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:inputType="text"
+                        android:imeOptions="actionSearch"
+                        android:maxLines="1"
+                        android:importantForAutofill="no"
+                        android:layout_marginBottom="8dp" />
+
                     <!-- Full icon set, populated from xml/drawable.xml at runtime -->
                     <GridLayout
                         android:id="@+id/icon_grid"
@@ -138,6 +157,17 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="12dp"
                         android:columnCount="5" />
+
+                    <TextView
+                        android:id="@+id/icon_search_empty"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/icon_search_no_results"
+                        android:textColor="@color/win95_dark_gray"
+                        android:textSize="11sp"
+                        android:gravity="center"
+                        android:layout_marginBottom="12dp"
+                        android:visibility="gone" />
 
                     <View
                         android:layout_width="match_parent"

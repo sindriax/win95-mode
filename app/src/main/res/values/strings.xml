@@ -5,6 +5,8 @@
     <string name="app_icon_desc">Win95 Mode icon</string>
     <string name="welcome_title">Welcome to Win95 Mode!</string>
     <string name="icon_preview">Icon Preview:</string>
+    <string name="icon_search_hint">Find an icon…</string>
+    <string name="icon_search_no_results">Nothing found. Try the Request Icons button below!</string>
     <string name="wallpapers">Wallpapers:</string>
     <string name="wall_teal_desc">Teal wallpaper</string>
     <string name="wall_clouds_desc">Clouds wallpaper</string>
