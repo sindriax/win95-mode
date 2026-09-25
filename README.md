@@ -17,8 +17,11 @@ A nostalgic Windows 95-style icon pack and wallpaper manager for Android. Transf
 ## What's New in v3
 
 - Samsung, Xiaomi and OnePlus/Oppo support: system apps (dialer, camera, messages, gallery, clock, files and more) are finally themed on non-Pixel phones — icon mappings grew from 71 to 163
+- Starfield Screensaver live wallpaper: the classic flying-through-space simulation, forever
+- Dynamic calendar icon that shows today's actual date (Nova, Lawnchair and friends)
 - Apply button: pick your launcher in a Display Properties dialog instead of digging through settings
 - Request Icons: an Add/Remove Programs screen lists your unthemed apps and sends the request with one tap
+- Icon search over the preview grid
 - Wallpapers regenerated at real phone resolution — no more blurry pixel art
 - Releases are now signed with a permanent key, so future updates install in place (this first one needs a one-time uninstall/reinstall — see the release notes)
 
