@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Dialog
 import android.app.WallpaperManager
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -21,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import org.xmlpull.v1.XmlPullParser
+import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
 
@@ -243,8 +245,14 @@ class MainActivity : AppCompatActivity() {
     private fun applyWallpaper(drawableId: Int, flags: Int) {
         Thread {
             val message = try {
-                val bitmap = BitmapFactory.decodeResource(resources, drawableId)
-                WallpaperManager.getInstance(this).setBitmap(bitmap, null, true, flags)
+                val manager = WallpaperManager.getInstance(this)
+                val metrics = resources.displayMetrics
+                // Honor the launcher's desired size (scrolling home screens ask
+                // for more than one screen width) so nothing gets stretched.
+                val targetWidth = maxOf(manager.desiredMinimumWidth, metrics.widthPixels)
+                val targetHeight = maxOf(manager.desiredMinimumHeight, metrics.heightPixels)
+                val source = BitmapFactory.decodeResource(resources, drawableId)
+                manager.setBitmap(scaleAndCrop(source, targetWidth, targetHeight), null, true, flags)
                 R.string.wallpaper_applied
             } catch (_: Exception) {
                 R.string.wallpaper_failed
@@ -253,5 +261,21 @@ class MainActivity : AppCompatActivity() {
                 if (!isFinishing) Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
             }
         }.start()
+    }
+
+    private fun scaleAndCrop(source: Bitmap, targetWidth: Int, targetHeight: Int): Bitmap {
+        val scale = maxOf(
+            targetWidth.toFloat() / source.width, targetHeight.toFloat() / source.height
+        )
+        val scaled = Bitmap.createScaledBitmap(
+            source,
+            (source.width * scale).roundToInt().coerceAtLeast(targetWidth),
+            (source.height * scale).roundToInt().coerceAtLeast(targetHeight),
+            true
+        )
+        return Bitmap.createBitmap(
+            scaled, (scaled.width - targetWidth) / 2, (scaled.height - targetHeight) / 2,
+            targetWidth, targetHeight
+        )
     }
 }
