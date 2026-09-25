@@ -35,5 +35,13 @@
     <string name="about_text">Win95 Mode v2\n\nA Windows 95-style icon pack and wallpaper manager.\n\nApply the icon pack from your launcher settings, tap a wallpaper to set it, and enjoy the nostalgia.</string>
     <string name="ok">OK</string>
     <string name="feedback_link">Request an icon / report a bug</string>
+    <string name="request_icons">Request Icons…</string>
+    <string name="add_remove_programs">Add/Remove Programs</string>
+    <string name="request_intro">These apps have no Win95 icon yet.\nTick the ones you\'d like themed:</string>
+    <string name="request_all_themed">Everything on your phone is already themed. Enjoy!</string>
+    <string name="request_none_selected">Tick at least one app first</string>
+    <string name="request_via_github">Send on GitHub</string>
+    <string name="request_via_share">Share / Email</string>
+    <string name="request_loading">Scanning installed apps…</string>
 
 </resources>

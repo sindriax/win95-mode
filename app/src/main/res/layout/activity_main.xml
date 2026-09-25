@@ -249,6 +249,21 @@
                         android:layout_marginBottom="8dp" />
 
                     <TextView
+                        android:id="@+id/btn_request_icons"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/win95_button_selector"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
+                        android:paddingTop="7dp"
+                        android:paddingBottom="7dp"
+                        android:text="@string/request_icons"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/supported_launchers"

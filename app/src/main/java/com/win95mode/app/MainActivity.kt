@@ -12,6 +12,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.view.Window
+import android.widget.CheckBox
 import android.widget.GridLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -48,6 +49,101 @@ class MainActivity : AppCompatActivity() {
         populateIconGrid()
         setupWallpaperClicks()
         findViewById<TextView>(R.id.btn_apply_pack).setOnClickListener { showApplyDialog() }
+        findViewById<TextView>(R.id.btn_request_icons).setOnClickListener { showRequestDialog() }
+    }
+
+    private class UnthemedApp(val label: String, val component: String)
+
+    private fun showRequestDialog() {
+        val dialog = win95Dialog(R.layout.dialog_request)
+        dialog.findViewById<TextView>(R.id.btn_cancel_request)?.setOnClickListener { dialog.dismiss() }
+        dialog.show()
+
+        Thread {
+            val unthemed = findUnthemedApps()
+            runOnUiThread {
+                if (!dialog.isShowing) return@runOnUiThread
+                val list = dialog.findViewById<LinearLayout>(R.id.request_list) ?: return@runOnUiThread
+                val status = dialog.findViewById<TextView>(R.id.request_status)
+                if (unthemed.isEmpty()) {
+                    status?.setText(R.string.request_all_themed)
+                    return@runOnUiThread
+                }
+                list.removeView(status)
+                val boxes = unthemed.map { app ->
+                    CheckBox(this).apply {
+                        text = app.label
+                        setTextColor(getColor(R.color.black))
+                        textSize = 12f
+                        tag = app
+                    }.also { list.addView(it) }
+                }
+                fun selected() = boxes.filter { it.isChecked }.map { it.tag as UnthemedApp }
+                fun submit(viaGithub: Boolean) {
+                    val apps = selected()
+                    if (apps.isEmpty()) {
+                        Toast.makeText(this, R.string.request_none_selected, Toast.LENGTH_SHORT).show()
+                    } else {
+                        dialog.dismiss()
+                        sendIconRequest(apps, viaGithub)
+                    }
+                }
+                dialog.findViewById<TextView>(R.id.btn_request_github)?.setOnClickListener { submit(true) }
+                dialog.findViewById<TextView>(R.id.btn_request_share)?.setOnClickListener { submit(false) }
+            }
+        }.start()
+    }
+
+    /** Launchable apps whose component has no appfilter mapping, in either the
+     *  full or the shortened component form launchers report. */
+    private fun findUnthemedApps(): List<UnthemedApp> {
+        val mapped = mutableSetOf<String>()
+        val parser = resources.getXml(R.xml.appfilter)
+        while (parser.eventType != XmlPullParser.END_DOCUMENT) {
+            if (parser.eventType == XmlPullParser.START_TAG && parser.name == "item") {
+                parser.getAttributeValue(null, "component")?.let { mapped.add(it) }
+            }
+            parser.next()
+        }
+
+        val launcherIntent = Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER)
+        return packageManager.queryIntentActivities(launcherIntent, 0)
+            .mapNotNull { info ->
+                val activity = info.activityInfo ?: return@mapNotNull null
+                val full = "ComponentInfo{${activity.packageName}/${activity.name}}"
+                val short = if (activity.name.startsWith(activity.packageName)) {
+                    "ComponentInfo{${activity.packageName}/${activity.name.removePrefix(activity.packageName)}}"
+                } else full
+                if (activity.packageName == packageName || full in mapped || short in mapped) null
+                else UnthemedApp(info.loadLabel(packageManager).toString(), full)
+            }
+            .distinctBy { it.component }
+            .sortedBy { it.label.lowercase() }
+    }
+
+    private fun sendIconRequest(apps: List<UnthemedApp>, viaGithub: Boolean) {
+        val body = buildString {
+            appendLine("Icon request sent from the app:")
+            appendLine()
+            apps.forEach {
+                appendLine("- ${it.label}")
+                appendLine("  `${it.component}`")
+            }
+        }
+        if (viaGithub) {
+            val url = "https://github.com/sindriax/win95-mode/issues/new" +
+                "?title=" + Uri.encode("[icon] in-app request (${apps.size} apps)") +
+                "&labels=icon-request&body=" + Uri.encode(body)
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+        } else {
+            val send = Intent(Intent.ACTION_SEND).apply {
+                type = "text/plain"
+                putExtra(Intent.EXTRA_EMAIL, arrayOf("hello@sindriax.dev"))
+                putExtra(Intent.EXTRA_SUBJECT, "Win95 Mode icon request")
+                putExtra(Intent.EXTRA_TEXT, body)
+            }
+            startActivity(Intent.createChooser(send, null))
+        }
     }
 
     private class LauncherTarget(

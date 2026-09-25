@@ -7,6 +7,12 @@
     <!-- Package visibility (Android 11+): the Apply dialog needs to see
          which supported launchers are installed. -->
     <queries>
+        <!-- The icon request screen lists launchable apps without needing
+             the heavyweight QUERY_ALL_PACKAGES permission. -->
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
         <package android:name="com.teslacoilsw.launcher" />
         <package android:name="app.lawnchair" />
         <package android:name="com.anddoes.launcher" />
