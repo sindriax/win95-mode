@@ -1,0 +1,38 @@
+name: Icon request
+description: Ask for an app to get a Win95-style icon
+title: "[icon] "
+labels: [icon-request]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping grow the pack! One app per issue keeps things easy to track.
+  - type: input
+    id: app-name
+    attributes:
+      label: App name
+      placeholder: e.g. Duolingo
+    validations:
+      required: true
+  - type: input
+    id: store-link
+    attributes:
+      label: Play Store (or F-Droid) link
+      placeholder: https://play.google.com/store/apps/details?id=...
+    validations:
+      required: true
+  - type: input
+    id: component
+    attributes:
+      label: Component name (optional)
+      description: >
+        If you know it, paste the `package/activity` pair. You can find it with
+        `adb shell cmd package query-activities --brief -a android.intent.action.MAIN -c android.intent.category.LAUNCHER`.
+        No worries if not — the Play Store link is enough.
+      placeholder: com.duolingo/com.duolingo.app.LoginActivity
+  - type: textarea
+    id: idea
+    attributes:
+      label: Win95 object idea (optional)
+      description: The best icons are real Win95-era objects, not pixelated logos. Got an idea for what this app should be?
+      placeholder: e.g. a green parrot in a cage

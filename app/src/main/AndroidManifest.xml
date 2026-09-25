@@ -4,6 +4,23 @@
 
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
 
+    <!-- Package visibility (Android 11+): the Apply dialog needs to see
+         which supported launchers are installed. -->
+    <queries>
+        <!-- The icon request screen lists launchable apps without needing
+             the heavyweight QUERY_ALL_PACKAGES permission. -->
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+        <package android:name="com.teslacoilsw.launcher" />
+        <package android:name="app.lawnchair" />
+        <package android:name="com.anddoes.launcher" />
+        <package android:name="com.actionlauncher.playstore" />
+        <package android:name="ginlemon.flowerfree" />
+        <package android:name="ginlemon.flowerpro" />
+    </queries>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -60,6 +77,19 @@
             </intent-filter>
 
         </activity>
+
+        <service
+            android:name=".StarfieldWallpaperService"
+            android:exported="true"
+            android:label="@string/starfield_label"
+            android:permission="android.permission.BIND_WALLPAPER">
+            <intent-filter>
+                <action android:name="android.service.wallpaper.WallpaperService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.service.wallpaper"
+                android:resource="@xml/starfield_wallpaper" />
+        </service>
 
         <meta-data
             android:name="org.adw.launcher.resource"

@@ -130,6 +130,25 @@
                         android:textSize="12sp"
                         android:layout_marginBottom="8dp" />
 
+                    <EditText
+                        android:id="@+id/icon_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/win95_inset"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:paddingTop="6dp"
+                        android:paddingBottom="6dp"
+                        android:hint="@string/icon_search_hint"
+                        android:textColorHint="@color/win95_dark_gray"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:inputType="text"
+                        android:imeOptions="actionSearch"
+                        android:maxLines="1"
+                        android:importantForAutofill="no"
+                        android:layout_marginBottom="8dp" />
+
                     <!-- Full icon set, populated from xml/drawable.xml at runtime -->
                     <GridLayout
                         android:id="@+id/icon_grid"
@@ -138,6 +157,17 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="12dp"
                         android:columnCount="5" />
+
+                    <TextView
+                        android:id="@+id/icon_search_empty"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/icon_search_no_results"
+                        android:textColor="@color/win95_dark_gray"
+                        android:textSize="11sp"
+                        android:gravity="center"
+                        android:layout_marginBottom="12dp"
+                        android:visibility="gone" />
 
                     <View
                         android:layout_width="match_parent"
@@ -224,6 +254,21 @@
                         android:textColor="@color/win95_dark_gray"
                         android:textSize="10sp"
                         android:gravity="center"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:id="@+id/btn_starfield"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/win95_button_selector"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:paddingTop="6dp"
+                        android:paddingBottom="6dp"
+                        android:text="@string/starfield_button"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
                         android:layout_marginBottom="12dp" />
 
                     <View
@@ -232,33 +277,36 @@
                         android:background="@color/win95_dark_gray"
                         android:layout_marginBottom="12dp" />
 
-                    <!-- Instructions box with inset style -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/btn_apply_pack"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:background="@drawable/win95_inset"
-                        android:padding="10dp"
-                        android:layout_marginBottom="12dp">
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/win95_button_selector"
+                        android:paddingStart="28dp"
+                        android:paddingEnd="28dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:text="@string/apply_icon_pack"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textSize="13sp"
+                        android:layout_marginBottom="8dp" />
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/how_to_apply"
-                            android:textColor="@color/black"
-                            android:textStyle="bold"
-                            android:textSize="12sp"
-                            android:layout_marginBottom="6dp" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/apply_instructions"
-                            android:textColor="@color/black"
-                            android:textSize="11sp"
-                            android:lineSpacingExtra="3dp" />
-
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/btn_request_icons"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/win95_button_selector"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
+                        android:paddingTop="7dp"
+                        android:paddingBottom="7dp"
+                        android:text="@string/request_icons"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:layout_marginBottom="8dp" />
 
                     <TextView
                         android:layout_width="match_parent"

@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Email (if you don't have a GitHub account)
+    url: mailto:hello@sindriax.dev
+    about: For icon requests or bugs when opening an issue isn't an option.

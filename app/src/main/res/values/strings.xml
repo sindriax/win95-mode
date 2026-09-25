@@ -5,6 +5,8 @@
     <string name="app_icon_desc">Win95 Mode icon</string>
     <string name="welcome_title">Welcome to Win95 Mode!</string>
     <string name="icon_preview">Icon Preview:</string>
+    <string name="icon_search_hint">Find an icon…</string>
+    <string name="icon_search_no_results">Nothing found. Try the Request Icons button below!</string>
     <string name="wallpapers">Wallpapers:</string>
     <string name="wall_teal_desc">Teal wallpaper</string>
     <string name="wall_clouds_desc">Clouds wallpaper</string>
@@ -12,8 +14,12 @@
     <string name="wall_stars_desc">Stars wallpaper</string>
     <string name="wall_matrix_desc">Matrix wallpaper</string>
     <string name="tap_wallpaper">Tap a wallpaper to apply</string>
-    <string name="how_to_apply">How to Apply Icons:</string>
-    <string name="apply_instructions">1. Open your launcher settings\n2. Go to Icon Pack or Theme\n3. Select \'Win95 Mode\'\n4. Enjoy the nostalgia!</string>
+    <string name="apply_icon_pack">Apply Icon Pack…</string>
+    <string name="display_properties">Display Properties</string>
+    <string name="choose_launcher">Apply \'Win95 Mode\' with:</string>
+    <string name="open_launcher_hint">Opening %1$s — pick \'Win95 Mode\' in its icon pack settings</string>
+    <string name="no_launcher_found">No compatible launcher found.\n\nStock launchers (Pixel, most Samsung) don\'t support icon packs. Install a launcher like Lawnchair, apply it, then come back here.</string>
+    <string name="get_lawnchair">Get Lawnchair</string>
     <string name="supported_launchers">Supported: Nova, Lawnchair, Action, Apex, Smart Launcher</string>
     <string name="start_button">Start</string>
     <string name="start_button_desc">Start button</string>
@@ -25,9 +31,23 @@
     <string name="both_screens">Both</string>
     <string name="cancel">Cancel</string>
     <string name="wallpaper_applied">Wallpaper applied!</string>
+    <string name="starfield_label">Win95 Starfield</string>
+    <string name="starfield_description">The classic Starfield Simulation screensaver, flying through space forever.</string>
+    <string name="starfield_button">Starfield Screensaver…</string>
+    <string name="live_wallpaper_unavailable">This device doesn\'t support live wallpapers</string>
     <string name="wallpaper_failed">Failed to set wallpaper</string>
     <string name="already_maximized">This window is already maximized</string>
     <string name="about_title">About Win95 Mode</string>
-    <string name="about_text">Win95 Mode v2\n\nA Windows 95-style icon pack and wallpaper manager.\n\nApply the icon pack from your launcher settings, tap a wallpaper to set it, and enjoy the nostalgia.</string>
+    <string name="about_text">Win95 Mode v3\n\nA Windows 95-style icon pack and wallpaper manager.\n\nUse the Apply button to theme your launcher, tap a wallpaper to set it, and enjoy the nostalgia.</string>
     <string name="ok">OK</string>
+    <string name="feedback_link">Request an icon / report a bug</string>
+    <string name="request_icons">Request Icons…</string>
+    <string name="add_remove_programs">Add/Remove Programs</string>
+    <string name="request_intro">These apps have no Win95 icon yet.\nTick the ones you\'d like themed:</string>
+    <string name="request_all_themed">Everything on your phone is already themed. Enjoy!</string>
+    <string name="request_none_selected">Tick at least one app first</string>
+    <string name="request_via_github">Send on GitHub</string>
+    <string name="request_via_share">Share / Email</string>
+    <string name="request_loading">Scanning installed apps…</string>
+
 </resources>

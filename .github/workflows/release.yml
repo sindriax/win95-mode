@@ -27,8 +27,28 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
+      # Without these secrets every run would sign with a freshly generated
+      # debug key, breaking in-place updates for everyone (see v1 -> v2).
+      - name: Decode release keystore
+        run: |
+          if [ -z "${{ secrets.RELEASE_KEYSTORE_BASE64 }}" ]; then
+            echo "RELEASE_KEYSTORE_BASE64 secret is not set; refusing to ship a debug-signed release." >&2
+            exit 1
+          fi
+          echo "${{ secrets.RELEASE_KEYSTORE_BASE64 }}" | base64 -d > "$RUNNER_TEMP/release.keystore"
+
       - name: Build release APK
         run: ./gradlew assembleRelease
+        env:
+          KEYSTORE_FILE: ${{ runner.temp }}/release.keystore
+          KEYSTORE_PASSWORD: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: win95mode
+
+      # keytool can't read v2-only signatures, hence apksigner
+      - name: Print signing certificate fingerprint
+        run: |
+          "$ANDROID_HOME/build-tools/$(ls "$ANDROID_HOME/build-tools" | sort -V | tail -1)/apksigner" \
+            verify --print-certs app/build/outputs/apk/release/app-release.apk
 
       # Two copies: versioned for humans browsing releases, stable so
       # /releases/latest/download/win95-mode.apk always serves the newest build

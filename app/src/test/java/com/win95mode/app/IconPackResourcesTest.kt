@@ -21,12 +21,14 @@ class IconPackResourcesTest {
         File(dir, "src/main/res")
     }
 
-    private fun items(xmlFile: String): List<Element> {
+    private fun elements(xmlFile: String, tag: String): List<Element> {
         val doc = DocumentBuilderFactory.newInstance().newDocumentBuilder()
             .parse(File(resDir, "xml/$xmlFile"))
-        val nodes = doc.getElementsByTagName("item")
+        val nodes = doc.getElementsByTagName(tag)
         return (0 until nodes.length).map { nodes.item(it) as Element }
     }
+
+    private fun items(xmlFile: String): List<Element> = elements(xmlFile, "item")
 
     private fun drawableExists(name: String): Boolean =
         File(resDir, "drawable/$name.png").isFile || File(resDir, "drawable/$name.xml").isFile
@@ -51,10 +53,19 @@ class IconPackResourcesTest {
     }
 
     @Test
+    fun `dynamic calendar prefixes have all 31 day drawables`() {
+        val prefixes = elements("appfilter.xml", "calendar")
+            .map { it.getAttribute("prefix") }.toSet()
+        val missing = prefixes.flatMap { prefix ->
+            (1..31).map { day -> "$prefix$day" }.filterNot { drawableExists(it) }
+        }
+        assertTrue("calendar day drawables missing: $missing", missing.isEmpty())
+    }
+
+    @Test
     fun `every pack icon is mapped to an app or explicitly decorative`() {
         val decorative = setOf(
-            "ic_recycle_bin", "ic_explorer", "ic_disk", "ic_start", "ic_paint",
-            "ic_wordpad", "ic_travel", "ic_langjump", "ic_bank"
+            "ic_recycle_bin", "ic_disk", "ic_start", "ic_paint", "ic_langjump"
         )
         val mapped = items("appfilter.xml").map { it.getAttribute("drawable") }.toSet()
         val unmapped = items("drawable.xml")

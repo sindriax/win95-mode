@@ -23,7 +23,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/about_title"
+            android:text="@string/display_properties"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:paddingStart="6dp"
@@ -41,32 +41,58 @@
         android:background="@color/win95_gray">
 
         <TextView
-            android:layout_width="240dp"
-            android:layout_height="wrap_content"
-            android:text="@string/about_text"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            android:layout_marginBottom="12dp" />
-
-        <TextView
-            android:id="@+id/btn_feedback"
+            android:id="@+id/choose_launcher_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/feedback_link"
-            android:textColor="@color/win95_navy"
+            android:text="@string/choose_launcher"
+            android:textColor="@color/black"
             android:textSize="12sp"
-            android:layout_marginBottom="12dp" />
+            android:layout_marginBottom="10dp" />
+
+        <LinearLayout
+            android:id="@+id/launcher_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="4dp" />
 
         <TextView
-            android:id="@+id/btn_ok"
+            android:id="@+id/no_launcher_text"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:text="@string/no_launcher_found"
+            android:textColor="@color/black"
+            android:textSize="11sp"
+            android:lineSpacingExtra="2dp"
+            android:layout_marginBottom="10dp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/btn_get_lawnchair"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/win95_button_selector"
-            android:paddingStart="24dp"
-            android:paddingEnd="24dp"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
             android:paddingTop="6dp"
             android:paddingBottom="6dp"
-            android:text="@string/ok"
+            android:text="@string/get_lawnchair"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:layout_marginBottom="10dp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/btn_cancel_apply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/win95_button_selector"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:text="@string/cancel"
             android:textColor="@color/black"
             android:textSize="12sp" />
 

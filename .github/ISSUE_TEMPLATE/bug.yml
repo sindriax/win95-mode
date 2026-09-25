@@ -1,0 +1,39 @@
+name: Bug report
+description: Something not working — an icon not applying, a crash, a wallpaper issue
+title: "[bug] "
+labels: [bug]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you expect, and what did you see instead? Screenshots help a lot.
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: Device
+      placeholder: e.g. Samsung Galaxy S23
+    validations:
+      required: true
+  - type: input
+    id: android-version
+    attributes:
+      label: Android version
+      placeholder: e.g. Android 14 / One UI 6
+    validations:
+      required: true
+  - type: input
+    id: launcher
+    attributes:
+      label: Launcher
+      description: Which launcher are you applying the pack with?
+      placeholder: e.g. Nova Launcher 8.0
+    validations:
+      required: true
+  - type: input
+    id: pack-version
+    attributes:
+      label: Win95 Mode version
+      placeholder: e.g. v2.0.0
