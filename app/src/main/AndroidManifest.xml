@@ -78,6 +78,19 @@
 
         </activity>
 
+        <service
+            android:name=".StarfieldWallpaperService"
+            android:exported="true"
+            android:label="@string/starfield_label"
+            android:permission="android.permission.BIND_WALLPAPER">
+            <intent-filter>
+                <action android:name="android.service.wallpaper.WallpaperService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.service.wallpaper"
+                android:resource="@xml/starfield_wallpaper" />
+        </service>
+
         <meta-data
             android:name="org.adw.launcher.resource"
             android:resource="@xml/drawable" />

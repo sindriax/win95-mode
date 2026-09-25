@@ -3,6 +3,7 @@ package com.win95mode.app
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.app.WallpaperManager
+import android.content.ComponentName
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -53,6 +54,23 @@ class MainActivity : AppCompatActivity() {
         setupWallpaperClicks()
         findViewById<TextView>(R.id.btn_apply_pack).setOnClickListener { showApplyDialog() }
         findViewById<TextView>(R.id.btn_request_icons).setOnClickListener { showRequestDialog() }
+        findViewById<TextView>(R.id.btn_starfield).setOnClickListener { openStarfieldPreview() }
+    }
+
+    private fun openStarfieldPreview() {
+        val direct = Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER).putExtra(
+            WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
+            ComponentName(this, StarfieldWallpaperService::class.java)
+        )
+        try {
+            startActivity(direct)
+        } catch (_: Exception) {
+            try {
+                startActivity(Intent(WallpaperManager.ACTION_LIVE_WALLPAPER_CHOOSER))
+            } catch (_: Exception) {
+                Toast.makeText(this, R.string.live_wallpaper_unavailable, Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private class UnthemedApp(val label: String, val component: String)

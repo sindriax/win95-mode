@@ -31,6 +31,10 @@
     <string name="both_screens">Both</string>
     <string name="cancel">Cancel</string>
     <string name="wallpaper_applied">Wallpaper applied!</string>
+    <string name="starfield_label">Win95 Starfield</string>
+    <string name="starfield_description">The classic Starfield Simulation screensaver, flying through space forever.</string>
+    <string name="starfield_button">Starfield Screensaver…</string>
+    <string name="live_wallpaper_unavailable">This device doesn\'t support live wallpapers</string>
     <string name="wallpaper_failed">Failed to set wallpaper</string>
     <string name="already_maximized">This window is already maximized</string>
     <string name="about_title">About Win95 Mode</string>

@@ -254,6 +254,21 @@
                         android:textColor="@color/win95_dark_gray"
                         android:textSize="10sp"
                         android:gravity="center"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:id="@+id/btn_starfield"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/win95_button_selector"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:paddingTop="6dp"
+                        android:paddingBottom="6dp"
+                        android:text="@string/starfield_button"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
                         android:layout_marginBottom="12dp" />
 
                     <View
