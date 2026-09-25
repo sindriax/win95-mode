@@ -32,7 +32,7 @@
     <string name="wallpaper_failed">Failed to set wallpaper</string>
     <string name="already_maximized">This window is already maximized</string>
     <string name="about_title">About Win95 Mode</string>
-    <string name="about_text">Win95 Mode v2\n\nA Windows 95-style icon pack and wallpaper manager.\n\nApply the icon pack from your launcher settings, tap a wallpaper to set it, and enjoy the nostalgia.</string>
+    <string name="about_text">Win95 Mode v3\n\nA Windows 95-style icon pack and wallpaper manager.\n\nUse the Apply button to theme your launcher, tap a wallpaper to set it, and enjoy the nostalgia.</string>
     <string name="ok">OK</string>
     <string name="feedback_link">Request an icon / report a bug</string>
     <string name="request_icons">Request Icons…</string>
