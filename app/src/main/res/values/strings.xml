@@ -12,8 +12,12 @@
     <string name="wall_stars_desc">Stars wallpaper</string>
     <string name="wall_matrix_desc">Matrix wallpaper</string>
     <string name="tap_wallpaper">Tap a wallpaper to apply</string>
-    <string name="how_to_apply">How to Apply Icons:</string>
-    <string name="apply_instructions">1. Open your launcher settings\n2. Go to Icon Pack or Theme\n3. Select \'Win95 Mode\'\n4. Enjoy the nostalgia!</string>
+    <string name="apply_icon_pack">Apply Icon Pack…</string>
+    <string name="display_properties">Display Properties</string>
+    <string name="choose_launcher">Apply \'Win95 Mode\' with:</string>
+    <string name="open_launcher_hint">Opening %1$s — pick \'Win95 Mode\' in its icon pack settings</string>
+    <string name="no_launcher_found">No compatible launcher found.\n\nStock launchers (Pixel, most Samsung) don\'t support icon packs. Install a launcher like Lawnchair, apply it, then come back here.</string>
+    <string name="get_lawnchair">Get Lawnchair</string>
     <string name="supported_launchers">Supported: Nova, Lawnchair, Action, Apex, Smart Launcher</string>
     <string name="start_button">Start</string>
     <string name="start_button_desc">Start button</string>
@@ -30,4 +34,6 @@
     <string name="about_title">About Win95 Mode</string>
     <string name="about_text">Win95 Mode v2\n\nA Windows 95-style icon pack and wallpaper manager.\n\nApply the icon pack from your launcher settings, tap a wallpaper to set it, and enjoy the nostalgia.</string>
     <string name="ok">OK</string>
+    <string name="feedback_link">Request an icon / report a bug</string>
+
 </resources>

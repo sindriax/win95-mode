@@ -3,14 +3,17 @@ package com.win95mode.app
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.app.WallpaperManager
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.view.Window
 import android.widget.GridLayout
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -42,7 +45,116 @@ class MainActivity : AppCompatActivity() {
         setupWindowControls()
         populateIconGrid()
         setupWallpaperClicks()
+        findViewById<TextView>(R.id.btn_apply_pack).setOnClickListener { showApplyDialog() }
     }
+
+    private class LauncherTarget(
+        val label: String,
+        val pkg: String,
+        // Launchers without a public apply intent get opened with a hint instead.
+        val applyIntent: ((String) -> Intent)? = null
+    )
+
+    private val launcherTargets = listOf(
+        LauncherTarget("Nova Launcher", "com.teslacoilsw.launcher") { pack ->
+            Intent("com.teslacoilsw.launcher.APPLY_ICON_THEME")
+                .setPackage("com.teslacoilsw.launcher")
+                .putExtra("com.teslacoilsw.launcher.extra.ICON_THEME_TYPE", "GO")
+                .putExtra("com.teslacoilsw.launcher.extra.ICON_THEME_PACKAGE", pack)
+        },
+        LauncherTarget("Lawnchair", "app.lawnchair"),
+        LauncherTarget("Apex Launcher", "com.anddoes.launcher") { pack ->
+            Intent("com.anddoes.launcher.SET_THEME")
+                .setPackage("com.anddoes.launcher")
+                .putExtra("com.anddoes.launcher.THEME_PACKAGE_NAME", pack)
+        },
+        LauncherTarget("Action Launcher", "com.actionlauncher.playstore"),
+        LauncherTarget("Smart Launcher", "ginlemon.flowerfree") { pack ->
+            Intent("ginlemon.smartlauncher.setGSLTHEME")
+                .setPackage("ginlemon.flowerfree")
+                .putExtra("package", pack)
+        },
+        LauncherTarget("Smart Launcher Pro", "ginlemon.flowerpro") { pack ->
+            Intent("ginlemon.smartlauncher.setGSLTHEME")
+                .setPackage("ginlemon.flowerpro")
+                .putExtra("package", pack)
+        }
+    )
+
+    private fun showApplyDialog() {
+        val dialog = win95Dialog(R.layout.dialog_apply)
+        val installed = launcherTargets.filter {
+            packageManager.getLaunchIntentForPackage(it.pkg) != null
+        }
+
+        if (installed.isEmpty()) {
+            dialog.findViewById<TextView>(R.id.choose_launcher_label)?.visibility = View.GONE
+            dialog.findViewById<TextView>(R.id.no_launcher_text)?.visibility = View.VISIBLE
+            dialog.findViewById<TextView>(R.id.btn_get_lawnchair)?.apply {
+                visibility = View.VISIBLE
+                setOnClickListener {
+                    dialog.dismiss()
+                    openPlayStore("app.lawnchair")
+                }
+            }
+        } else {
+            val list = dialog.findViewById<LinearLayout>(R.id.launcher_list)
+            installed.forEach { target ->
+                list?.addView(win95Button(target.label) {
+                    dialog.dismiss()
+                    applyWith(target)
+                })
+            }
+        }
+        dialog.findViewById<TextView>(R.id.btn_cancel_apply)?.setOnClickListener { dialog.dismiss() }
+        dialog.show()
+    }
+
+    private fun applyWith(target: LauncherTarget) {
+        target.applyIntent?.invoke(packageName)?.let { intent ->
+            try {
+                startActivity(intent)
+                return
+            } catch (_: Exception) {
+                // Launcher installed but the apply activity moved; fall through.
+            }
+        }
+        packageManager.getLaunchIntentForPackage(target.pkg)?.let {
+            startActivity(it)
+            Toast.makeText(
+                this, getString(R.string.open_launcher_hint, target.label), Toast.LENGTH_LONG
+            ).show()
+        }
+    }
+
+    private fun openPlayStore(pkg: String) {
+        val market = Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$pkg"))
+        val web = Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$pkg"))
+        try {
+            startActivity(market)
+        } catch (_: Exception) {
+            startActivity(web)
+        }
+    }
+
+    private fun win95Button(label: String, onClick: () -> Unit): TextView =
+        TextView(this).apply {
+            text = label
+            setTextColor(getColor(R.color.black))
+            textSize = 12f
+            setBackgroundResource(R.drawable.win95_button_selector)
+            val density = resources.displayMetrics.density
+            setPadding(
+                (14 * density).toInt(), (6 * density).toInt(),
+                (14 * density).toInt(), (6 * density).toInt()
+            )
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            ).apply { bottomMargin = (6 * density).toInt() }
+            gravity = android.view.Gravity.CENTER
+            setOnClickListener { onClick() }
+        }
 
     private fun setupWindowControls() {
         findViewById<TextView>(R.id.btn_close).setOnClickListener { finish() }
@@ -113,6 +225,11 @@ class MainActivity : AppCompatActivity() {
     private fun showAboutDialog() {
         val dialog = win95Dialog(R.layout.dialog_about)
         dialog.findViewById<TextView>(R.id.btn_ok)?.setOnClickListener { dialog.dismiss() }
+        dialog.findViewById<TextView>(R.id.btn_feedback)?.setOnClickListener {
+            startActivity(
+                Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/sindriax/win95-mode/issues/new/choose"))
+            )
+        }
         dialog.show()
     }
 
