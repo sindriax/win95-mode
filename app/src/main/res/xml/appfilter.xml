@@ -199,4 +199,25 @@
 
     <item component="ComponentInfo{com.google.android.apps.docs.editors.docs/com.google.android.apps.docs.app.NewMainProxyActivity}" drawable="ic_wordpad" />
 
+    <!-- Calculator, Samsung Internet and Xiaomi Security component aliases,
+         checked against the Arcticons appfilter on 2026-09-25. -->
+    <item component="ComponentInfo{com.android.calculator2/.Calculator}" drawable="ic_calculator" />
+    <item component="ComponentInfo{com.android.calculator2/com.android.calculator2.Calculator}" drawable="ic_calculator" />
+    <item component="ComponentInfo{com.oneplus.calculator/com.oneplus.calculator.Calculator}" drawable="ic_calculator" />
+    <item component="ComponentInfo{com.sec.android.app.popupcalculator/com.sec.android.app.popupcalculator.Calculator}" drawable="ic_calculator" />
+    <item component="ComponentInfo{com.sec.android.app.popupcalculator/.Calculator}" drawable="ic_calculator" />
+    <item component="ComponentInfo{com.miui.calculator/com.miui.calculator.cal.CalculatorActivity}" drawable="ic_calculator" />
+    <item component="ComponentInfo{com.miui.calculator/.cal.CalculatorActivity}" drawable="ic_calculator" />
+    <item component="ComponentInfo{com.miui.calculator/com.miui.calculator.cal.NormalCalculatorActivity}" drawable="ic_calculator" />
+    <item component="ComponentInfo{com.miui.calculator/com.miui.calculator.MainActivity}" drawable="ic_calculator" />
+    <item component="ComponentInfo{com.coloros.calculator/com.android.calculator2.Calculator}" drawable="ic_calculator" />
+    <item component="ComponentInfo{com.oneplus.calculator/com.android.calculator2.Calculator}" drawable="ic_calculator" />
+    <item component="ComponentInfo{com.oneplus.calculator/.Calculator}" drawable="ic_calculator" />
+    <item component="ComponentInfo{com.google.android.calculator/com.android.calculator2.Calculator}" drawable="ic_calculator" />
+    <item component="ComponentInfo{com.sec.android.app.sbrowser/com.sec.android.app.sbrowser.SBrowserMainActivity}" drawable="ic_browser" />
+    <item component="ComponentInfo{com.sec.android.app.sbrowser/com.sec.android.app.sbrowser.SBrowserMainActivityManager}" drawable="ic_browser" />
+    <item component="ComponentInfo{com.sec.android.app.sbrowser/.SBrowserMainActivity}" drawable="ic_browser" />
+    <item component="ComponentInfo{com.miui.securitycenter/com.miui.securityscan.MainActivity}" drawable="ic_shield" />
+    <item component="ComponentInfo{com.miui.securitycenter/com.miui.securitycenter.MainActivity}" drawable="ic_shield" />
+
 </resources>

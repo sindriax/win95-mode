@@ -11,6 +11,8 @@
     <item drawable="ic_start" name="Start" />
     <item drawable="ic_settings" name="Settings" />
     <item drawable="ic_files" name="Files" />
+    <item drawable="ic_calculator" name="Calculator" />
+    <item drawable="ic_shield" name="Security" />
 
     <category title="Phone" />
     <item drawable="ic_phone" name="Phone" />
@@ -58,6 +60,7 @@
     <item drawable="ic_twitch" name="Twitch" />
 
     <category title="Browser" />
+    <item drawable="ic_browser" name="Internet" />
     <item drawable="ic_chrome" name="Chrome" />
     <item drawable="ic_firefox" name="Firefox" />
 
