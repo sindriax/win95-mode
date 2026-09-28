@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.app.WallpaperManager
 import android.content.ComponentName
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -12,7 +13,9 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
+import android.text.TextUtils
 import android.text.TextWatcher
+import android.view.Gravity
 import android.view.View
 import android.view.Window
 import android.widget.CheckBox
@@ -52,9 +55,67 @@ class MainActivity : AppCompatActivity() {
         setupWindowControls()
         populateIconGrid()
         setupWallpaperClicks()
-        findViewById<TextView>(R.id.btn_apply_pack).setOnClickListener { showApplyDialog() }
         findViewById<TextView>(R.id.btn_request_icons).setOnClickListener { showRequestDialog() }
         findViewById<TextView>(R.id.btn_starfield).setOnClickListener { openStarfieldPreview() }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Re-checked on every return: people install or switch launchers and come back.
+        updateLauncherStatus()
+    }
+
+    private val iconPack: IconPack by lazy {
+        val mappings = mutableMapOf<String, String>()
+        val parser = resources.getXml(R.xml.appfilter)
+        while (parser.eventType != XmlPullParser.END_DOCUMENT) {
+            if (parser.eventType == XmlPullParser.START_TAG && parser.name == "item") {
+                val component = parser.getAttributeValue(null, "component")
+                val drawable = parser.getAttributeValue(null, "drawable")
+                if (component != null && drawable != null) mappings[component] = drawable
+            }
+            parser.next()
+        }
+        IconPack(mappings)
+    }
+
+    private fun launchableApps() =
+        packageManager.queryIntentActivities(
+            Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER), 0
+        ).filter { it.activityInfo != null && it.activityInfo.packageName != packageName }
+
+    private fun defaultHomePackage(): String? =
+        packageManager.resolveActivity(
+            Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME),
+            PackageManager.MATCH_DEFAULT_ONLY
+        )?.activityInfo?.packageName
+
+    private fun updateLauncherStatus() {
+        val text = findViewById<TextView>(R.id.launcher_status_text)
+        val button = findViewById<TextView>(R.id.btn_apply_pack)
+        val installed = launcherTargets.filter {
+            packageManager.getLaunchIntentForPackage(it.pkg) != null
+        }
+        val home = installed.firstOrNull { it.pkg == defaultHomePackage() }
+        when {
+            home != null -> {
+                text.text = getString(R.string.status_ready, home.label)
+                button.setText(R.string.apply_short)
+                button.setOnClickListener { applyWith(home) }
+            }
+            installed.isNotEmpty() -> {
+                text.text = getString(R.string.status_installed_not_home, installed.first().label)
+                button.setText(if (installed.size == 1) R.string.apply_short else R.string.apply_icon_pack)
+                button.setOnClickListener {
+                    if (installed.size == 1) applyWith(installed.first()) else showApplyDialog()
+                }
+            }
+            else -> {
+                text.setText(R.string.status_unsupported)
+                button.setText(R.string.how_to_fix)
+                button.setOnClickListener { showApplyDialog() }
+            }
+        }
     }
 
     private fun openStarfieldPreview() {
@@ -115,32 +176,17 @@ class MainActivity : AppCompatActivity() {
         }.start()
     }
 
-    /** Launchable apps whose component has no appfilter mapping, in either the
-     *  full or the shortened component form launchers report. */
-    private fun findUnthemedApps(): List<UnthemedApp> {
-        val mapped = mutableSetOf<String>()
-        val parser = resources.getXml(R.xml.appfilter)
-        while (parser.eventType != XmlPullParser.END_DOCUMENT) {
-            if (parser.eventType == XmlPullParser.START_TAG && parser.name == "item") {
-                parser.getAttributeValue(null, "component")?.let { mapped.add(it) }
-            }
-            parser.next()
-        }
-
-        val launcherIntent = Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER)
-        return packageManager.queryIntentActivities(launcherIntent, 0)
-            .mapNotNull { info ->
-                val activity = info.activityInfo ?: return@mapNotNull null
-                val full = "ComponentInfo{${activity.packageName}/${activity.name}}"
-                val short = if (activity.name.startsWith(activity.packageName)) {
-                    "ComponentInfo{${activity.packageName}/${activity.name.removePrefix(activity.packageName)}}"
-                } else full
-                if (activity.packageName == packageName || full in mapped || short in mapped) null
-                else UnthemedApp(info.loadLabel(packageManager).toString(), full)
+    private fun findUnthemedApps(): List<UnthemedApp> =
+        launchableApps()
+            .filter { iconPack.drawableFor(it.activityInfo.packageName, it.activityInfo.name) == null }
+            .map {
+                UnthemedApp(
+                    it.loadLabel(packageManager).toString(),
+                    "ComponentInfo{${it.activityInfo.packageName}/${it.activityInfo.name}}"
+                )
             }
             .distinctBy { it.component }
             .sortedBy { it.label.lowercase() }
-    }
 
     private fun sendIconRequest(apps: List<UnthemedApp>, viaGithub: Boolean) {
         val body = buildString {
@@ -182,6 +228,7 @@ class MainActivity : AppCompatActivity() {
                 .putExtra("com.teslacoilsw.launcher.extra.ICON_THEME_PACKAGE", pack)
         },
         LauncherTarget("Lawnchair", "app.lawnchair"),
+        LauncherTarget("Lawnchair 2", "ch.deletescape.lawnchair.plah"),
         LauncherTarget("Apex Launcher", "com.anddoes.launcher") { pack ->
             Intent("com.anddoes.launcher.SET_THEME")
                 .setPackage("com.anddoes.launcher")
@@ -271,7 +318,7 @@ class MainActivity : AppCompatActivity() {
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
             ).apply { bottomMargin = (6 * density).toInt() }
-            gravity = android.view.Gravity.CENTER
+            gravity = Gravity.CENTER
             setOnClickListener { onClick() }
         }
 
@@ -290,8 +337,9 @@ class MainActivity : AppCompatActivity() {
     private fun populateIconGrid() {
         val grid = findViewById<GridLayout>(R.id.icon_grid)
         val density = resources.displayMetrics.density
-        val size = (40 * density).toInt()
-        val margin = (6 * density).toInt()
+        val iconSize = (40 * density).toInt()
+        val cellWidth = (72 * density).toInt()
+        val gap = (4 * density).toInt()
 
         val parser = resources.getXml(R.xml.drawable)
         while (parser.eventType != XmlPullParser.END_DOCUMENT) {
@@ -301,20 +349,51 @@ class MainActivity : AppCompatActivity() {
                 val resId = drawableName
                     ?.let { resources.getIdentifier(it, "drawable", packageName) } ?: 0
                 if (resId != 0) {
-                    grid.addView(ImageView(this).apply {
-                        setImageResource(resId)
+                    grid.addView(LinearLayout(this).apply {
+                        orientation = LinearLayout.VERTICAL
+                        gravity = Gravity.CENTER_HORIZONTAL
                         contentDescription = label
-                        layoutParams = GridLayout.LayoutParams().apply {
-                            width = size
-                            height = size
-                            setMargins(margin, margin, margin, margin)
-                        }
+                        setPadding(gap, gap, gap, gap)
+                        layoutParams = GridLayout.LayoutParams().apply { width = cellWidth }
+                        setOnClickListener { showIconProperties(drawableName, label, resId) }
+                        addView(ImageView(context).apply {
+                            setImageResource(resId)
+                            importantForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_NO
+                            layoutParams = LinearLayout.LayoutParams(iconSize, iconSize)
+                        })
+                        addView(TextView(context).apply {
+                            text = label
+                            setTextColor(getColor(R.color.black))
+                            textSize = 10f
+                            gravity = Gravity.CENTER
+                            maxLines = 2
+                            ellipsize = TextUtils.TruncateAt.END
+                            importantForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_NO
+                        })
                     })
                 }
             }
             parser.next()
         }
         setupIconSearch(grid)
+    }
+
+    private fun showIconProperties(drawableName: String, label: String, resId: Int) {
+        val dialog = win95Dialog(R.layout.dialog_icon_properties)
+        dialog.findViewById<TextView>(R.id.properties_title)?.text =
+            getString(R.string.icon_properties_title, label)
+        dialog.findViewById<ImageView>(R.id.properties_icon)?.setImageResource(resId)
+        dialog.findViewById<TextView>(R.id.properties_name)?.text = label
+        val themed = launchableApps()
+            .filter { iconPack.drawableFor(it.activityInfo.packageName, it.activityInfo.name) == drawableName }
+            .map { it.loadLabel(packageManager).toString() }
+            .distinct()
+            .sorted()
+        dialog.findViewById<TextView>(R.id.properties_apps)?.text =
+            if (themed.isEmpty()) getString(R.string.icon_not_installed)
+            else getString(R.string.icon_themes_here) + "\n" + themed.joinToString("\n") { "• $it" }
+        dialog.findViewById<TextView>(R.id.btn_properties_ok)?.setOnClickListener { dialog.dismiss() }
+        dialog.show()
     }
 
     private fun setupIconSearch(grid: GridLayout) {

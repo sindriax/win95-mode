@@ -13,8 +13,15 @@
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent>
+        <!-- Lets the status box tell whether the default home app is a
+             supported launcher. -->
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.HOME" />
+        </intent>
         <package android:name="com.teslacoilsw.launcher" />
         <package android:name="app.lawnchair" />
+        <package android:name="ch.deletescape.lawnchair.plah" />
         <package android:name="com.anddoes.launcher" />
         <package android:name="com.actionlauncher.playstore" />
         <package android:name="ginlemon.flowerfree" />
