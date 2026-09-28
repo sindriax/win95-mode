@@ -126,6 +126,7 @@
     <item drawable="ic_lidl" name="Lidl Plus" />
     <item drawable="ic_justeat" name="Just Eat" />
     <item drawable="ic_tgtg" name="Too Good To Go" />
+    <item drawable="ic_shein" name="Shein" />
 
     <category title="Education" />
     <item drawable="ic_duolingo" name="Duolingo" />
@@ -146,6 +147,7 @@
     <item drawable="ic_clashroyale" name="Clash Royale" />
     <item drawable="ic_clashofclans" name="Clash of Clans" />
     <item drawable="ic_monopolygo" name="Monopoly Go" />
+    <item drawable="ic_pokemongo" name="Pokémon GO" />
 
     <category title="Apps" />
     <item drawable="ic_paint" name="Canva" />
@@ -179,6 +181,7 @@
     <item drawable="ic_trello" name="Trello" />
     <item drawable="ic_evernote" name="Evernote" />
     <item drawable="ic_camscanner" name="CamScanner" />
+    <item drawable="ic_acrobat" name="Acrobat" />
 
     <category title="Finance" />
     <item drawable="ic_revolut" name="Revolut" />

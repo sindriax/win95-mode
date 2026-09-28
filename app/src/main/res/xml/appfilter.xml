@@ -849,4 +849,19 @@
     <item component="ComponentInfo{com.scopely.monopolygo/com.scopely.unity.MoGoUnityPlayerActivity}" drawable="ic_monopolygo" />
     <item component="ComponentInfo{com.scopely.monopolygo/com.scopely.unity.ScopelyUnityActivity}" drawable="ic_monopolygo" />
 
+    <!-- Round 5 redos, components from the Arcticons appfilter, 2026-09-28. -->
+    <item component="ComponentInfo{com.nianticlabs.pokemongo/com.google.android.archive.ReactivateActivity}" drawable="ic_pokemongo" />
+    <item component="ComponentInfo{com.nianticlabs.pokemongo/com.nianticlabs.platform.launcher.NianticUnityPlayerActivity}" drawable="ic_pokemongo" />
+    <item component="ComponentInfo{com.nianticlabs.pokemongo/com.nianticproject.holoholo.libholoholo.unity.UnityMainActivity}" drawable="ic_pokemongo" />
+    <item component="ComponentInfo{com.nianticlabs.pokemongo/com.unity3d.player.UnityPlayerActivity}" drawable="ic_pokemongo" />
+    <item component="ComponentInfo{com.nianticlabs.pokemongo/com.unity3d.player.UnityPlayerNativeActivity}" drawable="ic_pokemongo" />
+    <item component="ComponentInfo{com.nianticlabs.pokemongo/m.u.h.a.MainActivity}" drawable="ic_pokemongo" />
+    <item component="ComponentInfo{com.adobe.reader/com.adobe.reader.AdobeReader}" drawable="ic_acrobat" />
+    <item component="ComponentInfo{com.adobe.reader/com.google.android.archive.ReactivateActivity}" drawable="ic_acrobat" />
+    <item component="ComponentInfo{com.zzkko/com.google.android.archive.ReactivateActivity}" drawable="ic_shein" />
+    <item component="ComponentInfo{com.zzkko/com.shein.user_service.welcome.WelcomeActivity}" drawable="ic_shein" />
+    <item component="ComponentInfo{com.zzkko/com.shein.welcome.WelcomeActivity}" drawable="ic_shein" />
+    <item component="ComponentInfo{com.zzkko/com.zzkko.bussiness.login.ui.WelcomeActivity}" drawable="ic_shein" />
+    <item component="ComponentInfo{com.zzkko/com.zzkko.bussiness.welcome.WelcomeActivity}" drawable="ic_shein" />
+
 </resources>
