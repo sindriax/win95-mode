@@ -13,6 +13,8 @@
     <item drawable="ic_files" name="Files" />
     <item drawable="ic_calculator" name="Calculator" />
     <item drawable="ic_shield" name="Security" />
+    <item drawable="ic_weather" name="Weather" />
+    <item drawable="ic_keys" name="Authenticator" />
 
     <category title="Phone" />
     <item drawable="ic_phone" name="Phone" />
@@ -39,6 +41,10 @@
     <item drawable="ic_pinterest" name="Pinterest" />
     <item drawable="ic_tumblr" name="Tumblr" />
     <item drawable="ic_discord" name="Discord" />
+    <item drawable="ic_thread" name="Threads" />
+    <item drawable="ic_butterfly_net" name="Bluesky" />
+    <item drawable="ic_elephant" name="Mastodon" />
+    <item drawable="ic_instant_photo" name="BeReal" />
 
     <category title="Communication" />
     <item drawable="ic_whatsapp" name="WhatsApp" />
@@ -53,16 +59,19 @@
     <category title="Music" />
     <item drawable="ic_spotify" name="Spotify" />
     <item drawable="ic_music" name="YT Music" />
+    <item drawable="ic_shazam_ear" name="Shazam" />
 
     <category title="Video" />
     <item drawable="ic_youtube" name="YouTube" />
     <item drawable="ic_netflix" name="Netflix" />
     <item drawable="ic_twitch" name="Twitch" />
+    <item drawable="ic_mediaplayer" name="Media Player" />
 
     <category title="Browser" />
     <item drawable="ic_browser" name="Internet" />
     <item drawable="ic_chrome" name="Chrome" />
     <item drawable="ic_firefox" name="Firefox" />
+    <item drawable="ic_duck" name="DuckDuckGo" />
 
     <category title="Shopping" />
     <item drawable="ic_amazon" name="Amazon" />
@@ -70,9 +79,12 @@
 
     <category title="Education" />
     <item drawable="ic_duolingo" name="Duolingo" />
+    <item drawable="ic_book" name="Books" />
 
     <category title="Gaming" />
     <item drawable="ic_tft" name="Teamfight Tactics" />
+    <item drawable="ic_valve" name="Steam" />
+    <item drawable="ic_gamepad" name="Games" />
 
     <category title="Apps" />
     <item drawable="ic_paint" name="Paint" />
@@ -81,8 +93,13 @@
     <item drawable="ic_translate" name="Translate" />
     <item drawable="ic_gpt" name="GPT" />
     <item drawable="ic_travel" name="Travel" />
+    <item drawable="ic_map" name="Navigation" />
+    <item drawable="ic_stopwatch" name="Fitness" />
     <item drawable="ic_langjump" name="Language" />
     <item drawable="ic_notes" name="Notes" />
+    <item drawable="ic_binder" name="Binder" />
+    <item drawable="ic_clipboard" name="Tasks" />
     <item drawable="ic_bank" name="Bank" />
+    <item drawable="ic_wallet" name="Wallet" />
 
 </resources>

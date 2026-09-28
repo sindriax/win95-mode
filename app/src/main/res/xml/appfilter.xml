@@ -220,4 +220,136 @@
     <item component="ComponentInfo{com.miui.securitycenter/com.miui.securityscan.MainActivity}" drawable="ic_shield" />
     <item component="ComponentInfo{com.miui.securitycenter/com.miui.securitycenter.MainActivity}" drawable="ic_shield" />
 
+    <!-- New artwork: launcher components checked against Arcticons on 2026-09-28. -->
+    <!-- map -->
+    <item component="ComponentInfo{com.citymapper.app.release/com.citymapper.app.MainActivity_Dude}" drawable="ic_map" />
+    <item component="ComponentInfo{com.citymapper.app.release/com.citymapper.app.MainActivity_White}" drawable="ic_map" />
+    <item component="ComponentInfo{com.citymapper.app.release/com.citymapper.app.MainActivity_NotGreen3}" drawable="ic_map" />
+    <item component="ComponentInfo{com.citymapper.app.release/com.citymapper.app.MainActivity_NotGreen}" drawable="ic_map" />
+    <item component="ComponentInfo{com.citymapper.app.release/com.citymapper.app.MainActivity_CM2}" drawable="ic_map" />
+    <item component="ComponentInfo{com.citymapper.app.release/com.citymapper.app.MainActivity}" drawable="ic_map" />
+    <item component="ComponentInfo{com.citymapper.app.release/com.citymapper.app.MainActivity_Gobot}" drawable="ic_map" />
+    <item component="ComponentInfo{com.citymapper.app.release/com.citymapper.app.MainActivity_Jetpack}" drawable="ic_map" />
+    <item component="ComponentInfo{com.citymapper.app.release/com.citymapper.app.MainActivity_Goth}" drawable="ic_map" />
+    <item component="ComponentInfo{com.citymapper.app.release/com.citymapper.app.MainActivity_Rainbow}" drawable="ic_map" />
+    <item component="ComponentInfo{com.citymapper.app.release/com.citymapper.app.MainActivity_EarlyBird}" drawable="ic_map" />
+    <item component="ComponentInfo{com.citymapper.app.release/com.citymapper.app.MainActivity_Bear}" drawable="ic_map" />
+    <item component="ComponentInfo{com.waze/com.waze.FreeMapAppActivity}" drawable="ic_map" />
+    <!-- book -->
+    <item component="ComponentInfo{com.google.android.apps.books/com.google.android.apps.books.app.BooksActivity}" drawable="ic_book" />
+    <item component="ComponentInfo{com.google.android.apps.books/com.google.android.apps.books.app.HomeActivity}" drawable="ic_book" />
+    <item component="ComponentInfo{com.amazon.kindle/com.amazon.kindle.UpgradePage}" drawable="ic_book" />
+    <item component="ComponentInfo{com.amazon.kindle/com.amazon.kindle.TabletStartActivity}" drawable="ic_book" />
+    <item component="ComponentInfo{com.amazon.kindle/com.amazon.kindle.NewsstandStartActivity}" drawable="ic_book" />
+    <item component="ComponentInfo{com.amazon.kindle/com.amazon.kcp.oob.MainActivity}" drawable="ic_book" />
+    <!-- shazam_ear -->
+    <item component="ComponentInfo{com.shazam.android/com.shazam.android.activities.SplashActivity}" drawable="ic_shazam_ear" />
+    <item component="ComponentInfo{com.shazam.android/com.shazam.android.activities.MainActivity}" drawable="ic_shazam_ear" />
+    <item component="ComponentInfo{com.shazam.android/com.shazam.android.activities.Splash}" drawable="ic_shazam_ear" />
+    <item component="ComponentInfo{com.shazam.android/com.shazam.android.Home}" drawable="ic_shazam_ear" />
+    <item component="ComponentInfo{com.shazam.android/com.shazam.android.Splash}" drawable="ic_shazam_ear" />
+    <!-- mediaplayer -->
+    <item component="ComponentInfo{org.videolan.vlc/org.videolan.vlc.gui.MainActivity}" drawable="ic_mediaplayer" />
+    <item component="ComponentInfo{org.videolan.vlc/org.videolan.vlc.gui.tv.MainTvActivity}" drawable="ic_mediaplayer" />
+    <item component="ComponentInfo{org.videolan.vlc/.StartActivity}" drawable="ic_mediaplayer" />
+    <item component="ComponentInfo{org.videolan.vlc/org.videolan.vlc.StartActivity}" drawable="ic_mediaplayer" />
+    <!-- binder -->
+    <item component="ComponentInfo{notion.id/notion.local.id.MainActivity}" drawable="ic_binder" />
+    <item component="ComponentInfo{notion.id/notion.id.MainActivity}" drawable="ic_binder" />
+    <item component="ComponentInfo{md.obsidian/md.obsidian.MainActivity}" drawable="ic_binder" />
+    <!-- clipboard -->
+    <item component="ComponentInfo{com.google.android.apps.tasks/com.google.android.apps.tasks.ui.TaskListsActivity}" drawable="ic_clipboard" />
+    <item component="ComponentInfo{com.todoist/com.todoist.alias.HomeActivityMoonstone}" drawable="ic_clipboard" />
+    <item component="ComponentInfo{com.todoist/com.todoist.alias.HomeActivityLightRainbow}" drawable="ic_clipboard" />
+    <item component="ComponentInfo{com.todoist/com.todoist.alias.HomeActivityRaspberry}" drawable="ic_clipboard" />
+    <item component="ComponentInfo{com.todoist/com.todoist.alias.HomeActivityDefault}" drawable="ic_clipboard" />
+    <item component="ComponentInfo{com.todoist/com.todoist.alias.HomeActivityBlack}" drawable="ic_clipboard" />
+    <item component="ComponentInfo{com.todoist/com.todoist.alias.HomeActivityTodoist}" drawable="ic_clipboard" />
+    <item component="ComponentInfo{com.todoist/com.todoist.alias.HomeActivityLightSky}" drawable="ic_clipboard" />
+    <item component="ComponentInfo{com.todoist/com.todoist.alias.HomeActivityKale}" drawable="ic_clipboard" />
+    <item component="ComponentInfo{com.todoist/com.todoist.activity.HomeActivity}" drawable="ic_clipboard" />
+    <item component="ComponentInfo{com.todoist/com.todoist.alias.HomeActivityAmethyst}" drawable="ic_clipboard" />
+    <item component="ComponentInfo{com.todoist/com.todoist.alias.HomeActivityBlueberry}" drawable="ic_clipboard" />
+    <item component="ComponentInfo{com.todoist/com.todoist.alias.HomeActivityClover}" drawable="ic_clipboard" />
+    <item component="ComponentInfo{com.todoist/com.todoist.alias.HomeActivityDark}" drawable="ic_clipboard" />
+    <item component="ComponentInfo{com.todoist/com.todoist.alias.HomeActivityNoir}" drawable="ic_clipboard" />
+    <item component="ComponentInfo{com.todoist/com.todoist.alias.HomeActivityGraphite}" drawable="ic_clipboard" />
+    <item component="ComponentInfo{com.todoist/com.todoist.alias.HomeActivityLightTodoist}" drawable="ic_clipboard" />
+    <item component="ComponentInfo{com.todoist/com.todoist.alias.HomeActivityLightAmethyst}" drawable="ic_clipboard" />
+    <item component="ComponentInfo{com.todoist/com.todoist.alias.HomeActivityLightBlueberry}" drawable="ic_clipboard" />
+    <item component="ComponentInfo{com.todoist/com.todoist.alias.HomeActivityLightClover}" drawable="ic_clipboard" />
+    <item component="ComponentInfo{com.todoist/com.todoist.alias.HomeActivityLightGold}" drawable="ic_clipboard" />
+    <item component="ComponentInfo{com.todoist/com.todoist.alias.HomeActivityLightGraphite}" drawable="ic_clipboard" />
+    <item component="ComponentInfo{com.todoist/com.todoist.alias.HomeActivityLightNoir}" drawable="ic_clipboard" />
+    <item component="ComponentInfo{com.todoist/com.todoist.alias.HomeActivityLightPink}" drawable="ic_clipboard" />
+    <item component="ComponentInfo{com.todoist/com.todoist.alias.HomeActivityLightRoyalBlue}" drawable="ic_clipboard" />
+    <item component="ComponentInfo{com.todoist/com.todoist.alias.HomeActivityLightTangerine}" drawable="ic_clipboard" />
+    <item component="ComponentInfo{com.todoist/com.todoist.alias.HomeActivityNeutral}" drawable="ic_clipboard" />
+    <item component="ComponentInfo{com.todoist/com.todoist.alias.HomeActivityPink}" drawable="ic_clipboard" />
+    <item component="ComponentInfo{com.todoist/com.todoist.alias.HomeActivityRoyalBlue}" drawable="ic_clipboard" />
+    <item component="ComponentInfo{com.todoist/com.todoist.alias.HomeActivitySky}" drawable="ic_clipboard" />
+    <item component="ComponentInfo{com.todoist/com.todoist.alias.HomeActivitySunflower}" drawable="ic_clipboard" />
+    <item component="ComponentInfo{com.todoist/com.todoist.alias.HomeActivityTangerine}" drawable="ic_clipboard" />
+    <!-- keys -->
+    <item component="ComponentInfo{com.google.android.apps.authenticator2/com.google.android.apps.authenticator.AuthenticatorActivity}" drawable="ic_keys" />
+    <item component="ComponentInfo{com.google.android.apps.authenticator2/com.google.android.apps.authenticator2.main.MainActivity}" drawable="ic_keys" />
+    <item component="ComponentInfo{com.azure.authenticator/com.azure.authenticator.ui.LaunchActivity}" drawable="ic_keys" />
+    <item component="ComponentInfo{com.azure.authenticator/com.azure.authenticator.ui.MainActivity}" drawable="ic_keys" />
+    <!-- weather -->
+    <item component="ComponentInfo{com.google.android.apps.weather/com.google.android.apps.weather.home.HomeActivity}" drawable="ic_weather" />
+    <item component="ComponentInfo{com.miui.weather2/com.miui.weather2.ActivityWeatherMain}" drawable="ic_weather" />
+    <item component="ComponentInfo{com.miui.weather2/com.miui.weather2.ActivityWeatherCycle}" drawable="ic_weather" />
+    <item component="ComponentInfo{com.sec.android.daemonapp/com.samsung.android.weather.app.AppLauncherActivity}" drawable="ic_weather" />
+    <item component="ComponentInfo{com.sec.android.daemonapp/com.sec.android.daemonapp.app.MainActivity}" drawable="ic_weather" />
+    <!-- duck -->
+    <item component="ComponentInfo{com.duckduckgo.mobile.android/com.duckduckgo.mobile.android.activity.DuckDuckGo}" drawable="ic_duck" />
+    <item component="ComponentInfo{com.duckduckgo.mobile.android/com.duckduckgo.app.launch.LaunchActivity}" drawable="ic_duck" />
+    <item component="ComponentInfo{com.duckduckgo.mobile.android/com.duckduckgo.app.onboarding.ui.OnboardingActivity}" drawable="ic_duck" />
+    <item component="ComponentInfo{com.duckduckgo.mobile.android/com.duckduckgo.app.launch.Launcher}" drawable="ic_duck" />
+    <item component="ComponentInfo{com.duckduckgo.mobile.android/com.duckduckgo.app.launch.LauncherSilhoutte}" drawable="ic_duck" />
+    <item component="ComponentInfo{com.duckduckgo.mobile.android/com.duckduckgo.app.launch.LauncherPurple}" drawable="ic_duck" />
+    <item component="ComponentInfo{com.duckduckgo.mobile.android/com.duckduckgo.app.launch.LauncherGreen}" drawable="ic_duck" />
+    <item component="ComponentInfo{com.duckduckgo.mobile.android/com.duckduckgo.app.launch.LauncherGold}" drawable="ic_duck" />
+    <item component="ComponentInfo{com.duckduckgo.mobile.android/com.duckduckgo.app.launch.LauncherBlack}" drawable="ic_duck" />
+    <item component="ComponentInfo{com.duckduckgo.mobile.android/com.duckduckgo.app.launch.LauncherBlue}" drawable="ic_duck" />
+    <!-- valve -->
+    <item component="ComponentInfo{com.valvesoftware.android.steam.community/com.valvesoftware.android.steam.community.activity.MainActivity}" drawable="ic_valve" />
+    <item component="ComponentInfo{com.valvesoftware.android.steam.community/com.valvesoftware.android.steam.community.activity.CommunityActivity}" drawable="ic_valve" />
+    <item component="ComponentInfo{com.valvesoftware.android.steam.community/com.valvesoftware.android.steam.community.MainActivity}" drawable="ic_valve" />
+    <!-- thread -->
+    <item component="ComponentInfo{com.instagram.barcelona/com.instagram.barcelona.mainactivity.BarcelonaActivity}" drawable="ic_thread" />
+    <item component="ComponentInfo{com.instagram.barcelona/com.instagram.barcelona.InternalLauncher}" drawable="ic_thread" />
+    <!-- butterfly_net -->
+    <item component="ComponentInfo{xyz.blueskyweb.app/xyz.blueskyweb.app.MainActivity}" drawable="ic_butterfly_net" />
+    <!-- elephant -->
+    <item component="ComponentInfo{org.joinmastodon.android/org.joinmastodon.android.MainActivity}" drawable="ic_elephant" />
+    <!-- instant_photo -->
+    <item component="ComponentInfo{com.bereal.ft/bereal.app.MainActivity}" drawable="ic_instant_photo" />
+    <item component="ComponentInfo{com.bereal.ft/com.bereal.ft.MainActivity}" drawable="ic_instant_photo" />
+    <!-- stopwatch -->
+    <item component="ComponentInfo{com.strava/com.strava.SplashActivityTealIcon}" drawable="ic_stopwatch" />
+    <item component="ComponentInfo{com.strava/com.strava.SplashActivityRoadIcon}" drawable="ic_stopwatch" />
+    <item component="ComponentInfo{com.strava/com.strava.SplashActivityLocalLegendIcon}" drawable="ic_stopwatch" />
+    <item component="ComponentInfo{com.strava/com.strava.SplashActivityBlackIcon}" drawable="ic_stopwatch" />
+    <item component="ComponentInfo{com.strava/com.strava.SplashActivityGravelIcon}" drawable="ic_stopwatch" />
+    <item component="ComponentInfo{com.strava/com.strava.SplashActivityRunningIcon}" drawable="ic_stopwatch" />
+    <item component="ComponentInfo{com.strava/com.strava.SplashActivity}" drawable="ic_stopwatch" />
+    <item component="ComponentInfo{com.strava/com.strava.SplashActivityCyclingIcon}" drawable="ic_stopwatch" />
+    <!-- wallet -->
+    <item component="ComponentInfo{com.paypal.android.p2pmobile/com.paypal.oslo.app.MainActivity}" drawable="ic_wallet" />
+    <item component="ComponentInfo{com.paypal.android.p2pmobile/com.paypal.android.p2pmobile.startup.activities.StartupActivity}" drawable="ic_wallet" />
+    <item component="ComponentInfo{com.paypal.android.p2pmobile/com.paypal.android.p2pmobile.activity.GridLauncherActivity}" drawable="ic_wallet" />
+    <item component="ComponentInfo{com.paypal.android.p2pmobile/com.paypal.android.p2pmobile.activity.HubActivity}" drawable="ic_wallet" />
+    <item component="ComponentInfo{com.paypal.android.p2pmobile/com.paypal.android.p2pmobile.activity.IntroActivity}" drawable="ic_wallet" />
+    <item component="ComponentInfo{com.paypal.android.p2pmobile/com.paypal.android.p2pmobile.p2p}" drawable="ic_wallet" />
+    <!-- gamepad -->
+    <item component="ComponentInfo{com.mojang.minecraftpe/com.mojang.minecraftpe.Minecraft_Market}" drawable="ic_gamepad" />
+    <item component="ComponentInfo{com.mojang.minecraftpe/com.mojang.minecraftpe.MainActivity}" drawable="ic_gamepad" />
+    <item component="ComponentInfo{com.nintendo.znca/com.nintendo.coral.ui.boot.BootActivity}" drawable="ic_gamepad" />
+    <item component="ComponentInfo{com.roblox.client/com.roblox.client.startup.LauncherAliasMain}" drawable="ic_gamepad" />
+    <item component="ComponentInfo{com.roblox.client/com.roblox.client.startup.LauncherAliasClassic}" drawable="ic_gamepad" />
+    <item component="ComponentInfo{com.roblox.client/com.roblox.client.startup.MainGameActivity}" drawable="ic_gamepad" />
+    <item component="ComponentInfo{com.roblox.client/com.roblox.client.startup.ActivitySplash}" drawable="ic_gamepad" />
+    <item component="ComponentInfo{com.roblox.client/com.roblox.client.ActivitySplash}" drawable="ic_gamepad" />
+
 </resources>
