@@ -331,15 +331,19 @@ class MainActivity : AppCompatActivity() {
         findViewById<View>(R.id.btn_start).setOnClickListener { showAboutDialog() }
     }
 
-    /** Fills the preview grid with every icon declared in xml/drawable.xml,
-     *  so the app always showcases the full, current icon set. */
+    private class GridIcon(val drawable: String, val label: String, val cell: View, val yours: Boolean)
+
+    private val gridIcons = mutableListOf<GridIcon>()
+    private var showAllIcons = false
+
+    /** Builds the icon grid from xml/drawable.xml. Icons for apps installed on
+     *  this phone come first; icons that theme no app at all go under Extras. */
     @SuppressLint("DiscouragedApi")
     private fun populateIconGrid() {
-        val grid = findViewById<GridLayout>(R.id.icon_grid)
-        val density = resources.displayMetrics.density
-        val iconSize = (40 * density).toInt()
-        val cellWidth = (72 * density).toInt()
-        val gap = (4 * density).toInt()
+        val extras = findViewById<GridLayout>(R.id.extras_grid)
+        val installed = launchableApps()
+            .mapNotNull { iconPack.drawableFor(it.activityInfo.packageName, it.activityInfo.name) }
+            .toSet()
 
         val parser = resources.getXml(R.xml.drawable)
         while (parser.eventType != XmlPullParser.END_DOCUMENT) {
@@ -349,33 +353,84 @@ class MainActivity : AppCompatActivity() {
                 val resId = drawableName
                     ?.let { resources.getIdentifier(it, "drawable", packageName) } ?: 0
                 if (resId != 0) {
-                    grid.addView(LinearLayout(this).apply {
-                        orientation = LinearLayout.VERTICAL
-                        gravity = Gravity.CENTER_HORIZONTAL
-                        contentDescription = label
-                        setPadding(gap, gap, gap, gap)
-                        layoutParams = GridLayout.LayoutParams().apply { width = cellWidth }
-                        setOnClickListener { showIconProperties(drawableName, label, resId) }
-                        addView(ImageView(context).apply {
-                            setImageResource(resId)
-                            importantForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_NO
-                            layoutParams = LinearLayout.LayoutParams(iconSize, iconSize)
-                        })
-                        addView(TextView(context).apply {
-                            text = label
-                            setTextColor(getColor(R.color.black))
-                            textSize = 10f
-                            gravity = Gravity.CENTER
-                            maxLines = 2
-                            ellipsize = TextUtils.TruncateAt.END
-                            importantForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_NO
-                        })
-                    })
+                    val cell = iconCell(drawableName, label, resId)
+                    if (iconPack.themesAnything(drawableName)) {
+                        gridIcons += GridIcon(drawableName, label, cell, drawableName in installed)
+                    } else {
+                        extras.addView(cell)
+                    }
                 }
             }
             parser.next()
         }
-        setupIconSearch(grid)
+
+        findViewById<TextView>(R.id.btn_show_all).setOnClickListener {
+            showAllIcons = !showAllIcons
+            refreshIconGrid("")
+        }
+        setupIconSearch()
+        refreshIconGrid("")
+    }
+
+    private fun iconCell(drawableName: String, label: String, resId: Int): View {
+        val density = resources.displayMetrics.density
+        val gap = (4 * density).toInt()
+        return LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            gravity = Gravity.CENTER_HORIZONTAL
+            contentDescription = label
+            setPadding(gap, gap, gap, gap)
+            layoutParams = GridLayout.LayoutParams().apply { width = (80 * density).toInt() }
+            setOnClickListener { showIconProperties(drawableName, label, resId) }
+            addView(ImageView(context).apply {
+                setImageResource(resId)
+                importantForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_NO
+                val size = (48 * density).toInt()
+                layoutParams = LinearLayout.LayoutParams(size, size)
+            })
+            addView(TextView(context).apply {
+                text = label
+                setTextColor(getColor(R.color.black))
+                textSize = 11f
+                gravity = Gravity.CENTER
+                maxLines = 2
+                ellipsize = TextUtils.TruncateAt.END
+                importantForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_NO
+            })
+        }
+    }
+
+    /** Collapsed: the icons for this phone's apps, or a popular dozen if none
+     *  match. Expanded: everything plus Extras. Searching: every match. */
+    private fun refreshIconGrid(query: String) {
+        val title = findViewById<TextView>(R.id.icon_section_title)
+        val showAll = findViewById<TextView>(R.id.btn_show_all)
+        val extras = findViewById<View>(R.id.extras_section)
+        val emptyNote = findViewById<TextView>(R.id.icon_search_empty)
+        val yours = gridIcons.filter { it.yours }
+        val collapsed = yours.ifEmpty { gridIcons.filter { it.drawable in POPULAR_ICONS } }
+
+        val visible = when {
+            query.isNotEmpty() -> gridIcons.filter { it.label.contains(query, ignoreCase = true) }
+            showAllIcons -> gridIcons
+            else -> collapsed
+        }.toSet()
+        // GridLayout keeps holes for GONE children, so re-add the visible ones instead.
+        val grid = findViewById<GridLayout>(R.id.icon_grid)
+        grid.removeAllViews()
+        gridIcons.filter { it in visible }.forEach { grid.addView(it.cell) }
+
+        title.text = when {
+            query.isNotEmpty() -> getString(R.string.search_results_title)
+            showAllIcons -> getString(R.string.all_icons_title, gridIcons.size)
+            yours.isNotEmpty() -> getString(R.string.your_apps_title, yours.size)
+            else -> getString(R.string.popular_icons_title)
+        }
+        showAll.visibility = if (query.isEmpty()) View.VISIBLE else View.GONE
+        showAll.text = if (showAllIcons) getString(R.string.show_fewer_icons)
+            else getString(R.string.show_all_icons, gridIcons.size)
+        extras.visibility = if (showAllIcons && query.isEmpty()) View.VISIBLE else View.GONE
+        emptyNote.visibility = if (query.isNotEmpty() && visible.isEmpty()) View.VISIBLE else View.GONE
     }
 
     private fun showIconProperties(drawableName: String, label: String, resId: Int) {
@@ -396,22 +451,12 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun setupIconSearch(grid: GridLayout) {
-        val emptyNote = findViewById<TextView>(R.id.icon_search_empty)
+    private fun setupIconSearch() {
         findViewById<EditText>(R.id.icon_search).addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, a: Int, b: Int, c: Int) {}
             override fun onTextChanged(s: CharSequence?, a: Int, b: Int, c: Int) {}
             override fun afterTextChanged(s: Editable?) {
-                val query = s?.toString()?.trim().orEmpty()
-                var visible = 0
-                for (i in 0 until grid.childCount) {
-                    val icon = grid.getChildAt(i)
-                    val matches = query.isEmpty() ||
-                        icon.contentDescription?.contains(query, ignoreCase = true) == true
-                    icon.visibility = if (matches) View.VISIBLE else View.GONE
-                    if (matches) visible++
-                }
-                emptyNote.visibility = if (visible == 0) View.VISIBLE else View.GONE
+                refreshIconGrid(s?.toString()?.trim().orEmpty())
             }
         })
     }
@@ -493,6 +538,13 @@ class MainActivity : AppCompatActivity() {
         return Bitmap.createBitmap(
             scaled, (scaled.width - targetWidth) / 2, (scaled.height - targetHeight) / 2,
             targetWidth, targetHeight
+        )
+    }
+
+    private companion object {
+        val POPULAR_ICONS = setOf(
+            "ic_phone", "ic_camera", "ic_messages", "ic_whatsapp", "ic_instagram", "ic_spotify",
+            "ic_youtube", "ic_netflix", "ic_chrome", "ic_maps", "ic_photos", "ic_calculator"
         )
     }
 }

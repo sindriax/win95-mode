@@ -157,14 +157,6 @@
 
                     </LinearLayout>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/icon_preview"
-                        android:textColor="@color/black"
-                        android:textSize="12sp"
-                        android:layout_marginBottom="8dp" />
-
                     <EditText
                         android:id="@+id/icon_search"
                         android:layout_width="match_parent"
@@ -184,14 +176,62 @@
                         android:importantForAutofill="no"
                         android:layout_marginBottom="8dp" />
 
-                    <!-- Full icon set, populated from xml/drawable.xml at runtime -->
+                    <TextView
+                        android:id="@+id/icon_section_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:layout_marginBottom="4dp" />
+
+                    <!-- Icons from xml/drawable.xml; which are visible depends on
+                         Show all and the search box. -->
                     <GridLayout
                         android:id="@+id/icon_grid"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="12dp"
+                        android:layout_marginBottom="8dp"
                         android:columnCount="4" />
+
+                    <TextView
+                        android:id="@+id/btn_show_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/win95_button_selector"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
+                        android:paddingTop="7dp"
+                        android:paddingBottom="7dp"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:layout_marginBottom="12dp" />
+
+                    <LinearLayout
+                        android:id="@+id/extras_section"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/extras_title"
+                            android:textColor="@color/black"
+                            android:textSize="12sp"
+                            android:layout_marginBottom="4dp" />
+
+                        <GridLayout
+                            android:id="@+id/extras_grid"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="12dp"
+                            android:columnCount="4" />
+
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/icon_search_empty"

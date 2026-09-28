@@ -4,7 +4,7 @@
 
     <category title="System" />
     <item drawable="ic_win95mode" name="Win95 Mode" />
-    <item drawable="ic_my_computer" name="My Computer" />
+    <item drawable="ic_my_computer" name="Nova Launcher" />
     <item drawable="ic_recycle_bin" name="Recycle Bin" />
     <item drawable="ic_explorer" name="Explorer" />
     <item drawable="ic_disk" name="Disk" />
@@ -73,11 +73,11 @@
     <item drawable="ic_youtube" name="YouTube" />
     <item drawable="ic_netflix" name="Netflix" />
     <item drawable="ic_twitch" name="Twitch" />
-    <item drawable="ic_mediaplayer" name="Media Player" />
+    <item drawable="ic_mediaplayer" name="VLC" />
     <item drawable="ic_primevideo" name="Prime Video" />
 
     <category title="Browser" />
-    <item drawable="ic_browser" name="Internet" />
+    <item drawable="ic_browser" name="Samsung Internet" />
     <item drawable="ic_chrome" name="Chrome" />
     <item drawable="ic_firefox" name="Firefox" />
     <item drawable="ic_duck" name="DuckDuckGo" />
@@ -95,32 +95,32 @@
 
     <category title="Education" />
     <item drawable="ic_duolingo" name="Duolingo" />
-    <item drawable="ic_book" name="Books" />
+    <item drawable="ic_book" name="Kindle" />
     <item drawable="ic_wikipedia" name="Wikipedia" />
 
     <category title="Gaming" />
     <item drawable="ic_tft" name="Teamfight Tactics" />
     <item drawable="ic_valve" name="Steam" />
-    <item drawable="ic_gamepad" name="Games" />
+    <item drawable="ic_gamepad" name="Nintendo" />
     <item drawable="ic_minecraft" name="Minecraft" />
     <item drawable="ic_roblox" name="Roblox" />
     <item drawable="ic_candycrush" name="Candy Crush" />
 
     <category title="Apps" />
-    <item drawable="ic_paint" name="Paint" />
-    <item drawable="ic_wordpad" name="Wordpad" />
-    <item drawable="ic_contact" name="Contact" />
+    <item drawable="ic_paint" name="Canva" />
+    <item drawable="ic_wordpad" name="Word" />
+    <item drawable="ic_contact" name="Contacts" />
     <item drawable="ic_translate" name="Translate" />
-    <item drawable="ic_gpt" name="GPT" />
-    <item drawable="ic_travel" name="Travel" />
-    <item drawable="ic_map" name="Navigation" />
-    <item drawable="ic_stopwatch" name="Fitness" />
+    <item drawable="ic_gpt" name="ChatGPT" />
+    <item drawable="ic_travel" name="Booking.com" />
+    <item drawable="ic_map" name="Waze" />
+    <item drawable="ic_stopwatch" name="Strava" />
     <item drawable="ic_langjump" name="Language" />
     <item drawable="ic_notes" name="Notes" />
-    <item drawable="ic_binder" name="Binder" />
-    <item drawable="ic_clipboard" name="Tasks" />
-    <item drawable="ic_bank" name="Bank" />
-    <item drawable="ic_wallet" name="Wallet" />
+    <item drawable="ic_binder" name="Notion" />
+    <item drawable="ic_clipboard" name="Todoist" />
+    <item drawable="ic_bank" name="Santander" />
+    <item drawable="ic_wallet" name="PayPal" />
     <item drawable="ic_excel" name="Excel" />
     <item drawable="ic_claude" name="Claude" />
     <item drawable="ic_copilot" name="Copilot" />

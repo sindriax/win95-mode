@@ -9,6 +9,10 @@ class IconPack(private val mappings: Map<String, String>) {
     fun drawableFor(packageName: String, activityName: String): String? =
         componentKeys(packageName, activityName).firstNotNullOfOrNull { mappings[it] }
 
+    fun themesAnything(drawable: String): Boolean = drawable in drawables
+
+    private val drawables = mappings.values.toSet()
+
     companion object {
         fun componentKeys(packageName: String, activityName: String): List<String> {
             val full = "ComponentInfo{$packageName/$activityName}"

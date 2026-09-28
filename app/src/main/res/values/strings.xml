@@ -4,7 +4,13 @@
     <string name="maximize_button">□</string>
     <string name="app_icon_desc">Win95 Mode icon</string>
     <string name="welcome_title">Welcome to Win95 Mode!</string>
-    <string name="icon_preview">Icon Preview:</string>
+    <string name="your_apps_title">Your apps (%1$d):</string>
+    <string name="popular_icons_title">Popular icons:</string>
+    <string name="all_icons_title">All icons (%1$d):</string>
+    <string name="search_results_title">Search results:</string>
+    <string name="show_all_icons">Show all %1$d icons…</string>
+    <string name="show_fewer_icons">Show fewer</string>
+    <string name="extras_title">Extras (not for a specific app — assign them by hand in your launcher):</string>
     <string name="icon_search_hint">Find an icon…</string>
     <string name="icon_search_no_results">Nothing found. Try the Request Icons button below!</string>
     <string name="wallpapers">Wallpapers:</string>
