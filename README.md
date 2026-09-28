@@ -16,8 +16,8 @@ A nostalgic Windows 95-style icon pack and wallpaper manager for Android. Transf
 
 ## What's New in v3
 
-- Samsung, Xiaomi and OnePlus/Oppo support: system apps (dialer, camera, messages, gallery, clock, files and more) are finally themed on non-Pixel phones — the pack now themes 208 apps, up from about 45
-- 115 new icons, one per app: Facebook, Messenger, WeChat, Outlook, Zoom, Teams, Docs, Excel, PowerPoint, Gemini, Claude, Deezer, SoundCloud, Disney+, Uber Eats, Glovo, Wallapop, Vinted, Zara, IKEA, Revolut, BBVA, CaixaBank, Airbnb, Ryanair, Minecraft, Clash of Clans, Steam and many more
+- Samsung, Xiaomi and OnePlus/Oppo support: system apps (dialer, camera, messages, gallery, clock, files and more) are finally themed on non-Pixel phones — the pack now themes 268 apps, up from about 45
+- 175 new icons, one per app: Facebook, Messenger, WeChat, Outlook, Zoom, Teams, Docs, Excel, PowerPoint, Gemini, Claude, Deezer, SoundCloud, Disney+, Uber Eats, Glovo, Wallapop, Vinted, Zara, IKEA, Revolut, BBVA, CaixaBank, Airbnb, Ryanair, Minecraft, Clash of Clans, Steam and many more
 - Starfield Screensaver live wallpaper: the classic flying-through-space simulation, forever
 - Dynamic calendar icon that shows today's actual date (Nova, Lawnchair and friends)
 - Apply button: pick your launcher in a Display Properties dialog instead of digging through settings
@@ -28,7 +28,7 @@ A nostalgic Windows 95-style icon pack and wallpaper manager for Android. Transf
 
 ## Features
 
-- 160+ icons theming 200+ apps, one icon per app, styled like classic Windows 95
+- 220+ icons theming 260+ apps, one icon per app, styled like classic Windows 95
 - Apps without a themed icon get a beveled Win95 plaque, so the whole home screen stays coherent
 - Authentic Win95 UI elements (beveled borders, 3D buttons, MS Sans Serif pixel font)
 - Classic wallpapers (teal, clouds, setup, stars, matrix) for home and lock screen

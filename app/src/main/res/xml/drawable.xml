@@ -18,6 +18,8 @@
     <item drawable="ic_recorder" name="Recorder" />
     <item drawable="ic_galaxy_store" name="Galaxy Store" />
     <item drawable="ic_ms_authenticator" name="MS Authenticator" />
+    <item drawable="ic_samsung_members" name="Samsung Members" />
+    <item drawable="ic_lawnchair" name="Lawnchair" />
 
     <category title="Phone" />
     <item drawable="ic_phone" name="Phone" />
@@ -43,6 +45,9 @@
     <item drawable="ic_slides" name="Google Slides" />
     <item drawable="ic_google_wallet" name="Google Wallet" />
     <item drawable="ic_meet" name="Google Meet" />
+    <item drawable="ic_google_lens" name="Google Lens" />
+    <item drawable="ic_google_one" name="Google One" />
+    <item drawable="ic_google_news" name="Google News" />
 
     <category title="Social" />
     <item drawable="ic_instagram" name="Instagram" />
@@ -59,6 +64,7 @@
     <item drawable="ic_elephant" name="Mastodon" />
     <item drawable="ic_instant_photo" name="BeReal" />
     <item drawable="ic_facebook" name="Facebook" />
+    <item drawable="ic_patreon" name="Patreon" />
 
     <category title="Communication" />
     <item drawable="ic_whatsapp" name="WhatsApp" />
@@ -73,12 +79,14 @@
     <item drawable="ic_line" name="LINE" />
     <item drawable="ic_wechat" name="WeChat" />
     <item drawable="ic_protonmail" name="Proton Mail" />
+    <item drawable="ic_truecaller" name="Truecaller" />
 
     <category title="Dating" />
     <item drawable="ic_tinder" name="Tinder" />
     <item drawable="ic_bumble" name="Bumble" />
     <item drawable="ic_hinge" name="Hinge" />
     <item drawable="ic_grindr" name="Grindr" />
+    <item drawable="ic_badoo" name="Badoo" />
 
     <category title="Music" />
     <item drawable="ic_spotify" name="Spotify" />
@@ -89,6 +97,8 @@
     <item drawable="ic_pocketcasts" name="Pocket Casts" />
     <item drawable="ic_audible" name="Audible" />
     <item drawable="ic_apple_music" name="Apple Music" />
+    <item drawable="ic_tidal" name="Tidal" />
+    <item drawable="ic_amazon_music" name="Amazon Music" />
 
     <category title="Video" />
     <item drawable="ic_youtube" name="YouTube" />
@@ -100,6 +110,10 @@
     <item drawable="ic_max" name="Max" />
     <item drawable="ic_crunchyroll" name="Crunchyroll" />
     <item drawable="ic_plex" name="Plex" />
+    <item drawable="ic_movistar_plus" name="Movistar Plus+" />
+    <item drawable="ic_youtube_kids" name="YouTube Kids" />
+    <item drawable="ic_google_tv" name="Google TV" />
+    <item drawable="ic_yt_studio" name="YT Studio" />
 
     <category title="Browser" />
     <item drawable="ic_browser" name="Samsung Internet" />
@@ -127,6 +141,11 @@
     <item drawable="ic_justeat" name="Just Eat" />
     <item drawable="ic_tgtg" name="Too Good To Go" />
     <item drawable="ic_shein" name="Shein" />
+    <item drawable="ic_mcdonalds" name="McDonald's" />
+    <item drawable="ic_starbucks" name="Starbucks" />
+    <item drawable="ic_doordash" name="DoorDash" />
+    <item drawable="ic_burgerking" name="Burger King" />
+    <item drawable="ic_telepizza" name="Telepizza" />
 
     <category title="Education" />
     <item drawable="ic_duolingo" name="Duolingo" />
@@ -136,6 +155,12 @@
     <item drawable="ic_goodreads" name="Goodreads" />
     <item drawable="ic_babbel" name="Babbel" />
     <item drawable="ic_quizlet" name="Quizlet" />
+    <item drawable="ic_wattpad" name="Wattpad" />
+    <item drawable="ic_webtoon" name="WEBTOON" />
+    <item drawable="ic_medium" name="Medium" />
+    <item drawable="ic_substack" name="Substack" />
+    <item drawable="ic_photomath" name="Photomath" />
+    <item drawable="ic_busuu" name="Busuu" />
 
     <category title="Gaming" />
     <item drawable="ic_tft" name="Teamfight Tactics" />
@@ -148,6 +173,18 @@
     <item drawable="ic_clashofclans" name="Clash of Clans" />
     <item drawable="ic_monopolygo" name="Monopoly Go" />
     <item drawable="ic_pokemongo" name="Pokémon GO" />
+    <item drawable="ic_brawlstars" name="Brawl Stars" />
+    <item drawable="ic_subwaysurfers" name="Subway Surfers" />
+    <item drawable="ic_amongus" name="Among Us" />
+    <item drawable="ic_chess" name="Chess.com" />
+    <item drawable="ic_genshin" name="Genshin Impact" />
+    <item drawable="ic_pubg" name="PUBG" />
+    <item drawable="ic_nytgames" name="NYT Games" />
+    <item drawable="ic_royalmatch" name="Royal Match" />
+    <item drawable="ic_pokemontcg" name="Pokémon TCG" />
+    <item drawable="ic_xbox" name="Xbox" />
+    <item drawable="ic_playstation" name="PlayStation" />
+    <item drawable="ic_kahoot" name="Kahoot!" />
 
     <category title="Apps" />
     <item drawable="ic_paint" name="Canva" />
@@ -171,6 +208,14 @@
     <item drawable="ic_picsart" name="PicsArt" />
     <item drawable="ic_protonvpn" name="Proton VPN" />
     <item drawable="ic_bitwarden" name="Bitwarden" />
+    <item drawable="ic_lightroom" name="Lightroom" />
+    <item drawable="ic_snapseed" name="Snapseed" />
+    <item drawable="ic_vsco" name="VSCO" />
+    <item drawable="ic_smartthings" name="SmartThings" />
+    <item drawable="ic_alexa" name="Alexa" />
+    <item drawable="ic_mi_home" name="Mi Home" />
+    <item drawable="ic_nordvpn" name="NordVPN" />
+    <item drawable="ic_1password" name="1Password" />
 
     <category title="Productivity" />
     <item drawable="ic_obsidian" name="Obsidian" />
@@ -190,6 +235,11 @@
     <item drawable="ic_n26" name="N26" />
     <item drawable="ic_caixabank" name="CaixaBank" />
     <item drawable="ic_binance" name="Binance" />
+    <item drawable="ic_coinbase" name="Coinbase" />
+    <item drawable="ic_klarna" name="Klarna" />
+    <item drawable="ic_openbank" name="Openbank" />
+    <item drawable="ic_sabadell" name="Sabadell" />
+    <item drawable="ic_ing" name="ING" />
 
     <category title="Travel" />
     <item drawable="ic_airbnb" name="Airbnb" />
@@ -198,10 +248,20 @@
     <item drawable="ic_bolt" name="Bolt" />
     <item drawable="ic_cabify" name="Cabify" />
     <item drawable="ic_ryanair" name="Ryanair" />
+    <item drawable="ic_moovit" name="Moovit" />
+    <item drawable="ic_trainline" name="Trainline" />
+    <item drawable="ic_blablacar" name="BlaBlaCar" />
+    <item drawable="ic_iberia" name="Iberia" />
+    <item drawable="ic_tripadvisor" name="Tripadvisor" />
+    <item drawable="ic_expedia" name="Expedia" />
 
     <category title="Health" />
     <item drawable="ic_fitbit" name="Fitbit" />
     <item drawable="ic_samsung_health" name="Samsung Health" />
     <item drawable="ic_myfitnesspal" name="MyFitnessPal" />
     <item drawable="ic_calm" name="Calm" />
+    <item drawable="ic_headspace" name="Headspace" />
+    <item drawable="ic_flo" name="Flo" />
+    <item drawable="ic_garmin" name="Garmin" />
+    <item drawable="ic_google_fit" name="Google Fit" />
 </resources>
