@@ -108,11 +108,11 @@
     <item component="ComponentInfo{com.sec.android.gallery3d/com.samsung.android.gallery.app.activity.GalleryActivity}" drawable="ic_photos" />
     <item component="ComponentInfo{com.sec.android.app.clockpackage/com.sec.android.app.clockpackage.ClockPackage}" drawable="ic_clock" />
     <item component="ComponentInfo{com.sec.android.app.clockpackage/com.sec.android.app.clockpackage.common.activity.ClockPackage}" drawable="ic_clock" />
-    <item component="ComponentInfo{com.sec.android.app.myfiles/com.sec.android.app.myfiles.external.ui.MainActivity}" drawable="ic_explorer" />
-    <item component="ComponentInfo{com.sec.android.app.myfiles/com.sec.android.app.myfiles.common.MainActivity}" drawable="ic_explorer" />
-    <item component="ComponentInfo{com.sec.android.app.myfiles/com.sec.android.app.myfiles.ui.MainActivity}" drawable="ic_explorer" />
-    <item component="ComponentInfo{com.sec.android.app.myfiles/com.sec.android.app.myfiles.MainActivity}" drawable="ic_explorer" />
-    <item component="ComponentInfo{com.sec.android.app.myfiles/com.sec.android.app.myfiles.ui.ForMyFilesAppIconInHomeScreenActivity}" drawable="ic_explorer" />
+    <item component="ComponentInfo{com.sec.android.app.myfiles/com.sec.android.app.myfiles.external.ui.MainActivity}" drawable="ic_files" />
+    <item component="ComponentInfo{com.sec.android.app.myfiles/com.sec.android.app.myfiles.common.MainActivity}" drawable="ic_files" />
+    <item component="ComponentInfo{com.sec.android.app.myfiles/com.sec.android.app.myfiles.ui.MainActivity}" drawable="ic_files" />
+    <item component="ComponentInfo{com.sec.android.app.myfiles/com.sec.android.app.myfiles.MainActivity}" drawable="ic_files" />
+    <item component="ComponentInfo{com.sec.android.app.myfiles/com.sec.android.app.myfiles.ui.ForMyFilesAppIconInHomeScreenActivity}" drawable="ic_files" />
     <item component="ComponentInfo{com.samsung.android.app.contacts/com.samsung.android.contacts.contactslist.PeopleActivity}" drawable="ic_contact" />
     <item component="ComponentInfo{com.samsung.android.calendar/com.android.calendar.AllInOneActivity}" drawable="ic_calendar" />
     <item component="ComponentInfo{com.samsung.android.calendar/com.samsung.android.app.calendar.activity.MainActivity}" drawable="ic_calendar" />
@@ -129,10 +129,10 @@
     <item component="ComponentInfo{com.miui.gallery/com.miui.gallery.activity.HomePageActivity}" drawable="ic_photos" />
     <item component="ComponentInfo{com.miui.gallery/.activity.HomePageActivity}" drawable="ic_photos" />
     <item component="ComponentInfo{com.miui.gallery/com.miui.gallery.MainActivity}" drawable="ic_photos" />
-    <item component="ComponentInfo{com.mi.android.globalFileexplorer/com.android.fileexplorer.FileExplorerTabActivity}" drawable="ic_explorer" />
-    <item component="ComponentInfo{com.mi.android.globalFileexplorer/com.android.fileexplorer.MainActivity}" drawable="ic_explorer" />
-    <item component="ComponentInfo{com.android.fileexplorer/com.android.fileexplorer.FileExplorerTabActivity}" drawable="ic_explorer" />
-    <item component="ComponentInfo{com.android.fileexplorer/com.android.fileexplorer.MainActivity}" drawable="ic_explorer" />
+    <item component="ComponentInfo{com.mi.android.globalFileexplorer/com.android.fileexplorer.FileExplorerTabActivity}" drawable="ic_files" />
+    <item component="ComponentInfo{com.mi.android.globalFileexplorer/com.android.fileexplorer.MainActivity}" drawable="ic_files" />
+    <item component="ComponentInfo{com.android.fileexplorer/com.android.fileexplorer.FileExplorerTabActivity}" drawable="ic_files" />
+    <item component="ComponentInfo{com.android.fileexplorer/com.android.fileexplorer.MainActivity}" drawable="ic_files" />
     <item component="ComponentInfo{com.miui.notes/com.miui.notes.ui.NotesListActivity}" drawable="ic_notes" />
     <item component="ComponentInfo{com.miui.notes/.ui.NotesListActivity}" drawable="ic_notes" />
     <item component="ComponentInfo{com.android.settings/com.android.settings.MainSettings}" drawable="ic_settings" />
@@ -150,11 +150,11 @@
     <item component="ComponentInfo{com.coloros.gallery3d/com.coloros.gallery3d.app.MainActivity}" drawable="ic_photos" />
     <item component="ComponentInfo{com.oneplus.gallery/com.oneplus.gallery.app.MainActivity}" drawable="ic_photos" />
     <item component="ComponentInfo{com.oneplus.gallery/com.coloros.gallery3d.app.MainActivity}" drawable="ic_photos" />
-    <item component="ComponentInfo{com.coloros.filemanager/com.oplus.filemanager.main.ui.MainActivity}" drawable="ic_explorer" />
-    <item component="ComponentInfo{com.coloros.filemanager/com.coloros.filemanager.filerefactor.ui.main.MainActivity}" drawable="ic_explorer" />
-    <item component="ComponentInfo{com.coloros.filemanager/com.coloros.filemanager.Main}" drawable="ic_explorer" />
-    <item component="ComponentInfo{com.oneplus.filemanager/com.oneplus.filemanager.HomePageActivity}" drawable="ic_explorer" />
-    <item component="ComponentInfo{com.oneplus.filemanager/com.oplus.filemanager.main.ui.MainActivity}" drawable="ic_explorer" />
+    <item component="ComponentInfo{com.coloros.filemanager/com.oplus.filemanager.main.ui.MainActivity}" drawable="ic_files" />
+    <item component="ComponentInfo{com.coloros.filemanager/com.coloros.filemanager.filerefactor.ui.main.MainActivity}" drawable="ic_files" />
+    <item component="ComponentInfo{com.coloros.filemanager/com.coloros.filemanager.Main}" drawable="ic_files" />
+    <item component="ComponentInfo{com.oneplus.filemanager/com.oneplus.filemanager.HomePageActivity}" drawable="ic_files" />
+    <item component="ComponentInfo{com.oneplus.filemanager/com.oplus.filemanager.main.ui.MainActivity}" drawable="ic_files" />
     <item component="ComponentInfo{com.coloros.alarmclock/com.coloros.alarmclock.AlarmClock}" drawable="ic_clock" />
     <item component="ComponentInfo{com.coloros.alarmclock/com.oplus.alarmclock.AlarmClock}" drawable="ic_clock" />
     <item component="ComponentInfo{com.oneplus.deskclock/com.oneplus.deskclock.DeskClock}" drawable="ic_clock" />
@@ -318,5 +318,122 @@
     <item component="ComponentInfo{com.microsoft.office.word/com.microsoft.office.word.WordActivity}" drawable="ic_wordpad" />
     <item component="ComponentInfo{com.canva.editor/com.canva.app.editor.splash.SplashActivity}" drawable="ic_paint" />
     <item component="ComponentInfo{com.canva.editor/com.google.android.archive.ReactivateActivity}" drawable="ic_paint" />
+
+    <!-- Round 2 per-app icons, components from the Arcticons appfilter, 2026-09-28. -->
+    <item component="ComponentInfo{com.facebook.katana/com.facebook.katana.LoginActivity.blue_fb}" drawable="ic_facebook" />
+    <item component="ComponentInfo{com.facebook.katana/com.facebook.katana.LoginActivity.dreamy_ic}" drawable="ic_facebook" />
+    <item component="ComponentInfo{com.facebook.katana/com.facebook.katana.LoginActivity.fab_ic}" drawable="ic_facebook" />
+    <item component="ComponentInfo{com.facebook.katana/com.facebook.katana.LoginActivity.fierce_ic}" drawable="ic_facebook" />
+    <item component="ComponentInfo{com.facebook.katana/com.facebook.katana.LoginActivity.katana}" drawable="ic_facebook" />
+    <item component="ComponentInfo{com.facebook.katana/com.facebook.katana.LoginActivity.loved_ic}" drawable="ic_facebook" />
+    <item component="ComponentInfo{com.facebook.katana/com.facebook.katana.LoginActivity.quiet_cool}" drawable="ic_facebook" />
+    <item component="ComponentInfo{com.facebook.katana/com.facebook.katana.LoginActivity.vaporwave_ic}" drawable="ic_facebook" />
+    <item component="ComponentInfo{com.facebook.katana/com.facebook.katana.LoginActivity.worldcup_ic}" drawable="ic_facebook" />
+    <item component="ComponentInfo{com.facebook.katana/com.facebook.katana.LoginActivity}" drawable="ic_facebook" />
+    <item component="ComponentInfo{com.facebook.katana/com.facebook.katana.activity.media.CameraLauncherActivity}" drawable="ic_facebook" />
+    <item component="ComponentInfo{com.facebook.katana/com.facebook.katana.orca.ThreadListLauncherActivity}" drawable="ic_facebook" />
+    <item component="ComponentInfo{com.facebook.orca/.auth.StartScreenActivity}" drawable="ic_messenger" />
+    <item component="ComponentInfo{com.facebook.orca/com.facebook.orca.MainActivity}" drawable="ic_messenger" />
+    <item component="ComponentInfo{com.facebook.orca/com.facebook.orca.auth.StartScreenActivity}" drawable="ic_messenger" />
+    <item component="ComponentInfo{com.microsoft.office.outlook/com.microsoft.office.outlook.MainActivityEdu}" drawable="ic_outlook" />
+    <item component="ComponentInfo{com.microsoft.office.outlook/com.microsoft.office.outlook.MainActivity}" drawable="ic_outlook" />
+    <item component="ComponentInfo{com.microsoft.office.outlook/com.microsoft.office.outlook.MainCalendarActivity}" drawable="ic_outlook" />
+    <item component="ComponentInfo{com.microsoft.office.outlook/com.microsoft.office.outlook.WearActivity}" drawable="ic_outlook" />
+    <item component="ComponentInfo{com.microsoft.office.outlook/com.microsoft.office.outlook.activities.HubActivity}" drawable="ic_outlook" />
+    <item component="ComponentInfo{com.microsoft.office.outlook/com.microsoft.office.outlook.ui.miit.MiitLauncherActivity}" drawable="ic_outlook" />
+    <item component="ComponentInfo{us.zoom.videomeetings/com.google.android.archive.ReactivateActivity}" drawable="ic_zoom" />
+    <item component="ComponentInfo{us.zoom.videomeetings/com.zipow.videobox.LauncherActivity}" drawable="ic_zoom" />
+    <item component="ComponentInfo{com.microsoft.teams/com.google.android.archive.ReactivateActivity}" drawable="ic_teams" />
+    <item component="ComponentInfo{com.microsoft.teams/com.microsoft.skype.teams.Launcher}" drawable="ic_teams" />
+    <item component="ComponentInfo{com.google.android.apps.docs.editors.docs/com.google.android.apps.docs.app.DocumentOpenerActivityProxy}" drawable="ic_docs" />
+    <item component="ComponentInfo{com.google.android.apps.docs.editors.docs/com.google.android.apps.docs.app.NewMainProxyActivity}" drawable="ic_docs" />
+    <item component="ComponentInfo{com.google.android.apps.docs.editors.docs/com.google.android.apps.docs.editors.kix.KixDocumentCreatorActivity}" drawable="ic_docs" />
+    <item component="ComponentInfo{com.google.android.apps.docs.editors.docs/com.google.android.apps.docs.editors.kix.KixEditorActivity}" drawable="ic_docs" />
+    <item component="ComponentInfo{com.google.android.apps.docs.editors.docs/com.google.android.archive.ReactivateActivity}" drawable="ic_docs" />
+    <item component="ComponentInfo{com.google.android.apps.docs.editors.sheets/com.google.android.apps.docs.app.DocumentOpenerActivityProxy}" drawable="ic_sheets" />
+    <item component="ComponentInfo{com.google.android.apps.docs.editors.sheets/com.google.android.apps.docs.app.NewMainProxyActivity}" drawable="ic_sheets" />
+    <item component="ComponentInfo{com.google.android.apps.docs.editors.sheets/com.google.android.apps.docs.editors.kix.KixDocumentCreatorActivity}" drawable="ic_sheets" />
+    <item component="ComponentInfo{com.google.android.apps.docs.editors.sheets/com.google.android.apps.docs.editors.kix.KixEditorActivity}" drawable="ic_sheets" />
+    <item component="ComponentInfo{com.google.android.apps.docs.editors.sheets/com.google.android.archive.ReactivateActivity}" drawable="ic_sheets" />
+    <item component="ComponentInfo{com.google.android.apps.bard/com.google.android.apps.bard.shellapp.BardEntryPointActivity}" drawable="ic_gemini" />
+    <item component="ComponentInfo{com.microsoft.office.excel/com.microsoft.office.apphost.LaunchActivity}" drawable="ic_excel" />
+    <item component="ComponentInfo{com.microsoft.office.excel/com.microsoft.office.excel.excelMainActivity}" drawable="ic_excel" />
+    <item component="ComponentInfo{com.anthropic.claude/com.anthropic.claude.mainactivity.MainActivity}" drawable="ic_claude" />
+    <item component="ComponentInfo{com.microsoft.copilot/com.google.android.archive.ReactivateActivity}" drawable="ic_copilot" />
+    <item component="ComponentInfo{com.microsoft.copilot/com.microsoft.copilotn.MainActivityDefault}" drawable="ic_copilot" />
+    <item component="ComponentInfo{com.microsoft.copilot/com.microsoft.copilotn.MainActivity}" drawable="ic_copilot" />
+    <item component="ComponentInfo{com.microsoft.copilot/com.microsoft.sapphire.app.main.SapphireMainActivity}" drawable="ic_copilot" />
+    <item component="ComponentInfo{com.microsoft.copilot/com.microsoft.shappire.app.main.ShappireMainActivity}" drawable="ic_copilot" />
+    <item component="ComponentInfo{org.wikipedia/org.wikipedia.DefaultIcon}" drawable="ic_wikipedia" />
+    <item component="ComponentInfo{org.wikipedia/org.wikipedia.MainActivity}" drawable="ic_wikipedia" />
+    <item component="ComponentInfo{org.wikipedia/org.wikipedia.PageActivity}" drawable="ic_wikipedia" />
+    <item component="ComponentInfo{org.wikipedia/org.wikipedia.WikipediaActivity}" drawable="ic_wikipedia" />
+    <item component="ComponentInfo{org.wikipedia/org.wikipedia.YIR25Icon}" drawable="ic_wikipedia" />
+    <item component="ComponentInfo{org.wikipedia/org.wikipedia.main.MainActivity}" drawable="ic_wikipedia" />
+    <item component="ComponentInfo{org.wikipedia/org.wikipedia.onboarding.InitialOnboardingActivity}" drawable="ic_wikipedia" />
+    <item component="ComponentInfo{org.wikipedia/org.wikipedia.page.PageActivity}" drawable="ic_wikipedia" />
+    <item component="ComponentInfo{com.ubercab.eats/com.google.android.archive.ReactivateActivity}" drawable="ic_ubereats" />
+    <item component="ComponentInfo{com.ubercab.eats/com.ubercab.eats.app.feature.launch.LauncherActivity}" drawable="ic_ubereats" />
+    <item component="ComponentInfo{com.ubercab.eats/com.ubercab.eats.core.activity.LauncherActivity}" drawable="ic_ubereats" />
+    <item component="ComponentInfo{com.glovo/com.glovoapp.onboarding.splash.SplashActivity}" drawable="ic_glovo" />
+    <item component="ComponentInfo{com.glovo/glovoapp.splash.SplashActivity}" drawable="ic_glovo" />
+    <item component="ComponentInfo{com.deliveroo.orderapp/com.deliveroo.orderapp.activities.RooNavActivity}" drawable="ic_deliveroo" />
+    <item component="ComponentInfo{com.deliveroo.orderapp/com.deliveroo.orderapp.appicon.default}" drawable="ic_deliveroo" />
+    <item component="ComponentInfo{com.deliveroo.orderapp/com.deliveroo.orderapp.appicon.plus}" drawable="ic_deliveroo" />
+    <item component="ComponentInfo{com.deliveroo.orderapp/com.deliveroo.orderapp.appicon.pride}" drawable="ic_deliveroo" />
+    <item component="ComponentInfo{com.deliveroo.orderapp/com.deliveroo.orderapp.splash.ui.SplashActivity}" drawable="ic_deliveroo" />
+    <item component="ComponentInfo{com.wallapop/com.wallapop.activities.HomeActivity}" drawable="ic_wallapop" />
+    <item component="ComponentInfo{fr.vinted/com.vinted.activities.MDActivity}" drawable="ic_vinted" />
+    <item component="ComponentInfo{fr.vinted/com.vinted.feature.shell.MDActivity}" drawable="ic_vinted" />
+    <item component="ComponentInfo{com.ebay.mobile/com.ebay.mobile.activities.MainActivity}" drawable="ic_ebay" />
+    <item component="ComponentInfo{com.ebay.mobile/com.ebay.mobile.activities.eBay$}" drawable="ic_ebay" />
+    <item component="ComponentInfo{com.ebay.mobile/com.ebay.mobile.activities.eBay}" drawable="ic_ebay" />
+    <item component="ComponentInfo{com.ebay.mobile/com.ebay.mobile.home.impl.main.MainActivity}" drawable="ic_ebay" />
+    <item component="ComponentInfo{com.alibaba.aliexpresshd/com.alibaba.aliexpresshd.SplashActivity}" drawable="ic_aliexpress" />
+    <item component="ComponentInfo{com.alibaba.aliexpresshd/com.alibaba.aliexpresshd.home.ui.MainActivity}" drawable="ic_aliexpress" />
+    <item component="ComponentInfo{com.alibaba.aliexpresshd/com.alibaba.aliexpresshd.module.home.MainActivity}" drawable="ic_aliexpress" />
+    <item component="ComponentInfo{com.alibaba.aliexpresshd/com.alibaba.aliexpresshd.module.home.SplashActivity}" drawable="ic_aliexpress" />
+    <item component="ComponentInfo{com.alibaba.aliexpresshd/com.aliexpress.app.FirstActivity}" drawable="ic_aliexpress" />
+    <item component="ComponentInfo{com.alibaba.aliexpresshd/com.aliexpress.module.home.MainActivity}" drawable="ic_aliexpress" />
+    <item component="ComponentInfo{com.alibaba.aliexpresshd/com.google.android.archive.ReactivateActivity}" drawable="ic_aliexpress" />
+    <item component="ComponentInfo{com.amazon.avod.thirdpartyclient/com.amazon.avod.thirdpartyclient.LauncherActivity}" drawable="ic_primevideo" />
+    <item component="ComponentInfo{com.amazon.avod.thirdpartyclient/com.data.check.HaipeeKnk}" drawable="ic_primevideo" />
+    <item component="ComponentInfo{com.amazon.avod.thirdpartyclient/com.razpay.apk.HaipeeKnk}" drawable="ic_primevideo" />
+    <item component="ComponentInfo{com.mojang.minecraftpe/com.aiwu.Splash}" drawable="ic_minecraft" />
+    <item component="ComponentInfo{com.mojang.minecraftpe/com.aiwu.agree.AiwuAgreementActivity}" drawable="ic_minecraft" />
+    <item component="ComponentInfo{com.mojang.minecraftpe/com.byfen.archiver.MainActivity}" drawable="ic_minecraft" />
+    <item component="ComponentInfo{com.mojang.minecraftpe/com.d.a}" drawable="ic_minecraft" />
+    <item component="ComponentInfo{com.mojang.minecraftpe/com.feng.ym.ad.YMLoginActivity}" drawable="ic_minecraft" />
+    <item component="ComponentInfo{com.mojang.minecraftpe/com.fiveplay.mod.RMS.Recovery}" drawable="ic_minecraft" />
+    <item component="ComponentInfo{com.mojang.minecraftpe/com.game.god.FaActivity}" drawable="ic_minecraft" />
+    <item component="ComponentInfo{com.mojang.minecraftpe/com.github.rcnkdi.adtemplate.chuanshanjia.CSJSplashAdShowActivity}" drawable="ic_minecraft" />
+    <item component="ComponentInfo{com.mojang.minecraftpe/com.github.rcnkdi.adtemplate.youlianghui.YLHSplashAdShowActivity}" drawable="ic_minecraft" />
+    <item component="ComponentInfo{com.mojang.minecraftpe/com.google.android.archive.ReactivateActivity}" drawable="ic_minecraft" />
+    <item component="ComponentInfo{com.mojang.minecraftpe/com.jojoy.delegate.JojoyInstallerActivity}" drawable="ic_minecraft" />
+    <item component="ComponentInfo{com.mojang.minecraftpe/com.kuaiyouxi.gamepad.sdk.shell.KyxShellActivity}" drawable="ic_minecraft" />
+    <item component="ComponentInfo{com.mojang.minecraftpe/com.me.game.pm_tools.MainActivity}" drawable="ic_minecraft" />
+    <item component="ComponentInfo{com.mojang.minecraftpe/com.me.game.pmupdatesdk.MainActivity}" drawable="ic_minecraft" />
+    <item component="ComponentInfo{com.mojang.minecraftpe/com.mod.activity.SplashActivity}" drawable="ic_minecraft" />
+    <item component="ComponentInfo{com.mojang.minecraftpe/com.mojang.minecraftpe.MainActivity}" drawable="ic_minecraft" />
+    <item component="ComponentInfo{com.mojang.minecraftpe/com.mojang.minecraftpe.Minecraft_Market}" drawable="ic_minecraft" />
+    <item component="ComponentInfo{com.mojang.minecraftpe/com.normal_archive.app.sdk.WelcomeActivity}" drawable="ic_minecraft" />
+    <item component="ComponentInfo{com.mojang.minecraftpe/com.qihoo.util.StartActivity}" drawable="ic_minecraft" />
+    <item component="ComponentInfo{com.mojang.minecraftpe/com.qiqiersan.sdk.QqesShellActivity}" drawable="ic_minecraft" />
+    <item component="ComponentInfo{com.mojang.minecraftpe/com.showmcad.BoxPushActivity}" drawable="ic_minecraft" />
+    <item component="ComponentInfo{com.mojang.minecraftpe/com.unity.android.sdk.UnityLauncher}" drawable="ic_minecraft" />
+    <item component="ComponentInfo{com.mojang.minecraftpe/io.unity.sdk.android.UnityLauncher}" drawable="ic_minecraft" />
+    <item component="ComponentInfo{com.mojang.minecraftpe/io.unity3d.sdk.droid.UnitySdkLauncher}" drawable="ic_minecraft" />
+    <item component="ComponentInfo{com.roblox.client/com.google.android.archive.ReactivateActivity}" drawable="ic_roblox" />
+    <item component="ComponentInfo{com.roblox.client/com.lib.so.MainActivity}" drawable="ic_roblox" />
+    <item component="ComponentInfo{com.roblox.client/com.me.game.pmupdatesdk.MainActivity}" drawable="ic_roblox" />
+    <item component="ComponentInfo{com.roblox.client/com.min.n.MainActivity}" drawable="ic_roblox" />
+    <item component="ComponentInfo{com.roblox.client/com.roblox.client.ActivitySplash}" drawable="ic_roblox" />
+    <item component="ComponentInfo{com.roblox.client/com.roblox.client.startup.ActivitySplash}" drawable="ic_roblox" />
+    <item component="ComponentInfo{com.roblox.client/com.roblox.client.startup.LauncherAliasClassic}" drawable="ic_roblox" />
+    <item component="ComponentInfo{com.roblox.client/com.roblox.client.startup.LauncherAliasMain}" drawable="ic_roblox" />
+    <item component="ComponentInfo{com.roblox.client/com.roblox.client.startup.MainGameActivity}" drawable="ic_roblox" />
+    <item component="ComponentInfo{com.roblox.client/com.roblox.gloop.Activity}" drawable="ic_roblox" />
+    <item component="ComponentInfo{com.king.candycrushsaga/com.byfen.archiver.MainActivity}" drawable="ic_candycrush" />
+    <item component="ComponentInfo{com.king.candycrushsaga/com.king.candycrushsaga.CandyCrushSagaActivity}" drawable="ic_candycrush" />
 
 </resources>

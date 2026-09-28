@@ -30,6 +30,9 @@
     <item drawable="ic_photos" name="Photos" />
     <item drawable="ic_mail" name="Gmail" />
     <item drawable="ic_games" name="Play Games" />
+    <item drawable="ic_docs" name="Google Docs" />
+    <item drawable="ic_sheets" name="Google Sheets" />
+    <item drawable="ic_gemini" name="Gemini" />
 
     <category title="Social" />
     <item drawable="ic_instagram" name="Instagram" />
@@ -45,12 +48,17 @@
     <item drawable="ic_butterfly_net" name="Bluesky" />
     <item drawable="ic_elephant" name="Mastodon" />
     <item drawable="ic_instant_photo" name="BeReal" />
+    <item drawable="ic_facebook" name="Facebook" />
 
     <category title="Communication" />
     <item drawable="ic_whatsapp" name="WhatsApp" />
     <item drawable="ic_slack" name="Slack" />
     <item drawable="ic_telegram" name="Telegram" />
     <item drawable="ic_signal" name="Signal" />
+    <item drawable="ic_messenger" name="Messenger" />
+    <item drawable="ic_outlook" name="Outlook" />
+    <item drawable="ic_zoom" name="Zoom" />
+    <item drawable="ic_teams" name="Teams" />
 
     <category title="Dating" />
     <item drawable="ic_tinder" name="Tinder" />
@@ -66,6 +74,7 @@
     <item drawable="ic_netflix" name="Netflix" />
     <item drawable="ic_twitch" name="Twitch" />
     <item drawable="ic_mediaplayer" name="Media Player" />
+    <item drawable="ic_primevideo" name="Prime Video" />
 
     <category title="Browser" />
     <item drawable="ic_browser" name="Internet" />
@@ -76,15 +85,26 @@
     <category title="Shopping" />
     <item drawable="ic_amazon" name="Amazon" />
     <item drawable="ic_uber" name="Uber" />
+    <item drawable="ic_ubereats" name="Uber Eats" />
+    <item drawable="ic_glovo" name="Glovo" />
+    <item drawable="ic_deliveroo" name="Deliveroo" />
+    <item drawable="ic_wallapop" name="Wallapop" />
+    <item drawable="ic_vinted" name="Vinted" />
+    <item drawable="ic_ebay" name="eBay" />
+    <item drawable="ic_aliexpress" name="AliExpress" />
 
     <category title="Education" />
     <item drawable="ic_duolingo" name="Duolingo" />
     <item drawable="ic_book" name="Books" />
+    <item drawable="ic_wikipedia" name="Wikipedia" />
 
     <category title="Gaming" />
     <item drawable="ic_tft" name="Teamfight Tactics" />
     <item drawable="ic_valve" name="Steam" />
     <item drawable="ic_gamepad" name="Games" />
+    <item drawable="ic_minecraft" name="Minecraft" />
+    <item drawable="ic_roblox" name="Roblox" />
+    <item drawable="ic_candycrush" name="Candy Crush" />
 
     <category title="Apps" />
     <item drawable="ic_paint" name="Paint" />
@@ -101,5 +121,7 @@
     <item drawable="ic_clipboard" name="Tasks" />
     <item drawable="ic_bank" name="Bank" />
     <item drawable="ic_wallet" name="Wallet" />
-
+    <item drawable="ic_excel" name="Excel" />
+    <item drawable="ic_claude" name="Claude" />
+    <item drawable="ic_copilot" name="Copilot" />
 </resources>

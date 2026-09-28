@@ -65,7 +65,7 @@ class IconPackResourcesTest {
     @Test
     fun `every pack icon is mapped to an app or explicitly decorative`() {
         val decorative = setOf(
-            "ic_recycle_bin", "ic_disk", "ic_start", "ic_langjump"
+            "ic_recycle_bin", "ic_disk", "ic_start", "ic_langjump", "ic_explorer"
         )
         val mapped = items("appfilter.xml").map { it.getAttribute("drawable") }.toSet()
         val unmapped = items("drawable.xml")
