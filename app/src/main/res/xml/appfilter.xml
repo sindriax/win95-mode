@@ -2040,4 +2040,68 @@
     <item component="ComponentInfo{tv.twitch.android.app/tv.twitch.starshot64.app.StarshotActivity}" drawable="ic_twitch" />
     <item component="ComponentInfo{xyz.blueskyweb.app/com.google.android.archive.ReactivateActivity}" drawable="ic_butterfly_net" />
 
+    <!-- Round 7 per-app icons for apps seen unthemed on a real phone; components from
+         that phone and the Arcticons appfilter, 2026-09-29. -->
+    <item component="ComponentInfo{com.bankinter.launcher/com.bankinter.launcher.Launcher}" drawable="ic_bankinter" />
+    <item component="ComponentInfo{com.whatsapp.w4b/com.whatsapp.Main}" drawable="ic_whatsapp_business" />
+    <item component="ComponentInfo{com.github.android/com.github.android.activities.MainActivity}" drawable="ic_github" />
+    <item component="ComponentInfo{com.github.android/com.github.android.main.MainActivity}" drawable="ic_github" />
+    <item component="ComponentInfo{com.github.android/com.google.android.archive.ReactivateActivity}" drawable="ic_github" />
+    <item component="ComponentInfo{app.linear/app.linear.Launcher}" drawable="ic_linear" />
+    <item component="ComponentInfo{com.Splitwise.SplitwiseMobile/com.Splitwise.SplitwiseMobile.views.SplitwiseSplashScreen_}" drawable="ic_splitwise" />
+    <item component="ComponentInfo{com.Splitwise.SplitwiseMobile/com.Splitwise.SplitwiseMobile.views.SplitwiseSplashScreen}" drawable="ic_splitwise" />
+    <item component="ComponentInfo{com.tribab.tricount.android/com.bunq.tricount.android.ui.activity.LoadingTricountStartupInfoActivity}" drawable="ic_tricount" />
+    <item component="ComponentInfo{com.tribab.tricount.android/com.tribab.tricount.android.view.activity.SplashActivity}" drawable="ic_tricount" />
+    <item component="ComponentInfo{com.groupon/com.groupon.MainActivity}" drawable="ic_groupon" />
+    <item component="ComponentInfo{com.groupon/com.groupon.activity.TodaysDeal}" drawable="ic_groupon" />
+    <item component="ComponentInfo{com.groupon/com.groupon.home.main.activities.Carousel}" drawable="ic_groupon" />
+    <item component="ComponentInfo{eu.qonto.qonto/com.qonto.qonto.ui.login.LoginActivity}" drawable="ic_qonto" />
+    <item component="ComponentInfo{com.adobe.psmobile/com.adobe.psmobile.MainActivity}" drawable="ic_psexpress" />
+    <item component="ComponentInfo{com.adobe.psmobile/com.adobe.psmobile.PhotoshopMobile}" drawable="ic_psexpress" />
+    <item component="ComponentInfo{com.adobe.psmobile/com.adobe.psmobile.SplashScreen}" drawable="ic_psexpress" />
+    <item component="ComponentInfo{com.adobe.psmobile/com.google.android.archive.ReactivateActivity}" drawable="ic_psexpress" />
+    <item component="ComponentInfo{com.lightricks.facetune.free/com.lightricks.facetune.splash.SplashActivity}" drawable="ic_facetune" />
+    <item component="ComponentInfo{com.huawei.health/com.huawei.health.MainActivity}" drawable="ic_huawei_health" />
+    <item component="ComponentInfo{com.huawei.health/com.huawei.health.ui.SplashActivity}" drawable="ic_huawei_health" />
+    <item component="ComponentInfo{com.huawei.health/com.huawei.healthcloud.cardui.MainActivity}" drawable="ic_huawei_health" />
+    <item component="ComponentInfo{com.google.android.apps.safetyhub/com.google.android.apps.safetyhub.LauncherActivity}" drawable="ic_safety" />
+    <item component="ComponentInfo{com.google.android.apps.safetyhub/com.google.android.apps.safetyhub.home.HomePageAppInfoEntry}" drawable="ic_safety" />
+    <item component="ComponentInfo{com.google.android.apps.pixel.nowplaying/com.google.android.apps.pixel.nowplaying.mainscreen.NowPlayingMainActivity}" drawable="ic_nowplaying" />
+    <item component="ComponentInfo{com.google.android.apps.tips/com.google.android.apps.tips.TipsMain}" drawable="ic_pixel_tips" />
+    <item component="ComponentInfo{com.google.android.apps.tips/com.google.android.apps.tips.fortnite.base}" drawable="ic_pixel_tips" />
+    <item component="ComponentInfo{com.google.android.apps.tips/com.google.android.apps.tips.fortnite.p11.blk}" drawable="ic_pixel_tips" />
+    <item component="ComponentInfo{com.google.android.apps.tips/com.google.android.apps.tips.fortnite.p11f.blk}" drawable="ic_pixel_tips" />
+    <item component="ComponentInfo{com.google.android.apps.tips/com.google.android.apps.tips.fortnite.p4}" drawable="ic_pixel_tips" />
+    <item component="ComponentInfo{com.google.android.apps.tips/com.google.android.apps.tips.fortnite.p5}" drawable="ic_pixel_tips" />
+    <item component="ComponentInfo{com.google.android.apps.tips/com.google.android.apps.tips.fortnite.p7}" drawable="ic_pixel_tips" />
+    <item component="ComponentInfo{com.google.android.apps.tips/com.google.android.apps.tips.fortnite.p8}" drawable="ic_pixel_tips" />
+    <item component="ComponentInfo{com.google.android.apps.tips/com.google.android.apps.tips.fortnite.p9a}" drawable="ic_pixel_tips" />
+    <item component="ComponentInfo{com.google.android.apps.tips/com.google.android.apps.tips.fortnite.p9f}" drawable="ic_pixel_tips" />
+    <item component="ComponentInfo{com.google.android.apps.tips/com.google.android.apps.tips.fortnite.pFold}" drawable="ic_pixel_tips" />
+    <item component="ComponentInfo{com.google.android.apps.tips/com.google.android.apps.tips.fortnite.pTablet}" drawable="ic_pixel_tips" />
+    <item component="ComponentInfo{com.chollometro/com.pepper.apps.android.presentation.MainActivityDarkIcon}" drawable="ic_chollometro" />
+    <item component="ComponentInfo{com.chollometro/com.pepper.apps.android.presentation.MainActivityLightIcon}" drawable="ic_chollometro" />
+    <item component="ComponentInfo{com.chollometro/com.pepper.apps.android.presentation.MainActivity}" drawable="ic_chollometro" />
+    <item component="ComponentInfo{es.aeat.pin24h/es.aeat.pin24h.presentation.activities.main.MainActivity}" drawable="ic_clave" />
+    <item component="ComponentInfo{es.aeat.pin24h/es.aeat.pin24h.presentation.activities.splash.SplashActivity}" drawable="ic_clave" />
+    <item component="ComponentInfo{cat.atm.tmobilitat/es.smarting.tmobilitatnfc.framework.ui.splash.SplashActivity}" drawable="ic_tmobilitat" />
+    <item component="ComponentInfo{cat.bcn.smoubcn/crc6412790008f64465e8.MainActivity}" drawable="ic_smou" />
+    <item component="ComponentInfo{com.simyo/simyo.presentation.features.MainActivity}" drawable="ic_simyo" />
+    <item component="ComponentInfo{com.prequel.app/com.prequel.app.DefaultIconAlias}" drawable="ic_prequel" />
+    <item component="ComponentInfo{com.prequel.app/com.prequel.app.ui.SplashActivity}" drawable="ic_prequel" />
+    <item component="ComponentInfo{com.prequel.app/com.prequel.app.ui.splash.SplashActivity}" drawable="ic_prequel" />
+    <item component="ComponentInfo{com.skylum.luminar/com.skylum.luminar.MainActivity}" drawable="ic_luminar" />
+    <item component="ComponentInfo{com.accordion.analogcam/com.google.android.archive.ReactivateActivity}" drawable="ic_oldroll" />
+    <item component="ComponentInfo{com.accordion.analogcam/com.lightcone.analogcam.activity.SplashActivity}" drawable="ic_oldroll" />
+    <item component="ComponentInfo{com.accordion.analogcam/com.min.n.MainActivity}" drawable="ic_oldroll" />
+    <item component="ComponentInfo{app.olauncher/app.olauncher.MainActivity}" drawable="ic_olauncher" />
+    <item component="ComponentInfo{ginlemon.flowerfree/com.min.n.MainActivity}" drawable="ic_smart_launcher" />
+    <item component="ComponentInfo{ginlemon.flowerfree/ginlemon.flower.HomeScreen}" drawable="ic_smart_launcher" />
+    <item component="ComponentInfo{ginlemon.flowerfree/ginlemon.flower.locker.LockerActivity}" drawable="ic_smart_launcher" />
+    <item component="ComponentInfo{ginlemon.flowerpro/ginlemon.flower.HomeScreen}" drawable="ic_smart_launcher" />
+    <item component="ComponentInfo{com.wizconnected.wiz2/com.wizconnected.wiz2.MainActivity}" drawable="ic_wiz" />
+    <item component="ComponentInfo{com.wizconnected.wiz2/com.wizconnected.wiz_v2.MainActivity}" drawable="ic_wiz" />
+    <item component="ComponentInfo{com.alan.esmobile/com.alan.esmobile.MainActivityDefault}" drawable="ic_alan" />
+    <item component="ComponentInfo{com.incidentio.incidentio/com.incidentio.incidentio.MainActivity}" drawable="ic_incidentio" />
+
 </resources>
