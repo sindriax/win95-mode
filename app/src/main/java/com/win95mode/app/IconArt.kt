@@ -17,10 +17,12 @@ object IconArt {
         override fun sizeOf(key: String, value: Bitmap) = value.byteCount
     }
 
-    fun crispPx(context: Context, targetDp: Float, maxPx: Int = Int.MAX_VALUE): Int {
-        var k = (targetDp * context.resources.displayMetrics.density / 96f).roundToInt().coerceAtLeast(1)
-        while (k > 1 && k * 96 > maxPx) k--
-        return k * 96
+    /** A size near [targetDp] that is a multiple of [grid] px. 96 suits every icon;
+     *  32 is finer and suits a known set drawn on the 32-cell grid. */
+    fun crispPx(context: Context, targetDp: Float, maxPx: Int = Int.MAX_VALUE, grid: Int = 96): Int {
+        var k = (targetDp * context.resources.displayMetrics.density / grid).roundToInt().coerceAtLeast(1)
+        while (k > 1 && k * grid > maxPx) k--
+        return k * grid
     }
 
     fun icon(resources: Resources, resId: Int, px: Int): Bitmap {

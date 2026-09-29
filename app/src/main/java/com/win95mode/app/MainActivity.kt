@@ -73,6 +73,8 @@ class MainActivity : AppCompatActivity() {
         setupChrome()
         setupIcons()
         setupWallpapers()
+        buildDesktop()
+        renderDesktopWallpaper()
         showPage(page)
         // Setting a wallpaper recreates the activity (Android re-colors apps), so keep its message.
         savedInstanceState?.getString("status")?.let { status.text = it }
@@ -84,6 +86,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        renderDesktopWallpaper()
         // Apps and launchers change while we're away, so both are re-read on every return.
         renderHome()
         Thread {
@@ -173,7 +176,16 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-        if (target == Page.HOME) catalog?.let(::renderMonitor)
+        val home = target == Page.HOME
+        listOf(R.id.window_frame, R.id.window_pages).forEach { id ->
+            val v = findViewById<View>(id)
+            (v.layoutParams as LinearLayout.LayoutParams).apply {
+                height = if (home) LinearLayout.LayoutParams.WRAP_CONTENT else 0
+                weight = if (home) 0f else 1f
+            }
+            v.requestLayout()
+        }
+        findViewById<View>(R.id.desktop).visibility = if (home) View.VISIBLE else View.GONE
         status.text = when (target) {
             Page.HOME -> getString(R.string.status_ready)
             Page.ICONS -> iconsStatus()
@@ -215,8 +227,8 @@ class MainActivity : AppCompatActivity() {
                 }
             })
         }
-        item(R.drawable.ic_disk, R.string.start_setup) { startActivity(Intent(this, SetupActivity::class.java)) }
-        item(R.drawable.ic_files, R.string.start_request) { showRequestDialog() }
+        item(R.drawable.ic_settings, R.string.start_setup) { startActivity(Intent(this, SetupActivity::class.java)) }
+        item(R.drawable.ic_disk, R.string.start_request) { showRequestDialog() }
         item(R.drawable.ic_mail, R.string.start_feedback) { openFeedback() }
         item(R.drawable.ic_notes, R.string.start_whats_new) {
             Win95.messageBox(this, getString(R.string.whats_new_title), getString(R.string.whats_new_body))
@@ -229,6 +241,65 @@ class MainActivity : AppCompatActivity() {
             }
         })
         item(R.drawable.ic_my_computer, R.string.start_shutdown) { finish() }
+    }
+
+    // --- Desktop ---
+
+    private fun buildDesktop() {
+        val grid = findViewById<android.widget.GridLayout>(R.id.desktop_icons)
+        val cellW = ((resources.displayMetrics.widthPixels - 24 * density) / 3).toInt().coerceAtMost(Win95.dp(this, 120))
+        // Files, Photos, Settings and Mail are drawn on the 32-cell grid.
+        val iconPx = IconArt.crispPx(this, 58f, maxPx = cellW - Win95.dp(this, 16), grid = 32)
+        fun shortcut(icon: Int, label: Int, action: () -> Unit) {
+            grid.addView(LinearLayout(this).apply {
+                orientation = LinearLayout.VERTICAL
+                gravity = android.view.Gravity.CENTER_HORIZONTAL
+                layoutParams = android.widget.GridLayout.LayoutParams().apply { width = cellW }
+                setPadding(Win95.dp(context, 4), Win95.dp(context, 8), Win95.dp(context, 4), Win95.dp(context, 10))
+                setBackgroundResource(android.R.drawable.list_selector_background)
+                contentDescription = getString(label)
+                setOnClickListener { action() }
+                addView(ImageView(context).apply {
+                    setImageBitmap(IconArt.icon(resources, icon, iconPx))
+                    layoutParams = LinearLayout.LayoutParams(iconPx, iconPx)
+                    importantForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_NO
+                })
+                // White label with a dark edge, as desktop icon text on the Win95 desktop.
+                addView(TextView(context).apply {
+                    setText(label)
+                    setTextColor(getColor(R.color.white))
+                    setShadowLayer(0.01f, 1f, 1f, getColor(R.color.black))
+                    textSize = 13f
+                    gravity = android.view.Gravity.CENTER
+                    maxLines = 2
+                    setPadding(0, Win95.dp(context, 4), 0, 0)
+                    importantForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_NO
+                })
+            })
+        }
+        shortcut(R.drawable.ic_files, R.string.desk_icons) { showPage(Page.ICONS) }
+        shortcut(R.drawable.ic_photos, R.string.desk_wallpaper) { showPage(Page.WALLPAPERS) }
+        shortcut(R.drawable.ic_my_computer, R.string.desk_screensaver) {
+            if (!Wallpapers.openStarfield(this)) {
+                Win95.messageBox(this, getString(R.string.desk_screensaver), getString(R.string.live_wallpaper_unavailable), warning = true)
+            }
+        }
+        shortcut(R.drawable.ic_disk, R.string.add_remove_programs) { showRequestDialog() }
+        shortcut(R.drawable.ic_settings, R.string.desk_setup) { startActivity(Intent(this, SetupActivity::class.java)) }
+        shortcut(R.drawable.ic_mail, R.string.desk_feedback) { openFeedback() }
+    }
+
+    private var desktopWallpaperKey: String? = "unset"
+
+    /** The chosen wallpaper behind everything, as on a Win95 desktop; plain teal until one is set. */
+    private fun renderDesktopWallpaper() {
+        val key = Prefs.wallpaper(this)
+        if (key == desktopWallpaperKey) return
+        desktopWallpaperKey = key
+        val view = findViewById<ImageView>(R.id.desktop_wallpaper)
+        val wallpaper = Wallpapers.all.firstOrNull { it.key == key }
+        if (wallpaper == null) view.setImageDrawable(null)
+        else view.setImageBitmap(Wallpapers.thumbnail(this, wallpaper.resId, resources.displayMetrics.widthPixels / 2))
     }
 
     // --- Home ---
@@ -295,71 +366,6 @@ class MainActivity : AppCompatActivity() {
             text = getString(R.string.request_count, c.unthemedInstalled.size)
             setOnClickListener { showRequestDialog() }
         }
-        renderMonitor(c)
-    }
-
-    /** The monitor on Home: the current wallpaper with this phone's apps laid out
-     *  as desktop icons, as many rows as the screen area fits. */
-    private fun renderMonitor(c: IconCatalog) {
-        val screen = findViewById<View>(R.id.home_monitor_screen)
-        val grid = findViewById<LinearLayout>(R.id.home_monitor_icons)
-        val wallpaper = findViewById<ImageView>(R.id.home_monitor_wallpaper)
-        screen.setOnClickListener { showPage(Page.WALLPAPERS) }
-        screen.post {
-            val w = screen.width - screen.paddingLeft - screen.paddingRight
-            val h = screen.height - screen.paddingTop - screen.paddingBottom
-            if (w <= 0 || h <= 0) return@post
-
-            val current = Wallpapers.all.firstOrNull { it.key == Prefs.wallpaper(this) }
-            if (current == null) wallpaper.setImageDrawable(null)
-            else wallpaper.setImageBitmap(Wallpapers.thumbnail(this, current.resId, w))
-
-            grid.removeAllViews()
-            // Too little room (landscape, huge text): just the wallpaper.
-            if (h < Win95.dp(this, 70)) return@post
-            val columns = 4
-            val cellW = w / columns
-            val iconPx = IconArt.crispPx(this, 44f, maxPx = cellW - Win95.dp(this, 12))
-            val rowH = iconPx + Win95.dp(this, 26)
-            val rows = ((h - grid.paddingTop) / rowH).coerceAtLeast(1)
-            c.yourIcons.take(columns * rows).chunked(columns).forEach { rowIcons ->
-                grid.addView(LinearLayout(this).apply {
-                    orientation = LinearLayout.HORIZONTAL
-                    rowIcons.forEach { icon -> addView(desktopIcon(icon, cellW, iconPx)) }
-                })
-            }
-        }
-    }
-
-    private fun desktopIcon(icon: PackIcon, width: Int, iconPx: Int) = LinearLayout(this).apply {
-        orientation = LinearLayout.VERTICAL
-        gravity = android.view.Gravity.CENTER_HORIZONTAL
-        layoutParams = LinearLayout.LayoutParams(width, LinearLayout.LayoutParams.WRAP_CONTENT)
-        setPadding(0, Win95.dp(context, 2), 0, Win95.dp(context, 4))
-        contentDescription = icon.label
-        setOnClickListener {
-            iconTab = IconTab.YOURS
-            buildIconTabs()
-            renderIcons()
-            showPage(Page.ICONS)
-        }
-        addView(ImageView(context).apply {
-            setImageBitmap(IconArt.icon(resources, icon.resId, iconPx))
-            layoutParams = LinearLayout.LayoutParams(iconPx, iconPx)
-            importantForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_NO
-        })
-        // White label with a dark edge, like desktop icon text on the teal desktop.
-        addView(TextView(context).apply {
-            text = icon.label
-            setTextColor(getColor(R.color.white))
-            setShadowLayer(0.01f, 1f, 1f, getColor(R.color.black))
-            textSize = 11f
-            maxLines = 1
-            ellipsize = android.text.TextUtils.TruncateAt.END
-            gravity = android.view.Gravity.CENTER
-            setPadding(Win95.dp(context, 2), 0, Win95.dp(context, 2), 0)
-            importantForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_NO
-        })
     }
 
     private fun applied(message: String) {
@@ -554,7 +560,7 @@ class MainActivity : AppCompatActivity() {
                 if (ok) {
                     status.setText(R.string.status_wallpaper_set)
                     Win95.confirmHaptic(status)
-                    catalog?.let(::renderMonitor)
+                    renderDesktopWallpaper()
                     @Suppress("NotifyDataSetChanged")
                     findViewById<RecyclerView>(R.id.wallpapers_list).adapter?.notifyDataSetChanged()
                 } else {

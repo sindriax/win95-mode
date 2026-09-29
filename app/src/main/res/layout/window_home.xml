@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- No ScrollView: the monitor takes exactly the space left over, and fills it
-     with as many icon rows as fit. -->
+<!-- Sized to its content: the desktop shows below the window on Home. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="12dp">
 
@@ -73,83 +72,6 @@
                 android:textColor="@color/win95_text_secondary"
                 android:textSize="14sp"
                 android:visibility="gone" />
-
-        </LinearLayout>
-
-        <!-- A 1995 monitor previewing this phone's home screen: the current
-             wallpaper with this phone's apps in their Win95 icons. -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_marginTop="16dp"
-            android:orientation="vertical"
-            android:gravity="center_horizontal">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:orientation="vertical"
-                android:background="@drawable/monitor_bezel"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:paddingTop="16dp"
-                android:paddingBottom="8dp">
-
-                <FrameLayout
-                    android:id="@+id/home_monitor_screen"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/monitor_screen"
-                    android:padding="2dp"
-                    android:contentDescription="@string/home_desktop_desc">
-
-                    <ImageView
-                        android:id="@+id/home_monitor_wallpaper"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:background="@color/win95_teal"
-                        android:importantForAccessibility="no" />
-
-                    <LinearLayout
-                        android:id="@+id/home_monitor_icons"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:paddingTop="6dp" />
-
-                </FrameLayout>
-
-                <!-- Chin with the power light. -->
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp">
-
-                    <View
-                        android:layout_width="8dp"
-                        android:layout_height="4dp"
-                        android:layout_gravity="end|center_vertical"
-                        android:layout_marginEnd="8dp"
-                        android:background="#22CC22" />
-
-                </FrameLayout>
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="56dp"
-                android:layout_height="12dp"
-                android:background="@drawable/monitor_stand" />
-
-            <View
-                android:layout_width="150dp"
-                android:layout_height="10dp"
-                android:background="@drawable/monitor_stand" />
 
         </LinearLayout>
 

@@ -137,5 +137,9 @@
     <string name="setup_finish">Finalizar</string>
     <string name="request_count">Pedir %1$d…</string>
     <string name="start_whats_new">Novedades…</string>
-    <string name="home_desktop_desc">Vista previa de tu pantalla de inicio. Toca un icono para ver todos, o el fondo para cambiarlo.</string>
+    <string name="desk_icons">Iconos</string>
+    <string name="desk_wallpaper">Fondo</string>
+    <string name="desk_screensaver">Protector de pantalla</string>
+    <string name="desk_setup">Instalación</string>
+    <string name="desk_feedback">Comentarios</string>
 </resources>

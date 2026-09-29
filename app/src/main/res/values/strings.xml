@@ -141,5 +141,9 @@
     <string name="setup_finish">Finish</string>
     <string name="request_count">Request %1$d…</string>
     <string name="start_whats_new">What\'s new…</string>
-    <string name="home_desktop_desc">Preview of your home screen. Tap an icon to see all icons, or the wallpaper to change it.</string>
+    <string name="desk_icons">Icons</string>
+    <string name="desk_wallpaper">Wallpaper</string>
+    <string name="desk_screensaver">Screen Saver</string>
+    <string name="desk_setup">Setup</string>
+    <string name="desk_feedback">Feedback</string>
 </resources>
