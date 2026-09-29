@@ -17,7 +17,7 @@ Modes:
 Usage:
   .venv/bin/python scripts/win95ify.py win95ify  <in.png|dir> -o <outdir> [--grid 32] [--colors 16|256] [--dither]
   .venv/bin/python scripts/win95ify.py normalize <in.png|dir> -o <outdir>
-  .venv/bin/python scripts/win95ify.py iconback -o app/src/main/res/drawable
+  .venv/bin/python scripts/win95ify.py iconback -o app/src/main/res/drawable-nodpi
 
 Output is always a <size>x<size> RGBA PNG (default 192x192, matching the
 existing pack).

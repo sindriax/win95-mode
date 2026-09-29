@@ -372,6 +372,32 @@ class MainActivity : AppCompatActivity() {
         refreshIconGrid("")
     }
 
+    /** The icons are 192px pixel art drawn on 32- or 48-cell grids, so any
+     *  multiple of 96px keeps every art pixel a whole number of screen pixels. */
+    private fun crispIconPx(targetDp: Float, maxPx: Int = Int.MAX_VALUE): Int {
+        var k = (targetDp * resources.displayMetrics.density / 96f).roundToInt().coerceAtLeast(1)
+        while (k > 1 && k * 96 > maxPx) k--
+        return k * 96
+    }
+
+    private fun crispIcon(resId: Int, px: Int): Bitmap {
+        val source = BitmapFactory.decodeResource(
+            resources, resId, BitmapFactory.Options().apply { inScaled = false }
+        )
+        if (source.width == px) return source
+        return Bitmap.createScaledBitmap(source, px, px, px < source.width)
+    }
+
+    private val gridCellPx by lazy {
+        val density = resources.displayMetrics.density
+        // Screen width minus the window's frame, border and content padding, over 4 columns.
+        ((resources.displayMetrics.widthPixels - 64 * density) / 4).toInt()
+    }
+
+    private val gridIconPx by lazy {
+        crispIconPx(72f, maxPx = gridCellPx - (8 * resources.displayMetrics.density).toInt())
+    }
+
     private fun iconCell(drawableName: String, label: String, resId: Int): View {
         val density = resources.displayMetrics.density
         val gap = (4 * density).toInt()
@@ -380,13 +406,12 @@ class MainActivity : AppCompatActivity() {
             gravity = Gravity.CENTER_HORIZONTAL
             contentDescription = label
             setPadding(gap, gap, gap, gap)
-            layoutParams = GridLayout.LayoutParams().apply { width = (80 * density).toInt() }
+            layoutParams = GridLayout.LayoutParams().apply { width = gridCellPx }
             setOnClickListener { showIconProperties(drawableName, label, resId) }
             addView(ImageView(context).apply {
-                setImageResource(resId)
+                setImageBitmap(crispIcon(resId, gridIconPx))
                 importantForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_NO
-                val size = (48 * density).toInt()
-                layoutParams = LinearLayout.LayoutParams(size, size)
+                layoutParams = LinearLayout.LayoutParams(gridIconPx, gridIconPx)
             })
             addView(TextView(context).apply {
                 text = label
@@ -437,7 +462,11 @@ class MainActivity : AppCompatActivity() {
         val dialog = win95Dialog(R.layout.dialog_icon_properties)
         dialog.findViewById<TextView>(R.id.properties_title)?.text =
             getString(R.string.icon_properties_title, label)
-        dialog.findViewById<ImageView>(R.id.properties_icon)?.setImageResource(resId)
+        dialog.findViewById<ImageView>(R.id.properties_icon)?.apply {
+            val px = crispIconPx(88f)
+            setImageBitmap(crispIcon(resId, px))
+            layoutParams = layoutParams.apply { width = px; height = px }
+        }
         dialog.findViewById<TextView>(R.id.properties_name)?.text = label
         val themed = launchableApps()
             .filter { iconPack.drawableFor(it.activityInfo.packageName, it.activityInfo.name) == drawableName }

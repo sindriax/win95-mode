@@ -16,7 +16,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parent.parent
-DRAWABLE = ROOT / "app/src/main/res/drawable"
+DRAWABLE = ROOT / "app/src/main/res/drawable-nodpi"
 FONT = ROOT / "app/src/main/res/font/ms_sans_serif_bold.ttf"
 
 NAVY = (0, 0, 128, 255)

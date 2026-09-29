@@ -31,7 +31,9 @@ class IconPackResourcesTest {
     private fun items(xmlFile: String): List<Element> = elements(xmlFile, "item")
 
     private fun drawableExists(name: String): Boolean =
-        File(resDir, "drawable/$name.png").isFile || File(resDir, "drawable/$name.xml").isFile
+        listOf("drawable", "drawable-nodpi").any { dir ->
+            File(resDir, "$dir/$name.png").isFile || File(resDir, "$dir/$name.xml").isFile
+        }
 
     @Test
     fun `appfilter drawables all exist`() {

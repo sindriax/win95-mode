@@ -67,7 +67,7 @@ Icon artwork is normalized with `scripts/win95ify.py` (requires Python 3 with Pi
 
 ```bash
 python3 -m venv .venv && .venv/bin/pip install Pillow
-.venv/bin/python scripts/win95ify.py win95ify <source-images> -o app/src/main/res/drawable --strip-bg
+.venv/bin/python scripts/win95ify.py win95ify <source-images> -o app/src/main/res/drawable-nodpi --strip-bg
 ```
 
 It converts any source image to a true pixel grid with a reduced retro palette
