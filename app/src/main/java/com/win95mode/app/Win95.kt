@@ -59,7 +59,7 @@ object Win95 {
             text = label
             setTextColor(context.getColor(R.color.black))
             textSize = 14f
-            if (primary) setTypeface(typeface, android.graphics.Typeface.BOLD)
+            if (primary) typeface = font(context, bold = true)
             gravity = Gravity.CENTER
             minHeight = dp(context, if (primary) 48 else 44)
             minWidth = dp(context, 88)
@@ -67,6 +67,13 @@ object Win95 {
             setBackgroundResource(R.drawable.win95_button_selector)
             setOnClickListener { onClick() }
         }
+
+    /** MS Sans Serif, regular or bold. Setting a style with a null typeface falls back to Roboto. */
+    fun font(context: Context, bold: Boolean): android.graphics.Typeface =
+        android.graphics.Typeface.create(
+            androidx.core.content.res.ResourcesCompat.getFont(context, R.font.win95),
+            if (bold) android.graphics.Typeface.BOLD else android.graphics.Typeface.NORMAL
+        )
 
     fun confirmHaptic(view: View) {
         view.performHapticFeedback(

@@ -9,7 +9,7 @@
     <string name="start_button">Start</string>
     <string name="tab_home">Home</string>
     <string name="tab_icons">Icons</string>
-    <string name="tab_wallpapers">Wallpapers</string>
+    <string name="tab_wallpapers">Wallpaper</string>
     <string name="title_icons">Icons</string>
     <string name="title_wallpapers">Wallpapers</string>
     <string name="ok">OK</string>
@@ -37,10 +37,7 @@
     <string name="coverage_title">Coverage</string>
     <string name="coverage_text">%1$d of your %2$d apps have a Win95 icon.</string>
     <string name="coverage_all">All %1$d of your apps have a Win95 icon.</string>
-    <string name="preview_strip_desc">Your apps\' icons. Opens Icons.</string>
-    <string name="request_other">Request the other %1$d…</string>
     <string name="whats_new_title">What\'s new in 3.0</string>
-    <string name="chevron" translatable="false">▸</string>
     <string name="whats_new_body">• Icons for Samsung, Xiaomi and OnePlus system apps\n• Over 220 icons, one for each app\n• Setup that finds a launcher that works\n• Request icons for the apps you still miss\n• The Starfield screensaver as a live wallpaper\n• A calendar icon that shows today\'s date\n• Sharper icons and full-resolution wallpapers</string>
 
     <!-- Applying in a launcher -->
@@ -138,8 +135,11 @@
     <string name="setup_also_wallpaper">Also set the classic teal wallpaper</string>
     <string name="setup_applied">✔ Done.</string>
     <string name="setup_finish_title">Setup is complete</string>
-    <string name="setup_finish_body">Your phone is ready. Open Win95 Mode anytime to change wallpapers, see your icons, or request more.</string>
+    <string name="setup_finish_body">Your phone is ready.\n\nUse the taskbar at the bottom of Win95 Mode to switch between Home, Icons and Wallpapers. The Start menu has everything else.</string>
     <string name="setup_back">&lt; Back</string>
     <string name="setup_next">Next &gt;</string>
     <string name="setup_finish">Finish</string>
+    <string name="request_count">Request %1$d…</string>
+    <string name="start_whats_new">What\'s new…</string>
+    <string name="home_desktop_desc">Preview of your home screen. Tap an icon to see all icons, or the wallpaper to change it.</string>
 </resources>

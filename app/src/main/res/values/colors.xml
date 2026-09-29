@@ -12,4 +12,8 @@
     <color name="win95_button_highlight">#FFFFFF</color>
     <!-- Captions and hints: navy passes contrast on gray (8.6:1); dark gray (2.0:1) does not. -->
     <color name="win95_text_secondary">#000080</color>
+    <!-- The beige plastic of a 1995 monitor. -->
+    <color name="monitor_beige">#D7D1BE</color>
+    <color name="monitor_beige_dark">#9C967F</color>
+    <color name="monitor_beige_light">#F2EEDF</color>
 </resources>

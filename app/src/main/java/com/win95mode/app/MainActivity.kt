@@ -111,6 +111,22 @@ class MainActivity : AppCompatActivity() {
     private fun setupChrome() {
         findViewById<View>(R.id.btn_close).setOnClickListener { finish() }
         findViewById<View>(R.id.btn_minimize).setOnClickListener { moveTaskToBack(true) }
+        listOf(
+            R.id.task_home to R.drawable.ic_win95mode,
+            R.id.task_icons to R.drawable.ic_files,
+            R.id.task_wallpapers to R.drawable.ic_photos
+        ).forEach { (id, icon) ->
+            val size = Win95.dp(this, 20)
+            val drawable = android.graphics.drawable.BitmapDrawable(resources, IconArt.icon(resources, icon, 96))
+                .apply { setBounds(0, 0, size, size) }
+            findViewById<TextView>(id).apply {
+                setCompoundDrawablesRelative(drawable, null, null, null)
+                compoundDrawablePadding = Win95.dp(context, 3)
+            }
+        }
+        // The clock is decoration (the status bar shows the time); with large text it
+        // would squeeze the navigation buttons, so it steps aside.
+        if (resources.configuration.fontScale > 1.15f) findViewById<View>(R.id.taskbar_clock).visibility = View.GONE
         findViewById<View>(R.id.task_home).setOnClickListener { showPage(Page.HOME) }
         findViewById<View>(R.id.task_icons).setOnClickListener { showPage(Page.ICONS) }
         findViewById<View>(R.id.task_wallpapers).setOnClickListener { showPage(Page.WALLPAPERS) }
@@ -152,11 +168,12 @@ class MainActivity : AppCompatActivity() {
                 findViewById<TextView>(id).apply {
                     val active = p == target
                     setBackgroundResource(if (active) R.drawable.win95_button_pressed else R.drawable.win95_button_selector)
-                    setTypeface(null, if (active) android.graphics.Typeface.BOLD else android.graphics.Typeface.NORMAL)
+                    typeface = Win95.font(context, active)
                     isSelected = active
                 }
             }
 
+        if (target == Page.HOME) catalog?.let(::renderMonitor)
         status.text = when (target) {
             Page.HOME -> getString(R.string.status_ready)
             Page.ICONS -> iconsStatus()
@@ -201,6 +218,9 @@ class MainActivity : AppCompatActivity() {
         item(R.drawable.ic_disk, R.string.start_setup) { startActivity(Intent(this, SetupActivity::class.java)) }
         item(R.drawable.ic_files, R.string.start_request) { showRequestDialog() }
         item(R.drawable.ic_mail, R.string.start_feedback) { openFeedback() }
+        item(R.drawable.ic_notes, R.string.start_whats_new) {
+            Win95.messageBox(this, getString(R.string.whats_new_title), getString(R.string.whats_new_body))
+        }
         item(R.drawable.ic_win95mode, R.string.start_about) { showAboutDialog() }
         items.addView(View(this).apply {
             setBackgroundResource(R.drawable.win95_clock_inset)
@@ -270,32 +290,76 @@ class MainActivity : AppCompatActivity() {
             if (c.unthemedInstalled.isEmpty()) getString(R.string.coverage_all, c.themedCount)
             else getString(R.string.coverage_text, c.themedCount, c.installedCount)
 
-        val strip = findViewById<LinearLayout>(R.id.home_preview_strip)
-        strip.removeAllViews()
-        val slot = Win95.dp(this, 48)
-        val fits = ((resources.displayMetrics.widthPixels - 60 * density) / slot).toInt()
-        c.yourIcons.take(fits).forEach { pi ->
-            strip.addView(ImageView(this).apply {
-                setImageBitmap(IconArt.icon(resources, pi.resId, IconArt.crispPx(context, 40f, maxPx = slot)))
-                layoutParams = LinearLayout.LayoutParams(slot, slot)
-                importantForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_NO
-            })
+        findViewById<TextView>(R.id.btn_home_request).apply {
+            visibility = if (c.unthemedInstalled.isEmpty()) View.GONE else View.VISIBLE
+            text = getString(R.string.request_count, c.unthemedInstalled.size)
+            setOnClickListener { showRequestDialog() }
         }
-        strip.setOnClickListener {
+        renderMonitor(c)
+    }
+
+    /** The monitor on Home: the current wallpaper with this phone's apps laid out
+     *  as desktop icons, as many rows as the screen area fits. */
+    private fun renderMonitor(c: IconCatalog) {
+        val screen = findViewById<View>(R.id.home_monitor_screen)
+        val grid = findViewById<LinearLayout>(R.id.home_monitor_icons)
+        val wallpaper = findViewById<ImageView>(R.id.home_monitor_wallpaper)
+        screen.setOnClickListener { showPage(Page.WALLPAPERS) }
+        screen.post {
+            val w = screen.width - screen.paddingLeft - screen.paddingRight
+            val h = screen.height - screen.paddingTop - screen.paddingBottom
+            if (w <= 0 || h <= 0) return@post
+
+            val current = Wallpapers.all.firstOrNull { it.key == Prefs.wallpaper(this) }
+            if (current == null) wallpaper.setImageDrawable(null)
+            else wallpaper.setImageBitmap(Wallpapers.thumbnail(this, current.resId, w))
+
+            grid.removeAllViews()
+            // Too little room (landscape, huge text): just the wallpaper.
+            if (h < Win95.dp(this, 70)) return@post
+            val columns = 4
+            val cellW = w / columns
+            val iconPx = IconArt.crispPx(this, 44f, maxPx = cellW - Win95.dp(this, 12))
+            val rowH = iconPx + Win95.dp(this, 26)
+            val rows = ((h - grid.paddingTop) / rowH).coerceAtLeast(1)
+            c.yourIcons.take(columns * rows).chunked(columns).forEach { rowIcons ->
+                grid.addView(LinearLayout(this).apply {
+                    orientation = LinearLayout.HORIZONTAL
+                    rowIcons.forEach { icon -> addView(desktopIcon(icon, cellW, iconPx)) }
+                })
+            }
+        }
+    }
+
+    private fun desktopIcon(icon: PackIcon, width: Int, iconPx: Int) = LinearLayout(this).apply {
+        orientation = LinearLayout.VERTICAL
+        gravity = android.view.Gravity.CENTER_HORIZONTAL
+        layoutParams = LinearLayout.LayoutParams(width, LinearLayout.LayoutParams.WRAP_CONTENT)
+        setPadding(0, Win95.dp(context, 2), 0, Win95.dp(context, 4))
+        contentDescription = icon.label
+        setOnClickListener {
             iconTab = IconTab.YOURS
             buildIconTabs()
             renderIcons()
             showPage(Page.ICONS)
         }
-
-        findViewById<TextView>(R.id.btn_home_request).apply {
-            visibility = if (c.unthemedInstalled.isEmpty()) View.GONE else View.VISIBLE
-            text = getString(R.string.request_other, c.unthemedInstalled.size)
-            setOnClickListener { showRequestDialog() }
-        }
-        findViewById<View>(R.id.home_whats_new).setOnClickListener {
-            Win95.messageBox(this, getString(R.string.whats_new_title), getString(R.string.whats_new_body))
-        }
+        addView(ImageView(context).apply {
+            setImageBitmap(IconArt.icon(resources, icon.resId, iconPx))
+            layoutParams = LinearLayout.LayoutParams(iconPx, iconPx)
+            importantForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_NO
+        })
+        // White label with a dark edge, like desktop icon text on the teal desktop.
+        addView(TextView(context).apply {
+            text = icon.label
+            setTextColor(getColor(R.color.white))
+            setShadowLayer(0.01f, 1f, 1f, getColor(R.color.black))
+            textSize = 11f
+            maxLines = 1
+            ellipsize = android.text.TextUtils.TruncateAt.END
+            gravity = android.view.Gravity.CENTER
+            setPadding(Win95.dp(context, 2), 0, Win95.dp(context, 2), 0)
+            importantForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_NO
+        })
     }
 
     private fun applied(message: String) {
@@ -336,7 +400,7 @@ class MainActivity : AppCompatActivity() {
                     gravity = android.view.Gravity.CENTER
                     setPadding(Win95.dp(context, 14), 0, Win95.dp(context, 14), 0)
                     setBackgroundResource(if (active) R.drawable.win95_tab_active else R.drawable.win95_tab_inactive)
-                    if (active) setTypeface(null, android.graphics.Typeface.BOLD)
+                    typeface = Win95.font(context, active)
                     isSelected = active
                     layoutParams = LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -490,6 +554,7 @@ class MainActivity : AppCompatActivity() {
                 if (ok) {
                     status.setText(R.string.status_wallpaper_set)
                     Win95.confirmHaptic(status)
+                    catalog?.let(::renderMonitor)
                     @Suppress("NotifyDataSetChanged")
                     findViewById<RecyclerView>(R.id.wallpapers_list).adapter?.notifyDataSetChanged()
                 } else {

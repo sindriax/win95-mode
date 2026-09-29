@@ -33,8 +33,6 @@
     <string name="coverage_title">Cobertura</string>
     <string name="coverage_text">%1$d de tus %2$d apps tienen icono Win95.</string>
     <string name="coverage_all">Las %1$d apps que tienes tienen icono Win95.</string>
-    <string name="preview_strip_desc">Los iconos de tus apps. Abre Iconos.</string>
-    <string name="request_other">Pedir las otras %1$d…</string>
     <string name="whats_new_title">Novedades de la 3.0</string>
     <string name="whats_new_body">• Iconos para las apps del sistema de Samsung, Xiaomi y OnePlus\n• Más de 220 iconos, uno para cada app\n• Una instalación que busca un launcher compatible\n• Pide iconos para las apps que aún faltan\n• El salvapantallas Starfield como fondo animado\n• Un icono de calendario que muestra la fecha de hoy\n• Iconos más nítidos y fondos a resolución completa</string>
 
@@ -133,8 +131,11 @@
     <string name="setup_also_wallpaper">Poner también el fondo verde azulado clásico</string>
     <string name="setup_applied">✔ Hecho.</string>
     <string name="setup_finish_title">La instalación ha terminado</string>
-    <string name="setup_finish_body">Tu teléfono está listo. Abre Win95 Mode cuando quieras para cambiar el fondo, ver tus iconos o pedir más.</string>
+    <string name="setup_finish_body">Tu teléfono está listo.\n\nUsa la barra de tareas de abajo en Win95 Mode para pasar de Principal a Iconos y Fondos. El menú Inicio tiene todo lo demás.</string>
     <string name="setup_back">&lt; Atrás</string>
     <string name="setup_next">Siguiente &gt;</string>
     <string name="setup_finish">Finalizar</string>
+    <string name="request_count">Pedir %1$d…</string>
+    <string name="start_whats_new">Novedades…</string>
+    <string name="home_desktop_desc">Vista previa de tu pantalla de inicio. Toca un icono para ver todos, o el fondo para cambiarlo.</string>
 </resources>

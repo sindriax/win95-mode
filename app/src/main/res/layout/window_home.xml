@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true">
-
-    <LinearLayout
+<!-- No ScrollView: the monitor takes exactly the space left over, and fills it
+     with as many icon rows as fit. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="12dp">
 
@@ -79,67 +76,113 @@
 
         </LinearLayout>
 
-        <TextView
-            style="@style/Win95Heading"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/coverage_title" />
-
-        <com.win95mode.app.BlockProgressBar
-            android:id="@+id/home_coverage_bar"
-            android:layout_width="match_parent"
-            android:layout_height="22dp" />
-
-        <TextView
-            android:id="@+id/home_coverage_text"
-            style="@style/Win95Body"
-            android:layout_marginTop="8dp" />
-
+        <!-- A 1995 monitor previewing this phone's home screen: the current
+             wallpaper with this phone's apps in their Win95 icons. -->
         <LinearLayout
-            android:id="@+id/home_preview_strip"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:minHeight="48dp"
-            android:contentDescription="@string/preview_strip_desc" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
 
-        <TextView
-            android:id="@+id/btn_home_request"
-            style="@style/Win95Button"
-            android:layout_marginTop="12dp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/win95_clock_inset" />
-
-        <LinearLayout
-            android:id="@+id/home_whats_new"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="?android:attr/selectableItemBackground">
-
-            <TextView
-                style="@style/Win95Body"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="@string/whats_new_title" />
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:orientation="vertical"
+                android:background="@drawable/monitor_bezel"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/chevron"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:importantForAccessibility="no" />
+                <FrameLayout
+                    android:id="@+id/home_monitor_screen"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/monitor_screen"
+                    android:padding="2dp"
+                    android:contentDescription="@string/home_desktop_desc">
+
+                    <ImageView
+                        android:id="@+id/home_monitor_wallpaper"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:background="@color/win95_teal"
+                        android:importantForAccessibility="no" />
+
+                    <LinearLayout
+                        android:id="@+id/home_monitor_icons"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingTop="6dp" />
+
+                </FrameLayout>
+
+                <!-- Chin with the power light. -->
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp">
+
+                    <View
+                        android:layout_width="8dp"
+                        android:layout_height="4dp"
+                        android:layout_gravity="end|center_vertical"
+                        android:layout_marginEnd="8dp"
+                        android:background="#22CC22" />
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="56dp"
+                android:layout_height="12dp"
+                android:background="@drawable/monitor_stand" />
+
+            <View
+                android:layout_width="150dp"
+                android:layout_height="10dp"
+                android:background="@drawable/monitor_stand" />
 
         </LinearLayout>
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
-</ScrollView>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginEnd="10dp">
+
+                <com.win95mode.app.BlockProgressBar
+                    android:id="@+id/home_coverage_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="18dp" />
+
+                <TextView
+                    android:id="@+id/home_coverage_text"
+                    style="@style/Win95Body"
+                    android:layout_marginTop="6dp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/btn_home_request"
+                style="@style/Win95Button" />
+
+        </LinearLayout>
+
+</LinearLayout>

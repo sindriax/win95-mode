@@ -187,6 +187,7 @@
                 android:text="@string/tab_wallpapers" />
 
             <LinearLayout
+                android:id="@+id/taskbar_clock"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:layout_marginStart="4dp"
