@@ -40,12 +40,12 @@ class MainActivity : AppCompatActivity() {
     private val search by lazy { findViewById<EditText>(R.id.icon_search) }
 
     private val iconColumns by lazy {
-        (resources.displayMetrics.widthPixels / density / 110f).toInt().coerceIn(4, 8)
+        (resources.displayMetrics.widthPixels / density / 96f).toInt().coerceIn(4, 8)
     }
     private val iconPx by lazy {
         // Window margin, border and page padding take 52dp of the width.
         val cellPx = ((resources.displayMetrics.widthPixels - 52 * density) / iconColumns).toInt()
-        IconArt.crispPx(this, 72f, maxPx = cellPx - (8 * density).toInt())
+        minOf((60 * density).toInt(), cellPx - (12 * density).toInt())
     }
     private val iconsAdapter by lazy { IconsAdapter(iconPx) }
     private val appIconCache = HashMap<String, Bitmap>()

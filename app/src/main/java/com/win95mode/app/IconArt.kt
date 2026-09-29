@@ -29,7 +29,9 @@ object IconArt {
         val key = "$resId@$px"
         cache.get(key)?.let { return it }
         val source = BitmapFactory.decodeResource(resources, resId, BitmapFactory.Options().apply { inScaled = false })
-        val out = if (source.width == px) source else Bitmap.createScaledBitmap(source, px, px, px < source.width)
+        // Nearest-neighbour: smoothing is what blurs pixel art. At phone densities an
+        // uneven block is at most one physical pixel, which doesn't show.
+        val out = if (source.width == px) source else Bitmap.createScaledBitmap(source, px, px, false)
         cache.put(key, out)
         return out
     }
