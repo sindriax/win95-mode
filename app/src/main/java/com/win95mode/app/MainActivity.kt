@@ -1,194 +1,587 @@
 package com.win95mode.app
 
-import android.annotation.SuppressLint
-import android.app.Dialog
 import android.app.WallpaperManager
-import android.content.ComponentName
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
-import android.text.TextUtils
 import android.text.TextWatcher
-import android.view.Gravity
 import android.view.View
-import android.view.Window
 import android.widget.CheckBox
 import android.widget.EditText
-import android.widget.GridLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.ScrollView
 import android.widget.TextView
-import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import org.xmlpull.v1.XmlPullParser
-import kotlin.math.roundToInt
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import java.text.DateFormat
+import java.util.Date
 
 class MainActivity : AppCompatActivity() {
 
-    private val wallpapers = mapOf(
-        R.id.wall_teal to R.drawable.wall_teal,
-        R.id.wall_clouds to R.drawable.wall_clouds,
-        R.id.wall_setup to R.drawable.wall_setup,
-        R.id.wall_stars to R.drawable.wall_stars,
-        R.id.wall_matrix to R.drawable.wall_matrix
-    )
+    private enum class Page { HOME, ICONS, WALLPAPERS }
+    private enum class IconTab { YOURS, ALL, SYSTEM }
+
+    private var page = Page.HOME
+    private var iconTab = IconTab.YOURS
+    private var catalog: IconCatalog? = null
+    private val density get() = resources.displayMetrics.density
+
+    private val status by lazy { findViewById<TextView>(R.id.window_status) }
+    private val startMenu by lazy { findViewById<View>(R.id.start_menu) }
+    private val startScrim by lazy { findViewById<View>(R.id.start_scrim) }
+    private val search by lazy { findViewById<EditText>(R.id.icon_search) }
+
+    private val iconColumns by lazy {
+        (resources.displayMetrics.widthPixels / density / 110f).toInt().coerceIn(4, 8)
+    }
+    private val iconPx by lazy {
+        // Window margin, border and page padding take 52dp of the width.
+        val cellPx = ((resources.displayMetrics.widthPixels - 52 * density) / iconColumns).toInt()
+        IconArt.crispPx(this, 72f, maxPx = cellPx - (8 * density).toInt())
+    }
+    private val iconsAdapter by lazy { IconsAdapter(iconPx) }
+    private val appIconCache = HashMap<String, Bitmap>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Relaunched from the app icon while already running: return to what was open
+        // (Setup, for one) instead of stacking a second copy on top of it.
+        if (!isTaskRoot && intent.action == Intent.ACTION_MAIN && intent.hasCategory(Intent.CATEGORY_LAUNCHER)) {
+            finish()
+            return
+        }
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(bars.left, bars.top, bars.right, bars.bottom)
             insets
         }
 
-        setupWindowControls()
-        populateIconGrid()
-        setupWallpaperClicks()
-        findViewById<TextView>(R.id.btn_request_icons).setOnClickListener { showRequestDialog() }
-        findViewById<TextView>(R.id.btn_starfield).setOnClickListener { openStarfieldPreview() }
+        savedInstanceState?.let {
+            page = Page.valueOf(it.getString("page", Page.HOME.name))
+            iconTab = IconTab.valueOf(it.getString("icon_tab", IconTab.YOURS.name))
+        }
+        setupChrome()
+        setupIcons()
+        setupWallpapers()
+        showPage(page)
+        // Setting a wallpaper recreates the activity (Android re-colors apps), so keep its message.
+        savedInstanceState?.getString("status")?.let { status.text = it }
+
+        if (savedInstanceState == null && !Prefs.setupDone(this)) {
+            startActivity(Intent(this, SetupActivity::class.java))
+        }
     }
 
     override fun onResume() {
         super.onResume()
-        // Re-checked on every return: people install or switch launchers and come back.
-        updateLauncherStatus()
-    }
-
-    private val iconPack: IconPack by lazy {
-        val mappings = mutableMapOf<String, String>()
-        val parser = resources.getXml(R.xml.appfilter)
-        while (parser.eventType != XmlPullParser.END_DOCUMENT) {
-            if (parser.eventType == XmlPullParser.START_TAG && parser.name == "item") {
-                val component = parser.getAttributeValue(null, "component")
-                val drawable = parser.getAttributeValue(null, "drawable")
-                if (component != null && drawable != null) mappings[component] = drawable
-            }
-            parser.next()
-        }
-        IconPack(mappings)
-    }
-
-    private fun launchableApps() =
-        packageManager.queryIntentActivities(
-            Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER), 0
-        ).filter { it.activityInfo != null && it.activityInfo.packageName != packageName }
-
-    private fun defaultHomePackage(): String? =
-        packageManager.resolveActivity(
-            Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME),
-            PackageManager.MATCH_DEFAULT_ONLY
-        )?.activityInfo?.packageName
-
-    private fun updateLauncherStatus() {
-        val text = findViewById<TextView>(R.id.launcher_status_text)
-        val button = findViewById<TextView>(R.id.btn_apply_pack)
-        val installed = launcherTargets.filter {
-            packageManager.getLaunchIntentForPackage(it.pkg) != null
-        }
-        val home = installed.firstOrNull { it.pkg == defaultHomePackage() }
-        when {
-            home != null -> {
-                text.text = getString(R.string.status_ready, home.label)
-                button.setText(R.string.apply_short)
-                button.setOnClickListener { applyWith(home) }
-            }
-            installed.isNotEmpty() -> {
-                text.text = getString(R.string.status_installed_not_home, installed.first().label)
-                button.setText(if (installed.size == 1) R.string.apply_short else R.string.apply_icon_pack)
-                button.setOnClickListener {
-                    if (installed.size == 1) applyWith(installed.first()) else showApplyDialog()
-                }
-            }
-            else -> {
-                text.setText(R.string.status_unsupported)
-                button.setText(R.string.how_to_fix)
-                button.setOnClickListener { showApplyDialog() }
-            }
-        }
-    }
-
-    private fun openStarfieldPreview() {
-        val direct = Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER).putExtra(
-            WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
-            ComponentName(this, StarfieldWallpaperService::class.java)
-        )
-        try {
-            startActivity(direct)
-        } catch (_: Exception) {
-            try {
-                startActivity(Intent(WallpaperManager.ACTION_LIVE_WALLPAPER_CHOOSER))
-            } catch (_: Exception) {
-                Toast.makeText(this, R.string.live_wallpaper_unavailable, Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
-    private class UnthemedApp(val label: String, val component: String)
-
-    private fun showRequestDialog() {
-        val dialog = win95Dialog(R.layout.dialog_request)
-        dialog.findViewById<TextView>(R.id.btn_cancel_request)?.setOnClickListener { dialog.dismiss() }
-        dialog.show()
-
+        // Apps and launchers change while we're away, so both are re-read on every return.
+        renderHome()
         Thread {
-            val unthemed = findUnthemedApps()
+            val loaded = IconCatalog.load(this)
             runOnUiThread {
-                if (!dialog.isShowing) return@runOnUiThread
-                val list = dialog.findViewById<LinearLayout>(R.id.request_list) ?: return@runOnUiThread
-                val status = dialog.findViewById<TextView>(R.id.request_status)
-                if (unthemed.isEmpty()) {
-                    status?.setText(R.string.request_all_themed)
-                    return@runOnUiThread
-                }
-                list.removeView(status)
-                val boxes = unthemed.map { app ->
-                    CheckBox(this).apply {
-                        text = app.label
-                        setTextColor(getColor(R.color.black))
-                        textSize = 12f
-                        tag = app
-                    }.also { list.addView(it) }
-                }
-                fun selected() = boxes.filter { it.isChecked }.map { it.tag as UnthemedApp }
-                fun submit(viaGithub: Boolean) {
-                    val apps = selected()
-                    if (apps.isEmpty()) {
-                        Toast.makeText(this, R.string.request_none_selected, Toast.LENGTH_SHORT).show()
-                    } else {
-                        dialog.dismiss()
-                        sendIconRequest(apps, viaGithub)
-                    }
-                }
-                dialog.findViewById<TextView>(R.id.btn_request_github)?.setOnClickListener { submit(true) }
-                dialog.findViewById<TextView>(R.id.btn_request_share)?.setOnClickListener { submit(false) }
+                if (isFinishing) return@runOnUiThread
+                catalog = loaded
+                appIconCache.clear()
+                renderHome()
+                renderIcons()
+                if (page == Page.ICONS) status.text = iconsStatus()
             }
         }.start()
     }
 
-    private fun findUnthemedApps(): List<UnthemedApp> =
-        launchableApps()
-            .filter { iconPack.drawableFor(it.activityInfo.packageName, it.activityInfo.name) == null }
-            .map {
-                UnthemedApp(
-                    it.loadLabel(packageManager).toString(),
-                    "ComponentInfo{${it.activityInfo.packageName}/${it.activityInfo.name}}"
-                )
-            }
-            .distinctBy { it.component }
-            .sortedBy { it.label.lowercase() }
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("page", page.name)
+        outState.putString("icon_tab", iconTab.name)
+        outState.putString("status", status.text.toString())
+    }
 
-    private fun sendIconRequest(apps: List<UnthemedApp>, viaGithub: Boolean) {
+    // --- Window chrome, taskbar, Start menu ---
+
+    private fun setupChrome() {
+        findViewById<View>(R.id.btn_close).setOnClickListener { finish() }
+        findViewById<View>(R.id.btn_minimize).setOnClickListener { moveTaskToBack(true) }
+        findViewById<View>(R.id.task_home).setOnClickListener { showPage(Page.HOME) }
+        findViewById<View>(R.id.task_icons).setOnClickListener { showPage(Page.ICONS) }
+        findViewById<View>(R.id.task_wallpapers).setOnClickListener { showPage(Page.WALLPAPERS) }
+        findViewById<View>(R.id.btn_start).setOnClickListener { toggleStartMenu() }
+        startScrim.setOnClickListener { toggleStartMenu(false) }
+        buildStartMenu()
+
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                when {
+                    startMenu.visibility == View.VISIBLE -> toggleStartMenu(false)
+                    page != Page.HOME -> showPage(Page.HOME)
+                    else -> {
+                        isEnabled = false
+                        onBackPressedDispatcher.onBackPressed()
+                    }
+                }
+            }
+        })
+    }
+
+    private fun showPage(target: Page) {
+        page = target
+        toggleStartMenu(false)
+        findViewById<View>(R.id.page_home).visibility = if (target == Page.HOME) View.VISIBLE else View.GONE
+        findViewById<View>(R.id.page_icons).visibility = if (target == Page.ICONS) View.VISIBLE else View.GONE
+        findViewById<View>(R.id.page_wallpapers).visibility = if (target == Page.WALLPAPERS) View.VISIBLE else View.GONE
+
+        val (title, icon) = when (target) {
+            Page.HOME -> getString(R.string.app_name) to R.drawable.ic_win95mode
+            Page.ICONS -> getString(R.string.title_icons) to R.drawable.ic_files
+            Page.WALLPAPERS -> getString(R.string.title_wallpapers) to R.drawable.ic_photos
+        }
+        findViewById<TextView>(R.id.window_title).text = title
+        findViewById<ImageView>(R.id.window_icon).setImageBitmap(IconArt.icon(resources, icon, 96))
+
+        listOf(Page.HOME to R.id.task_home, Page.ICONS to R.id.task_icons, Page.WALLPAPERS to R.id.task_wallpapers)
+            .forEach { (p, id) ->
+                findViewById<TextView>(id).apply {
+                    val active = p == target
+                    setBackgroundResource(if (active) R.drawable.win95_button_pressed else R.drawable.win95_button_selector)
+                    setTypeface(null, if (active) android.graphics.Typeface.BOLD else android.graphics.Typeface.NORMAL)
+                    isSelected = active
+                }
+            }
+
+        status.text = when (target) {
+            Page.HOME -> getString(R.string.status_ready)
+            Page.ICONS -> iconsStatus()
+            Page.WALLPAPERS -> getString(R.string.status_wallpapers)
+        }
+    }
+
+    private fun toggleStartMenu(show: Boolean = startMenu.visibility != View.VISIBLE) {
+        startMenu.visibility = if (show) View.VISIBLE else View.GONE
+        startScrim.visibility = startMenu.visibility
+        findViewById<View>(R.id.btn_start).setBackgroundResource(
+            if (show) R.drawable.win95_button_pressed else R.drawable.win95_button_selector
+        )
+    }
+
+    private fun buildStartMenu() {
+        val items = findViewById<LinearLayout>(R.id.start_items)
+        fun item(icon: Int, label: Int, action: () -> Unit) {
+            items.addView(LinearLayout(this).apply {
+                orientation = LinearLayout.HORIZONTAL
+                gravity = android.view.Gravity.CENTER_VERTICAL
+                minimumHeight = Win95.dp(context, 52)
+                setPadding(Win95.dp(context, 10), 0, Win95.dp(context, 10), 0)
+                setBackgroundResource(android.R.drawable.list_selector_background)
+                addView(ImageView(context).apply {
+                    setImageBitmap(IconArt.icon(resources, icon, 96))
+                    layoutParams = LinearLayout.LayoutParams(Win95.dp(context, 32), Win95.dp(context, 32))
+                    importantForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_NO
+                })
+                addView(TextView(context).apply {
+                    setText(label)
+                    setTextColor(getColor(R.color.black))
+                    textSize = 15f
+                    setPadding(Win95.dp(context, 12), 0, 0, 0)
+                })
+                setOnClickListener {
+                    toggleStartMenu(false)
+                    action()
+                }
+            })
+        }
+        item(R.drawable.ic_disk, R.string.start_setup) { startActivity(Intent(this, SetupActivity::class.java)) }
+        item(R.drawable.ic_files, R.string.start_request) { showRequestDialog() }
+        item(R.drawable.ic_mail, R.string.start_feedback) { openFeedback() }
+        item(R.drawable.ic_win95mode, R.string.start_about) { showAboutDialog() }
+        items.addView(View(this).apply {
+            setBackgroundResource(R.drawable.win95_clock_inset)
+            layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, Win95.dp(context, 2)).apply {
+                setMargins(Win95.dp(context, 4), Win95.dp(context, 4), Win95.dp(context, 4), Win95.dp(context, 4))
+            }
+        })
+        item(R.drawable.ic_my_computer, R.string.start_shutdown) { finish() }
+    }
+
+    // --- Home ---
+
+    private fun renderHome() {
+        val icon = findViewById<ImageView>(R.id.home_launcher_icon)
+        val name = findViewById<TextView>(R.id.home_launcher_name)
+        val state = findViewById<TextView>(R.id.home_launcher_state)
+        val whenText = findViewById<TextView>(R.id.home_launcher_when)
+        val detail = findViewById<TextView>(R.id.home_launcher_detail)
+        val apply = findViewById<TextView>(R.id.btn_home_apply)
+        val setDefault = findViewById<TextView>(R.id.link_home_set_default)
+        whenText.visibility = View.GONE
+        detail.visibility = View.GONE
+        setDefault.visibility = View.GONE
+
+        when (val s = Launchers.state(this)) {
+            is LauncherState.Ready -> {
+                icon.setImageDrawable(Launchers.icon(this, s.target.pkg))
+                name.text = s.target.label
+                val appliedAt = Prefs.appliedAt(this, s.target.label)
+                state.setText(if (appliedAt != null) R.string.state_applied else R.string.state_ready)
+                appliedAt?.let {
+                    whenText.text = getString(R.string.applied_on, DateFormat.getDateInstance(DateFormat.MEDIUM).format(Date(it)))
+                    whenText.visibility = View.VISIBLE
+                }
+                apply.setText(if (appliedAt != null) R.string.apply_again else R.string.apply_icons)
+                apply.setOnClickListener { ApplyFlow.apply(this, s.target, ::applied) }
+            }
+            is LauncherState.NotHome -> {
+                val first = s.installed.first()
+                icon.setImageDrawable(Launchers.icon(this, first.pkg))
+                name.text = first.label
+                state.setText(R.string.state_not_home)
+                apply.setText(R.string.apply_icons)
+                apply.setOnClickListener { ApplyFlow.choose(this, s.installed, ::applied) }
+                setDefault.visibility = View.VISIBLE
+                setDefault.setOnClickListener { Launchers.openHomeSettings(this) }
+            }
+            is LauncherState.Unsupported -> {
+                val home = s.homePkg?.let { Launchers.icon(this, it) }
+                if (home != null) icon.setImageDrawable(home)
+                else icon.setImageBitmap(IconArt.icon(resources, R.drawable.ic_my_computer, 96))
+                name.text = s.homeLabel ?: getString(R.string.your_home_screen)
+                state.setText(R.string.state_unsupported)
+                detail.setText(R.string.state_unsupported_detail)
+                detail.visibility = View.VISIBLE
+                apply.setText(R.string.how_to_fix)
+                apply.setOnClickListener {
+                    startActivity(Intent(this, SetupActivity::class.java).putExtra(SetupActivity.EXTRA_STEP, 1))
+                }
+            }
+        }
+
+        val c = catalog ?: return
+        val total = c.installedCount.coerceAtLeast(1)
+        findViewById<BlockProgressBar>(R.id.home_coverage_bar).progress = c.themedCount / total.toFloat()
+        findViewById<TextView>(R.id.home_coverage_text).text =
+            if (c.unthemedInstalled.isEmpty()) getString(R.string.coverage_all, c.themedCount)
+            else getString(R.string.coverage_text, c.themedCount, c.installedCount)
+
+        val strip = findViewById<LinearLayout>(R.id.home_preview_strip)
+        strip.removeAllViews()
+        val slot = Win95.dp(this, 48)
+        val fits = ((resources.displayMetrics.widthPixels - 60 * density) / slot).toInt()
+        c.yourIcons.take(fits).forEach { pi ->
+            strip.addView(ImageView(this).apply {
+                setImageBitmap(IconArt.icon(resources, pi.resId, IconArt.crispPx(context, 40f, maxPx = slot)))
+                layoutParams = LinearLayout.LayoutParams(slot, slot)
+                importantForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_NO
+            })
+        }
+        strip.setOnClickListener {
+            iconTab = IconTab.YOURS
+            buildIconTabs()
+            renderIcons()
+            showPage(Page.ICONS)
+        }
+
+        findViewById<TextView>(R.id.btn_home_request).apply {
+            visibility = if (c.unthemedInstalled.isEmpty()) View.GONE else View.VISIBLE
+            text = getString(R.string.request_other, c.unthemedInstalled.size)
+            setOnClickListener { showRequestDialog() }
+        }
+        findViewById<View>(R.id.home_whats_new).setOnClickListener {
+            Win95.messageBox(this, getString(R.string.whats_new_title), getString(R.string.whats_new_body))
+        }
+    }
+
+    private fun applied(message: String) {
+        status.text = message
+        Win95.confirmHaptic(status)
+        renderHome()
+    }
+
+    // --- Icons ---
+
+    private fun setupIcons() {
+        val list = findViewById<RecyclerView>(R.id.icons_list)
+        list.layoutManager = GridLayoutManager(this, iconColumns).apply {
+            spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+                override fun getSpanSize(position: Int) = if (iconsAdapter.isFullWidth(position)) iconColumns else 1
+            }
+        }
+        list.adapter = iconsAdapter
+        buildIconTabs()
+        search.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, a: Int, b: Int, c: Int) {}
+            override fun onTextChanged(s: CharSequence?, a: Int, b: Int, c: Int) {}
+            override fun afterTextChanged(s: Editable?) = renderIcons()
+        })
+        findViewById<View>(R.id.btn_icons_request).setOnClickListener { showRequestDialog() }
+    }
+
+    private fun buildIconTabs() {
+        val row = findViewById<LinearLayout>(R.id.icon_tabs)
+        row.removeAllViews()
+        listOf(IconTab.YOURS to R.string.tab_your_apps, IconTab.ALL to R.string.tab_all, IconTab.SYSTEM to R.string.tab_system)
+            .forEach { (tab, label) ->
+                val active = tab == iconTab
+                row.addView(TextView(this).apply {
+                    setText(label)
+                    setTextColor(getColor(R.color.black))
+                    textSize = 14f
+                    gravity = android.view.Gravity.CENTER
+                    setPadding(Win95.dp(context, 14), 0, Win95.dp(context, 14), 0)
+                    setBackgroundResource(if (active) R.drawable.win95_tab_active else R.drawable.win95_tab_inactive)
+                    if (active) setTypeface(null, android.graphics.Typeface.BOLD)
+                    isSelected = active
+                    layoutParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        Win95.dp(context, if (active) 44 else 40)
+                    )
+                    setOnClickListener {
+                        iconTab = tab
+                        search.text = null
+                        buildIconTabs()
+                        renderIcons()
+                    }
+                })
+            }
+        row.addView(View(this).apply {
+            setBackgroundResource(R.drawable.win95_tab_filler)
+            layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1f)
+        })
+    }
+
+    private fun renderIcons() {
+        val c = catalog ?: return
+        val query = search.text?.toString()?.trim().orEmpty()
+        val summary = findViewById<TextView>(R.id.icons_summary)
+        val request = findViewById<View>(R.id.btn_icons_request)
+        val rows = mutableListOf<IconRow>()
+
+        if (query.isNotEmpty()) {
+            val icons = (c.icons + c.system).filter { it.label.contains(query, ignoreCase = true) }
+            val apps = c.unthemedInstalled.filter { it.label.contains(query, ignoreCase = true) }
+            rows += icons.map(::iconCell)
+            rows += apps.map(::appCell)
+            if (icons.isEmpty()) {
+                rows += IconRow.Header(getString(R.string.search_none))
+                rows += IconRow.Action(getString(R.string.request_it)) {
+                    showRequestDialog(preselect = apps.map { it.component }.toSet())
+                }
+            }
+            summary.text = getString(R.string.search_results, query)
+            request.visibility = View.GONE
+        } else when (iconTab) {
+            IconTab.YOURS -> {
+                val yours = c.yourIcons
+                summary.text = getString(R.string.summary_yours, c.themedCount, c.unthemedInstalled.size)
+                request.visibility = if (c.unthemedInstalled.isEmpty()) View.GONE else View.VISIBLE
+                rows += yours.map(::iconCell)
+                if (c.unthemedInstalled.isNotEmpty()) {
+                    rows += IconRow.Header(
+                        getString(R.string.header_not_themed, c.unthemedInstalled.size),
+                        getString(R.string.header_not_themed_caption)
+                    )
+                    rows += c.unthemedInstalled.map(::appCell)
+                    rows += IconRow.Action(getString(R.string.request_these)) { showRequestDialog() }
+                }
+            }
+            IconTab.ALL -> {
+                summary.text = getString(R.string.summary_all, c.icons.size)
+                request.visibility = View.GONE
+                c.icons.groupBy { it.category }.forEach { (category, icons) ->
+                    rows += IconRow.Header(category)
+                    rows += icons.map(::iconCell)
+                }
+            }
+            IconTab.SYSTEM -> {
+                summary.text = getString(R.string.summary_system, c.system.size)
+                request.visibility = View.GONE
+                rows += IconRow.Header(getString(R.string.tab_system), getString(R.string.system_caption))
+                rows += c.system.map(::iconCell)
+            }
+        }
+        iconsAdapter.rows = rows
+    }
+
+    private fun iconCell(icon: PackIcon) = IconRow.Cell(
+        icon.drawable, icon.label, { IconArt.icon(resources, icon.resId, iconPx) }, { showIconProperties(icon) }
+    )
+
+    private fun appCell(app: InstalledApp) = IconRow.Cell(
+        app.component,
+        app.label,
+        { appIconCache.getOrPut(app.component) { IconArt.plaque(this, app.info.loadIcon(packageManager), iconPx) } },
+        { showUnthemedProperties(app) }
+    )
+
+    private fun iconsStatus(): String {
+        val c = catalog ?: return getString(R.string.status_ready)
+        return getString(R.string.status_icons, c.icons.size + c.system.size, c.pack.appCount())
+    }
+
+    private fun showIconProperties(icon: PackIcon) {
+        val c = catalog ?: return
+        val dialog = Win95.dialog(this, R.layout.dialog_icon_properties)
+        dialog.findViewById<TextView>(R.id.properties_title).text = getString(R.string.icon_properties_title, icon.label)
+        dialog.findViewById<ImageView>(R.id.properties_icon).apply {
+            val px = IconArt.crispPx(context, 88f)
+            setImageBitmap(IconArt.icon(resources, icon.resId, px))
+            layoutParams = layoutParams.apply { width = px; height = px }
+        }
+        dialog.findViewById<TextView>(R.id.properties_name).text = icon.label
+        val themed = c.appsFor(icon.drawable)
+        dialog.findViewById<TextView>(R.id.properties_apps).text = when {
+            icon in c.system -> getString(R.string.icon_system_props)
+            themed.isEmpty() -> getString(R.string.icon_not_installed)
+            else -> getString(R.string.icon_themes_here) + "\n" + themed.joinToString("\n") { "• $it" }
+        }
+        dialog.findViewById<View>(R.id.btn_properties_ok).setOnClickListener { dialog.dismiss() }
+        dialog.findViewById<View>(R.id.btn_close_properties).setOnClickListener { dialog.dismiss() }
+        dialog.show()
+    }
+
+    private fun showUnthemedProperties(app: InstalledApp) {
+        Win95.messageBox(
+            this,
+            getString(R.string.icon_properties_title, app.label),
+            getString(R.string.icon_unthemed_props, app.label),
+            choices = listOf(
+                Win95.Choice(getString(R.string.cancel)),
+                Win95.Choice(getString(R.string.request_it), primary = true) { showRequestDialog(setOf(app.component)) }
+            )
+        )
+    }
+
+    // --- Wallpapers ---
+
+    private fun setupWallpapers() {
+        val list = findViewById<RecyclerView>(R.id.wallpapers_list)
+        val tileWidth = ((resources.displayMetrics.widthPixels - 48 * density) / 2).toInt()
+        val thumbs = HashMap<Int, Bitmap>()
+        list.layoutManager = GridLayoutManager(this, 2)
+        list.adapter = WallpapersAdapter(
+            tileWidth,
+            { w -> thumbs.getOrPut(w.resId) { Wallpapers.thumbnail(this, w.resId, tileWidth) } },
+            { Prefs.wallpaper(this) },
+            ::onWallpaperTapped
+        )
+    }
+
+    private fun onWallpaperTapped(wallpaper: Wallpaper) {
+        if (wallpaper.live) {
+            if (!Wallpapers.openStarfield(this)) {
+                Win95.messageBox(this, getString(R.string.title_wallpapers), getString(R.string.live_wallpaper_unavailable), warning = true)
+            }
+            return
+        }
+        val dialog = Win95.dialog(this, R.layout.dialog_wallpaper)
+        dialog.findViewById<TextView>(R.id.wallpaper_title).text = getString(R.string.set_wallpaper_title)
+        dialog.findViewById<ImageView>(R.id.dlg_preview)
+            .setImageBitmap(Wallpapers.thumbnail(this, wallpaper.resId, Win95.dp(this, 140)))
+        fun set(flags: Int) {
+            dialog.dismiss()
+            Wallpapers.apply(this, wallpaper, flags) { ok ->
+                if (ok) {
+                    status.setText(R.string.status_wallpaper_set)
+                    Win95.confirmHaptic(status)
+                    @Suppress("NotifyDataSetChanged")
+                    findViewById<RecyclerView>(R.id.wallpapers_list).adapter?.notifyDataSetChanged()
+                } else {
+                    Win95.messageBox(this, getString(R.string.set_wallpaper_title), getString(R.string.wallpaper_failed), warning = true)
+                }
+            }
+        }
+        dialog.findViewById<View>(R.id.btn_home).setOnClickListener { set(WallpaperManager.FLAG_SYSTEM) }
+        dialog.findViewById<View>(R.id.btn_lock).setOnClickListener { set(WallpaperManager.FLAG_LOCK) }
+        dialog.findViewById<View>(R.id.btn_both).setOnClickListener { set(WallpaperManager.FLAG_SYSTEM or WallpaperManager.FLAG_LOCK) }
+        dialog.findViewById<View>(R.id.btn_close_wallpaper).setOnClickListener { dialog.dismiss() }
+        dialog.show()
+    }
+
+    // --- Add/Remove Programs, About, feedback ---
+
+    private fun showRequestDialog(preselect: Set<String> = emptySet()) {
+        val dialog = Win95.dialog(this, R.layout.dialog_request)
+        dialog.findViewById<View>(R.id.btn_close_request).setOnClickListener { dialog.dismiss() }
+        dialog.show()
+
+        fun populate(c: IconCatalog) {
+            if (!dialog.isShowing) return
+            if (c.unthemedInstalled.isEmpty()) {
+                dialog.findViewById<TextView>(R.id.request_status).setText(R.string.request_all_themed)
+                dialog.findViewById<View>(R.id.request_progress).visibility = View.GONE
+                return
+            }
+            dialog.findViewById<View>(R.id.request_loading).visibility = View.GONE
+            dialog.findViewById<ScrollView>(R.id.request_scroll).visibility = View.VISIBLE
+            val list = dialog.findViewById<LinearLayout>(R.id.request_list)
+            val boxes = c.unthemedInstalled.map { app ->
+                val box = CheckBox(this).apply {
+                    isChecked = app.component in preselect
+                    setButtonDrawable(R.drawable.win95_checkbox)
+                    setPadding(Win95.dp(context, 8), 0, Win95.dp(context, 8), 0)
+                    importantForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_NO
+                }
+                list.addView(LinearLayout(this).apply {
+                    orientation = LinearLayout.HORIZONTAL
+                    gravity = android.view.Gravity.CENTER_VERTICAL
+                    minimumHeight = Win95.dp(context, 48)
+                    contentDescription = app.label
+                    addView(box)
+                    addView(ImageView(context).apply {
+                        setImageDrawable(app.info.loadIcon(packageManager))
+                        layoutParams = LinearLayout.LayoutParams(Win95.dp(context, 32), Win95.dp(context, 32)).apply {
+                            marginEnd = Win95.dp(context, 10)
+                        }
+                    })
+                    addView(TextView(context).apply {
+                        text = app.label
+                        setTextColor(getColor(R.color.black))
+                        textSize = 14f
+                    })
+                    setOnClickListener { box.isChecked = !box.isChecked }
+                })
+                box to app
+            }
+            dialog.findViewById<CheckBox>(R.id.request_select_all).apply {
+                visibility = View.VISIBLE
+                isChecked = boxes.all { it.first.isChecked }
+                setOnCheckedChangeListener { _, checked -> boxes.forEach { it.first.isChecked = checked } }
+            }
+            fun submit(viaGithub: Boolean) {
+                val apps = boxes.filter { it.first.isChecked }.map { it.second }
+                if (apps.isEmpty()) {
+                    Win95.messageBox(this, getString(R.string.add_remove_programs), getString(R.string.request_none_selected))
+                    return
+                }
+                dialog.dismiss()
+                sendIconRequest(apps, viaGithub)
+                status.setText(R.string.status_request_sent)
+            }
+            dialog.findViewById<View>(R.id.btn_request_github).setOnClickListener { submit(true) }
+            dialog.findViewById<View>(R.id.btn_request_share).setOnClickListener { submit(false) }
+        }
+
+        val bar = dialog.findViewById<BlockProgressBar>(R.id.request_progress)
+        val c = catalog
+        if (c != null) {
+            bar.animateTo(1f, 400) { populate(c) }
+        } else Thread {
+            val loaded = IconCatalog.load(this)
+            runOnUiThread {
+                catalog = loaded
+                populate(loaded)
+            }
+        }.start()
+    }
+
+    private fun sendIconRequest(apps: List<InstalledApp>, viaGithub: Boolean) {
         val body = buildString {
             appendLine("Icon request sent from the app:")
             appendLine()
@@ -213,367 +606,29 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private class LauncherTarget(
-        val label: String,
-        val pkg: String,
-        // Launchers without a public apply intent get opened with a hint instead.
-        val applyIntent: ((String) -> Intent)? = null
-    )
-
-    private val launcherTargets = listOf(
-        LauncherTarget("Nova Launcher", "com.teslacoilsw.launcher") { pack ->
-            Intent("com.teslacoilsw.launcher.APPLY_ICON_THEME")
-                .setPackage("com.teslacoilsw.launcher")
-                .putExtra("com.teslacoilsw.launcher.extra.ICON_THEME_TYPE", "GO")
-                .putExtra("com.teslacoilsw.launcher.extra.ICON_THEME_PACKAGE", pack)
-        },
-        LauncherTarget("Lawnchair", "app.lawnchair"),
-        LauncherTarget("Lawnchair 2", "ch.deletescape.lawnchair.plah"),
-        LauncherTarget("Apex Launcher", "com.anddoes.launcher") { pack ->
-            Intent("com.anddoes.launcher.SET_THEME")
-                .setPackage("com.anddoes.launcher")
-                .putExtra("com.anddoes.launcher.THEME_PACKAGE_NAME", pack)
-        },
-        LauncherTarget("Action Launcher", "com.actionlauncher.playstore"),
-        LauncherTarget("Smart Launcher", "ginlemon.flowerfree") { pack ->
-            Intent("ginlemon.smartlauncher.setGSLTHEME")
-                .setPackage("ginlemon.flowerfree")
-                .putExtra("package", pack)
-        },
-        LauncherTarget("Smart Launcher Pro", "ginlemon.flowerpro") { pack ->
-            Intent("ginlemon.smartlauncher.setGSLTHEME")
-                .setPackage("ginlemon.flowerpro")
-                .putExtra("package", pack)
-        }
-    )
-
-    private fun showApplyDialog() {
-        val dialog = win95Dialog(R.layout.dialog_apply)
-        val installed = launcherTargets.filter {
-            packageManager.getLaunchIntentForPackage(it.pkg) != null
-        }
-
-        if (installed.isEmpty()) {
-            dialog.findViewById<TextView>(R.id.choose_launcher_label)?.visibility = View.GONE
-            dialog.findViewById<TextView>(R.id.no_launcher_text)?.visibility = View.VISIBLE
-            dialog.findViewById<TextView>(R.id.btn_get_lawnchair)?.apply {
-                visibility = View.VISIBLE
-                setOnClickListener {
-                    dialog.dismiss()
-                    openPlayStore("app.lawnchair")
-                }
-            }
-        } else {
-            val list = dialog.findViewById<LinearLayout>(R.id.launcher_list)
-            installed.forEach { target ->
-                list?.addView(win95Button(target.label) {
-                    dialog.dismiss()
-                    applyWith(target)
-                })
-            }
-        }
-        dialog.findViewById<TextView>(R.id.btn_cancel_apply)?.setOnClickListener { dialog.dismiss() }
-        dialog.show()
-    }
-
-    private fun applyWith(target: LauncherTarget) {
-        target.applyIntent?.invoke(packageName)?.let { intent ->
-            try {
-                startActivity(intent)
-                return
-            } catch (_: Exception) {
-                // Launcher installed but the apply activity moved; fall through.
-            }
-        }
-        packageManager.getLaunchIntentForPackage(target.pkg)?.let {
-            startActivity(it)
-            Toast.makeText(
-                this, getString(R.string.open_launcher_hint, target.label), Toast.LENGTH_LONG
-            ).show()
-        }
-    }
-
-    private fun openPlayStore(pkg: String) {
-        val market = Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$pkg"))
-        val web = Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$pkg"))
-        try {
-            startActivity(market)
-        } catch (_: Exception) {
-            startActivity(web)
-        }
-    }
-
-    private fun win95Button(label: String, onClick: () -> Unit): TextView =
-        TextView(this).apply {
-            text = label
-            setTextColor(getColor(R.color.black))
-            textSize = 12f
-            setBackgroundResource(R.drawable.win95_button_selector)
-            val density = resources.displayMetrics.density
-            setPadding(
-                (14 * density).toInt(), (6 * density).toInt(),
-                (14 * density).toInt(), (6 * density).toInt()
-            )
-            layoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            ).apply { bottomMargin = (6 * density).toInt() }
-            gravity = Gravity.CENTER
-            setOnClickListener { onClick() }
-        }
-
-    private fun setupWindowControls() {
-        findViewById<TextView>(R.id.btn_close).setOnClickListener { finish() }
-        findViewById<View>(R.id.btn_minimize).setOnClickListener { moveTaskToBack(true) }
-        findViewById<TextView>(R.id.btn_maximize).setOnClickListener {
-            Toast.makeText(this, R.string.already_maximized, Toast.LENGTH_SHORT).show()
-        }
-        findViewById<View>(R.id.btn_start).setOnClickListener { showAboutDialog() }
-    }
-
-    private class GridIcon(val drawable: String, val label: String, val cell: View, val yours: Boolean)
-
-    private val gridIcons = mutableListOf<GridIcon>()
-    private var showAllIcons = false
-
-    /** Builds the icon grid from xml/drawable.xml. Icons for apps installed on
-     *  this phone come first; icons that theme no app at all go under Extras. */
-    @SuppressLint("DiscouragedApi")
-    private fun populateIconGrid() {
-        val extras = findViewById<GridLayout>(R.id.extras_grid)
-        val installed = launchableApps()
-            .mapNotNull { iconPack.drawableFor(it.activityInfo.packageName, it.activityInfo.name) }
-            .toSet()
-
-        val parser = resources.getXml(R.xml.drawable)
-        while (parser.eventType != XmlPullParser.END_DOCUMENT) {
-            if (parser.eventType == XmlPullParser.START_TAG && parser.name == "item") {
-                val drawableName = parser.getAttributeValue(null, "drawable")
-                val label = parser.getAttributeValue(null, "name") ?: drawableName
-                val resId = drawableName
-                    ?.let { resources.getIdentifier(it, "drawable", packageName) } ?: 0
-                if (resId != 0) {
-                    val cell = iconCell(drawableName, label, resId)
-                    if (iconPack.themesAnything(drawableName)) {
-                        gridIcons += GridIcon(drawableName, label, cell, drawableName in installed)
-                    } else {
-                        extras.addView(cell)
-                    }
-                }
-            }
-            parser.next()
-        }
-
-        findViewById<TextView>(R.id.btn_show_all).setOnClickListener {
-            showAllIcons = !showAllIcons
-            refreshIconGrid("")
-        }
-        setupIconSearch()
-        refreshIconGrid("")
-    }
-
-    /** The icons are 192px pixel art drawn on 32- or 48-cell grids, so any
-     *  multiple of 96px keeps every art pixel a whole number of screen pixels. */
-    private fun crispIconPx(targetDp: Float, maxPx: Int = Int.MAX_VALUE): Int {
-        var k = (targetDp * resources.displayMetrics.density / 96f).roundToInt().coerceAtLeast(1)
-        while (k > 1 && k * 96 > maxPx) k--
-        return k * 96
-    }
-
-    private fun crispIcon(resId: Int, px: Int): Bitmap {
-        val source = BitmapFactory.decodeResource(
-            resources, resId, BitmapFactory.Options().apply { inScaled = false }
-        )
-        if (source.width == px) return source
-        return Bitmap.createScaledBitmap(source, px, px, px < source.width)
-    }
-
-    private val gridCellPx by lazy {
-        val density = resources.displayMetrics.density
-        // Screen width minus the window's frame, border and content padding, over 4 columns.
-        ((resources.displayMetrics.widthPixels - 64 * density) / 4).toInt()
-    }
-
-    private val gridIconPx by lazy {
-        crispIconPx(72f, maxPx = gridCellPx - (8 * resources.displayMetrics.density).toInt())
-    }
-
-    private fun iconCell(drawableName: String, label: String, resId: Int): View {
-        val density = resources.displayMetrics.density
-        val gap = (4 * density).toInt()
-        return LinearLayout(this).apply {
-            orientation = LinearLayout.VERTICAL
-            gravity = Gravity.CENTER_HORIZONTAL
-            contentDescription = label
-            setPadding(gap, gap, gap, gap)
-            layoutParams = GridLayout.LayoutParams().apply { width = gridCellPx }
-            setOnClickListener { showIconProperties(drawableName, label, resId) }
-            addView(ImageView(context).apply {
-                setImageBitmap(crispIcon(resId, gridIconPx))
-                importantForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_NO
-                layoutParams = LinearLayout.LayoutParams(gridIconPx, gridIconPx)
-            })
-            addView(TextView(context).apply {
-                text = label
-                setTextColor(getColor(R.color.black))
-                textSize = 11f
-                gravity = Gravity.CENTER
-                maxLines = 2
-                ellipsize = TextUtils.TruncateAt.END
-                importantForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_NO
-            })
-        }
-    }
-
-    /** Collapsed: the icons for this phone's apps, or a popular dozen if none
-     *  match. Expanded: everything plus Extras. Searching: every match. */
-    private fun refreshIconGrid(query: String) {
-        val title = findViewById<TextView>(R.id.icon_section_title)
-        val showAll = findViewById<TextView>(R.id.btn_show_all)
-        val extras = findViewById<View>(R.id.extras_section)
-        val emptyNote = findViewById<TextView>(R.id.icon_search_empty)
-        val yours = gridIcons.filter { it.yours }
-        val collapsed = yours.ifEmpty { gridIcons.filter { it.drawable in POPULAR_ICONS } }
-
-        val visible = when {
-            query.isNotEmpty() -> gridIcons.filter { it.label.contains(query, ignoreCase = true) }
-            showAllIcons -> gridIcons
-            else -> collapsed
-        }.toSet()
-        // GridLayout keeps holes for GONE children, so re-add the visible ones instead.
-        val grid = findViewById<GridLayout>(R.id.icon_grid)
-        grid.removeAllViews()
-        gridIcons.filter { it in visible }.forEach { grid.addView(it.cell) }
-
-        title.text = when {
-            query.isNotEmpty() -> getString(R.string.search_results_title)
-            showAllIcons -> getString(R.string.all_icons_title, gridIcons.size)
-            yours.isNotEmpty() -> getString(R.string.your_apps_title, yours.size)
-            else -> getString(R.string.popular_icons_title)
-        }
-        showAll.visibility = if (query.isEmpty()) View.VISIBLE else View.GONE
-        showAll.text = if (showAllIcons) getString(R.string.show_fewer_icons)
-            else getString(R.string.show_all_icons, gridIcons.size)
-        extras.visibility = if (showAllIcons && query.isEmpty()) View.VISIBLE else View.GONE
-        emptyNote.visibility = if (query.isNotEmpty() && visible.isEmpty()) View.VISIBLE else View.GONE
-    }
-
-    private fun showIconProperties(drawableName: String, label: String, resId: Int) {
-        val dialog = win95Dialog(R.layout.dialog_icon_properties)
-        dialog.findViewById<TextView>(R.id.properties_title)?.text =
-            getString(R.string.icon_properties_title, label)
-        dialog.findViewById<ImageView>(R.id.properties_icon)?.apply {
-            val px = crispIconPx(88f)
-            setImageBitmap(crispIcon(resId, px))
+    private fun showAboutDialog() {
+        val dialog = Win95.dialog(this, R.layout.dialog_about)
+        dialog.findViewById<ImageView>(R.id.about_icon).apply {
+            val px = IconArt.crispPx(context, 56f)
+            setImageBitmap(IconArt.icon(resources, R.drawable.ic_win95mode, px))
             layoutParams = layoutParams.apply { width = px; height = px }
         }
-        dialog.findViewById<TextView>(R.id.properties_name)?.text = label
-        val themed = launchableApps()
-            .filter { iconPack.drawableFor(it.activityInfo.packageName, it.activityInfo.name) == drawableName }
-            .map { it.loadLabel(packageManager).toString() }
-            .distinct()
-            .sorted()
-        dialog.findViewById<TextView>(R.id.properties_apps)?.text =
-            if (themed.isEmpty()) getString(R.string.icon_not_installed)
-            else getString(R.string.icon_themes_here) + "\n" + themed.joinToString("\n") { "• $it" }
-        dialog.findViewById<TextView>(R.id.btn_properties_ok)?.setOnClickListener { dialog.dismiss() }
-        dialog.show()
-    }
-
-    private fun setupIconSearch() {
-        findViewById<EditText>(R.id.icon_search).addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, a: Int, b: Int, c: Int) {}
-            override fun onTextChanged(s: CharSequence?, a: Int, b: Int, c: Int) {}
-            override fun afterTextChanged(s: Editable?) {
-                refreshIconGrid(s?.toString()?.trim().orEmpty())
-            }
-        })
-    }
-
-    private fun setupWallpaperClicks() {
-        wallpapers.forEach { (viewId, drawableId) ->
-            findViewById<ImageView>(viewId)?.setOnClickListener {
-                showWallpaperDialog(drawableId)
-            }
+        val version = packageManager.getPackageInfo(packageName, 0).versionName ?: ""
+        dialog.findViewById<TextView>(R.id.about_version).text = getString(R.string.about_version, version)
+        catalog?.let {
+            dialog.findViewById<TextView>(R.id.about_text).text =
+                getString(R.string.about_text, it.icons.size + it.system.size, it.pack.appCount())
         }
-    }
-
-    private fun showWallpaperDialog(drawableId: Int) {
-        val dialog = win95Dialog(R.layout.dialog_wallpaper)
-        dialog.findViewById<ImageView>(R.id.dlg_preview)?.setImageResource(drawableId)
-
-        fun apply(flags: Int) {
+        dialog.findViewById<View>(R.id.btn_ok).setOnClickListener { dialog.dismiss() }
+        dialog.findViewById<View>(R.id.btn_close_about).setOnClickListener { dialog.dismiss() }
+        dialog.findViewById<View>(R.id.btn_feedback).setOnClickListener {
             dialog.dismiss()
-            applyWallpaper(drawableId, flags)
-        }
-        dialog.findViewById<TextView>(R.id.btn_home)?.setOnClickListener { apply(WallpaperManager.FLAG_SYSTEM) }
-        dialog.findViewById<TextView>(R.id.btn_lock)?.setOnClickListener { apply(WallpaperManager.FLAG_LOCK) }
-        dialog.findViewById<TextView>(R.id.btn_both)?.setOnClickListener {
-            apply(WallpaperManager.FLAG_SYSTEM or WallpaperManager.FLAG_LOCK)
-        }
-        dialog.findViewById<TextView>(R.id.btn_cancel)?.setOnClickListener { dialog.dismiss() }
-        dialog.show()
-    }
-
-    private fun showAboutDialog() {
-        val dialog = win95Dialog(R.layout.dialog_about)
-        dialog.findViewById<TextView>(R.id.btn_ok)?.setOnClickListener { dialog.dismiss() }
-        dialog.findViewById<TextView>(R.id.btn_feedback)?.setOnClickListener {
-            startActivity(
-                Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/sindriax/win95-mode/issues/new/choose"))
-            )
+            openFeedback()
         }
         dialog.show()
     }
 
-    private fun win95Dialog(layoutId: Int): Dialog =
-        Dialog(this).apply {
-            requestWindowFeature(Window.FEATURE_NO_TITLE)
-            setContentView(layoutId)
-            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        }
-
-    private fun applyWallpaper(drawableId: Int, flags: Int) {
-        Thread {
-            val message = try {
-                val manager = WallpaperManager.getInstance(this)
-                val metrics = resources.displayMetrics
-                // Honor the launcher's desired size (scrolling home screens ask
-                // for more than one screen width) so nothing gets stretched.
-                val targetWidth = maxOf(manager.desiredMinimumWidth, metrics.widthPixels)
-                val targetHeight = maxOf(manager.desiredMinimumHeight, metrics.heightPixels)
-                val source = BitmapFactory.decodeResource(resources, drawableId)
-                manager.setBitmap(scaleAndCrop(source, targetWidth, targetHeight), null, true, flags)
-                R.string.wallpaper_applied
-            } catch (_: Exception) {
-                R.string.wallpaper_failed
-            }
-            runOnUiThread {
-                if (!isFinishing) Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-            }
-        }.start()
-    }
-
-    private fun scaleAndCrop(source: Bitmap, targetWidth: Int, targetHeight: Int): Bitmap {
-        val scale = maxOf(
-            targetWidth.toFloat() / source.width, targetHeight.toFloat() / source.height
-        )
-        val scaled = Bitmap.createScaledBitmap(
-            source,
-            (source.width * scale).roundToInt().coerceAtLeast(targetWidth),
-            (source.height * scale).roundToInt().coerceAtLeast(targetHeight),
-            true
-        )
-        return Bitmap.createBitmap(
-            scaled, (scaled.width - targetWidth) / 2, (scaled.height - targetHeight) / 2,
-            targetWidth, targetHeight
-        )
-    }
-
-    private companion object {
-        val POPULAR_ICONS = setOf(
-            "ic_phone", "ic_camera", "ic_messages", "ic_whatsapp", "ic_instagram", "ic_spotify",
-            "ic_youtube", "ic_netflix", "ic_chrome", "ic_maps", "ic_photos", "ic_calculator"
-        )
+    private fun openFeedback() {
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/sindriax/win95-mode/issues/new/choose")))
     }
 }

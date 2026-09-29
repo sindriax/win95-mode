@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Selected property-sheet tab: raised, and open at the bottom so it joins the page. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item><shape><solid android:color="@color/black" /></shape></item>
+    <item android:right="2dp"><shape><solid android:color="@color/white" /></shape></item>
+    <item android:left="2dp" android:top="2dp" android:right="2dp"><shape><solid android:color="@color/win95_gray" /></shape></item>
+</layer-list>

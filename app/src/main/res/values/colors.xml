@@ -10,4 +10,6 @@
     <color name="win95_teal">#008080</color>
     <color name="win95_button_shadow">#808080</color>
     <color name="win95_button_highlight">#FFFFFF</color>
+    <!-- Captions and hints: navy passes contrast on gray (8.6:1); dark gray (2.0:1) does not. -->
+    <color name="win95_text_secondary">#000080</color>
 </resources>

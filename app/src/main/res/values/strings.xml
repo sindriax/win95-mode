@@ -1,66 +1,145 @@
 <resources>
-    <string name="app_name">Win95 Mode</string>
-    <string name="close_button">×</string>
-    <string name="maximize_button">□</string>
-    <string name="app_icon_desc">Win95 Mode icon</string>
-    <string name="welcome_title">Welcome to Win95 Mode!</string>
-    <string name="your_apps_title">Your apps (%1$d):</string>
-    <string name="popular_icons_title">Popular icons:</string>
-    <string name="all_icons_title">All icons (%1$d):</string>
-    <string name="search_results_title">Search results:</string>
-    <string name="show_all_icons">Show all %1$d icons…</string>
-    <string name="show_fewer_icons">Show fewer</string>
-    <string name="extras_title">Extras (not for a specific app — assign them by hand in your launcher):</string>
-    <string name="icon_search_hint">Find an icon…</string>
-    <string name="icon_search_no_results">Nothing found. Try the Request Icons button below!</string>
-    <string name="wallpapers">Wallpapers:</string>
-    <string name="wall_teal_desc">Teal wallpaper</string>
-    <string name="wall_clouds_desc">Clouds wallpaper</string>
-    <string name="wall_setup_desc">Setup wallpaper</string>
-    <string name="wall_stars_desc">Stars wallpaper</string>
-    <string name="wall_matrix_desc">Matrix wallpaper</string>
-    <string name="tap_wallpaper">Tap a wallpaper to apply</string>
-    <string name="apply_icon_pack">Apply Icon Pack…</string>
-    <string name="apply_short">Apply</string>
+    <string name="app_name" translatable="false">Win95 Mode</string>
+
+    <!-- Window chrome and taskbar -->
+    <string name="close_button" translatable="false">×</string>
+    <string name="maximize_button" translatable="false">□</string>
+    <string name="close">Close</string>
+    <string name="minimize">Minimize</string>
+    <string name="start_button">Start</string>
+    <string name="tab_home">Home</string>
+    <string name="tab_icons">Icons</string>
+    <string name="tab_wallpapers">Wallpapers</string>
+    <string name="title_icons">Icons</string>
+    <string name="title_wallpapers">Wallpapers</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- Start menu -->
+    <string name="start_setup">Setup…</string>
+    <string name="start_request">Request icons…</string>
+    <string name="start_feedback">Send feedback…</string>
+    <string name="start_about">About Win95 Mode</string>
+    <string name="start_shutdown">Shut Down…</string>
+
+    <!-- Home -->
+    <string name="your_home_screen">Your home screen</string>
+    <string name="state_unsupported">Can\'t use icon packs</string>
+    <string name="state_unsupported_detail">Most stock home screens, like Pixel\'s and Samsung\'s, can\'t use icon packs. A free launcher fixes that.</string>
+    <string name="state_not_home">Installed, but not your home screen</string>
+    <string name="state_ready">Your home screen · ready</string>
+    <string name="state_applied">Your home screen · pack applied</string>
+    <string name="applied_on">Applied %1$s</string>
     <string name="how_to_fix">How to fix…</string>
-    <string name="status_ready">✔ %1$s is your home screen, so Win95 Mode will work. Tap Apply to switch your icons.</string>
-    <string name="status_installed_not_home">%1$s can use Win95 Mode, but it isn\'t your home screen yet. Apply the icons in it, then set it as your default home app.</string>
-    <string name="status_unsupported">Your home screen can\'t use icon packs. Stock Pixel and most Samsung launchers can\'t. A free launcher like Lawnchair fixes that.</string>
+    <string name="apply_icons">Apply icons</string>
+    <string name="apply_again">Apply again</string>
+    <string name="set_as_home_screen">Set as home screen</string>
+    <string name="coverage_title">Coverage</string>
+    <string name="coverage_text">%1$d of your %2$d apps have a Win95 icon.</string>
+    <string name="coverage_all">All %1$d of your apps have a Win95 icon.</string>
+    <string name="preview_strip_desc">Your apps\' icons. Opens Icons.</string>
+    <string name="request_other">Request the other %1$d…</string>
+    <string name="whats_new_title">What\'s new in 3.0</string>
+    <string name="chevron" translatable="false">▸</string>
+    <string name="whats_new_body">• Icons for Samsung, Xiaomi and OnePlus system apps\n• Over 220 icons, one for each app\n• Setup that finds a launcher that works\n• Request icons for the apps you still miss\n• The Starfield screensaver as a live wallpaper\n• A calendar icon that shows today\'s date\n• Sharper icons and full-resolution wallpapers</string>
+
+    <!-- Applying in a launcher -->
+    <string name="choose_launcher_title">Display Properties</string>
+    <string name="choose_launcher">Apply Win95 Mode with:</string>
+    <string name="open_launcher_title">Apply in %1$s</string>
+    <string name="open_launcher_text">%1$s will open. In its settings, look for Icon pack and choose Win95 Mode.</string>
+    <string name="open_launcher">Open %1$s</string>
+    <string name="status_applied">Icons applied in %1$s.</string>
+    <string name="status_opened">Opened %1$s. Choose Win95 Mode under Icon pack.</string>
+    <string name="launchers_title">Launchers</string>
+    <string name="launchers_text">Win95 Mode works with these launchers. Pick one to open it in the Play Store.</string>
+    <string name="get_lawnchair">Get Lawnchair (free)</string>
+    <string name="other_launchers">Other launchers…</string>
+
+    <!-- Icons -->
+    <string name="icon_search_hint">Find an app or icon…</string>
+    <string name="tab_your_apps">Your apps</string>
+    <string name="tab_all">All</string>
+    <string name="tab_system">System</string>
+    <string name="summary_yours">%1$d themed · %2$d not yet</string>
+    <string name="summary_all">%1$d icons</string>
+    <string name="summary_system">%1$d Windows 95 system icons</string>
+    <string name="request_ellipsis">Request…</string>
+    <string name="header_not_themed">Not themed yet (%1$d)</string>
+    <string name="header_not_themed_caption">These keep their own icon on a gray plaque until they get a Win95 one.</string>
+    <string name="request_these">Request these</string>
+    <string name="system_caption">Assign these to any app from your launcher\'s icon picker.</string>
+    <string name="search_results">Results for “%1$s”</string>
+    <string name="search_none">No icon for that yet.</string>
+    <string name="request_it">Request it</string>
     <string name="icon_properties_title">%1$s Properties</string>
     <string name="icon_themes_here">On this phone it themes:</string>
-    <string name="icon_not_installed">None of the apps this icon is for are installed on this phone.</string>
-    <string name="display_properties">Display Properties</string>
-    <string name="choose_launcher">Apply \'Win95 Mode\' with:</string>
-    <string name="open_launcher_hint">Opening %1$s — pick \'Win95 Mode\' in its icon pack settings</string>
-    <string name="no_launcher_found">No compatible launcher found.\n\nStock launchers (Pixel, most Samsung) don\'t support icon packs. Install a launcher like Lawnchair, apply it, then come back here.</string>
-    <string name="get_lawnchair">Get Lawnchair</string>
-    <string name="start_button">Start</string>
-    <string name="start_button_desc">Start button</string>
+    <string name="icon_not_installed">None of the apps this icon is for are on this phone.</string>
+    <string name="icon_system_props">A Windows 95 system icon. Assign it to any app from your launcher\'s icon picker.</string>
+    <string name="icon_unthemed_props">%1$s doesn\'t have a Win95 icon yet. Until it does, it keeps its own icon on the gray plaque.</string>
+
+    <!-- Wallpapers -->
+    <string name="wall_teal">Teal</string>
+    <string name="wall_clouds">Clouds</string>
+    <string name="wall_setup">Setup</string>
+    <string name="wall_stars">Stars</string>
+    <string name="wall_maze">Maze</string>
+    <string name="wall_starfield">Starfield</string>
+    <string name="wall_current">✔ %1$s</string>
+    <string name="wall_current_desc">%1$s, current wallpaper</string>
+    <string name="live_badge">LIVE</string>
     <string name="set_wallpaper_title">Set Wallpaper</string>
     <string name="wallpaper_preview_desc">Wallpaper preview</string>
-    <string name="apply_to">Apply this wallpaper to:</string>
+    <string name="apply_to">Use this wallpaper on:</string>
     <string name="home_screen">Home</string>
     <string name="lock_screen">Lock</string>
     <string name="both_screens">Both</string>
-    <string name="cancel">Cancel</string>
-    <string name="wallpaper_applied">Wallpaper applied!</string>
+    <string name="status_wallpapers">Tap a wallpaper to set it.</string>
+    <string name="status_wallpaper_set">Wallpaper set.</string>
+    <string name="wallpaper_failed">Couldn\'t set the wallpaper. Try again, or set it from your phone\'s settings.</string>
+    <string name="live_wallpaper_unavailable">Your phone doesn\'t support live wallpapers.</string>
     <string name="starfield_label">Win95 Starfield</string>
     <string name="starfield_description">The classic Starfield Simulation screensaver, flying through space forever.</string>
-    <string name="starfield_button">Starfield Screensaver…</string>
-    <string name="live_wallpaper_unavailable">This device doesn\'t support live wallpapers</string>
-    <string name="wallpaper_failed">Failed to set wallpaper</string>
-    <string name="already_maximized">This window is already maximized</string>
-    <string name="about_title">About Win95 Mode</string>
-    <string name="about_text">Win95 Mode v3\n\nA Windows 95-style icon pack and wallpaper manager.\n\nUse the Apply button to theme your launcher, tap a wallpaper to set it, and enjoy the nostalgia.</string>
-    <string name="ok">OK</string>
-    <string name="feedback_link">Request an icon / report a bug</string>
-    <string name="request_icons">Request Icons…</string>
+
+    <!-- Status bar -->
+    <string name="status_ready">Ready.</string>
+    <string name="status_icons">%1$d icons · %2$d apps</string>
+    <string name="status_request_sent">Request sent. Thank you.</string>
+
+    <!-- Add/Remove Programs -->
     <string name="add_remove_programs">Add/Remove Programs</string>
-    <string name="request_intro">These apps have no Win95 icon yet.\nTick the ones you\'d like themed:</string>
-    <string name="request_all_themed">Everything on your phone is already themed. Enjoy!</string>
-    <string name="request_none_selected">Tick at least one app first</string>
+    <string name="request_intro">These apps don\'t have a Win95 icon yet. Tick the ones you\'d like:</string>
+    <string name="select_all">Select all</string>
+    <string name="request_all_themed">Every app on your phone already has a Win95 icon.</string>
+    <string name="request_none_selected">Tick at least one app first.</string>
     <string name="request_via_github">Send on GitHub</string>
-    <string name="request_via_share">Share / Email</string>
+    <string name="request_via_share">Share…</string>
     <string name="request_loading">Scanning installed apps…</string>
 
+    <!-- About -->
+    <string name="about_title">About Win95 Mode</string>
+    <string name="about_version">Version %1$s</string>
+    <string name="about_text">A Windows 95 icon pack and wallpaper set for Android: %1$d icons for %2$d apps, one icon each.\n\nMissing an app? Request it from the Start menu.</string>
+    <string name="send_feedback">Send feedback</string>
+
+    <!-- Setup -->
+    <string name="setup_window_title">Win95 Mode Setup</string>
+    <string name="setup_step">Step %1$d of %2$d</string>
+    <string name="setup_welcome_title">Welcome to Win95 Mode Setup!</string>
+    <string name="setup_welcome_body">Setup will make your phone look like a 1995 desktop: Win95 icons for your apps, and a classic wallpaper.\n\nIt takes about a minute.</string>
+    <string name="setup_launcher_title">Checking your home screen</string>
+    <string name="setup_checking">Looking for a launcher that can use icon packs…</string>
+    <string name="setup_ready_body">✔ %1$s is your home screen. It can use Win95 Mode.</string>
+    <string name="setup_not_home_body">%1$s can use Win95 Mode, but it isn\'t your home screen yet. You can apply the icons now and switch later.</string>
+    <string name="setup_unsupported_body">%1$s can\'t use icon packs. Most stock home screens can\'t.\n\nInstall a free launcher, then come back here. Setup will notice.</string>
+    <string name="setup_apply_title">Apply the icons</string>
+    <string name="setup_apply_body">%1$s will switch to Win95 Mode, or open so you can choose it under Icon pack.</string>
+    <string name="setup_apply_later">You can apply the icons later from Home, once you have a launcher that can use them.</string>
+    <string name="setup_also_wallpaper">Also set the classic teal wallpaper</string>
+    <string name="setup_applied">✔ Done.</string>
+    <string name="setup_finish_title">Setup is complete</string>
+    <string name="setup_finish_body">Your phone is ready. Open Win95 Mode anytime to change wallpapers, see your icons, or request more.</string>
+    <string name="setup_back">&lt; Back</string>
+    <string name="setup_next">Next &gt;</string>
+    <string name="setup_finish">Finish</string>
 </resources>

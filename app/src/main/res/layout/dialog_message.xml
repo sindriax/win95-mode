@@ -15,7 +15,7 @@
         android:paddingEnd="3dp">
 
         <TextView
-            android:text="@string/about_title"
+            android:id="@+id/message_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -26,7 +26,7 @@
             android:ellipsize="end" />
 
         <TextView
-            android:id="@+id/btn_close_about"
+            android:id="@+id/message_close"
             android:layout_width="32dp"
             android:layout_height="26dp"
             android:background="@drawable/win95_button_selector"
@@ -44,65 +44,39 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp"
+        android:padding="14dp"
         android:background="@color/win95_gray">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="14dp">
+            android:layout_marginBottom="16dp">
 
             <ImageView
-                android:id="@+id/about_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/message_glyph"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginEnd="14dp"
                 android:importantForAccessibility="no" />
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/message_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    style="@style/Win95Heading"
-                    android:text="@string/app_name" />
-
-                <TextView
-                    android:id="@+id/about_version"
-                    style="@style/Win95Caption" />
-
-            </LinearLayout>
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:lineSpacingExtra="3dp" />
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/about_text"
-            style="@style/Win95Body"
-            android:layout_marginBottom="16dp" />
-
         <LinearLayout
+            android:id="@+id/message_buttons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="end">
-
-            <TextView
-                android:id="@+id/btn_feedback"
-                style="@style/Win95Button"
-                android:text="@string/send_feedback" />
-
-            <TextView
-                android:id="@+id/btn_ok"
-                style="@style/Win95Button.Primary"
-                android:minHeight="44dp"
-                android:layout_marginStart="8dp"
-                android:text="@string/ok" />
-
-        </LinearLayout>
+            android:gravity="end" />
 
     </LinearLayout>
 

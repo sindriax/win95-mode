@@ -11,6 +11,9 @@ class IconPack(private val mappings: Map<String, String>) {
 
     fun themesAnything(drawable: String): Boolean = drawable in drawables
 
+    /** Distinct apps (packages) the pack themes. */
+    fun appCount(): Int = mappings.keys.map { it.substringAfter('{').substringBefore('/') }.toSet().size
+
     private val drawables = mappings.values.toSet()
 
     companion object {

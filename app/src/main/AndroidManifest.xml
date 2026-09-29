@@ -85,6 +85,10 @@
 
         </activity>
 
+        <activity
+            android:name=".SetupActivity"
+            android:exported="false" />
+
         <service
             android:name=".StarfieldWallpaperService"
             android:exported="true"

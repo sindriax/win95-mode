@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="300dp"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/win95_window_border"
@@ -8,27 +8,36 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="32dp"
         android:background="@drawable/win95_titlebar"
-        android:padding="3dp"
-        android:gravity="center_vertical">
-
-        <ImageView
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:src="@drawable/ic_my_computer"
-            android:contentDescription="@string/app_icon_desc" />
+        android:gravity="center_vertical"
+        android:paddingStart="6dp"
+        android:paddingEnd="3dp">
 
         <TextView
+            android:id="@+id/apply_title"
+            android:text="@string/choose_launcher_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/display_properties"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:paddingStart="6dp"
-            android:paddingEnd="6dp"
-            android:textSize="12sp" />
+            android:textSize="14sp"
+            android:maxLines="1"
+            android:ellipsize="end" />
+
+        <TextView
+            android:id="@+id/btn_close_apply"
+            android:layout_width="32dp"
+            android:layout_height="26dp"
+            android:background="@drawable/win95_button_selector"
+            android:contentDescription="@string/close"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="@string/close_button"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -36,65 +45,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp"
-        android:gravity="center_horizontal"
+        android:padding="14dp"
         android:background="@color/win95_gray">
 
         <TextView
-            android:id="@+id/choose_launcher_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/apply_text"
+            style="@style/Win95Body"
             android:text="@string/choose_launcher"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="12dp" />
 
         <LinearLayout
             android:id="@+id/launcher_list"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center_horizontal"
-            android:layout_marginBottom="4dp" />
-
-        <TextView
-            android:id="@+id/no_launcher_text"
-            android:layout_width="240dp"
-            android:layout_height="wrap_content"
-            android:text="@string/no_launcher_found"
-            android:textColor="@color/black"
-            android:textSize="11sp"
-            android:lineSpacingExtra="2dp"
-            android:layout_marginBottom="10dp"
-            android:visibility="gone" />
-
-        <TextView
-            android:id="@+id/btn_get_lawnchair"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/win95_button_selector"
-            android:paddingStart="14dp"
-            android:paddingEnd="14dp"
-            android:paddingTop="6dp"
-            android:paddingBottom="6dp"
-            android:text="@string/get_lawnchair"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            android:layout_marginBottom="10dp"
-            android:visibility="gone" />
+            android:orientation="vertical" />
 
         <TextView
             android:id="@+id/btn_cancel_apply"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/win95_button_selector"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:paddingTop="6dp"
-            android:paddingBottom="6dp"
-            android:text="@string/cancel"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
+            style="@style/Win95Button"
+            android:layout_gravity="end"
+            android:layout_marginTop="6dp"
+            android:text="@string/cancel" />
 
     </LinearLayout>
 
