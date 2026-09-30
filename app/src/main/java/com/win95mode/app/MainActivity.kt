@@ -248,8 +248,8 @@ class MainActivity : AppCompatActivity() {
     private fun buildDesktop() {
         val grid = findViewById<android.widget.GridLayout>(R.id.desktop_icons)
         val cellW = ((resources.displayMetrics.widthPixels - 24 * density) / 3).toInt().coerceAtMost(Win95.dp(this, 120))
-        // Files, Photos, Settings and Mail are drawn on the 32-cell grid.
-        val iconPx = IconArt.crispPx(this, 58f, maxPx = cellW - Win95.dp(this, 16), grid = 32)
+        // The icons are drawn on a 48-cell grid.
+        val iconPx = IconArt.crispPx(this, 58f, maxPx = cellW - Win95.dp(this, 16), grid = 48)
         fun shortcut(icon: Int, label: Int, action: () -> Unit) {
             grid.addView(LinearLayout(this).apply {
                 orientation = LinearLayout.VERTICAL

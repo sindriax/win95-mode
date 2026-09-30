@@ -15,7 +15,7 @@ Modes:
              launchers as the backdrop for apps the pack does not theme.
 
 Usage:
-  .venv/bin/python scripts/win95ify.py win95ify  <in.png|dir> -o <outdir> [--grid 32] [--colors 16|256] [--dither]
+  .venv/bin/python scripts/win95ify.py win95ify  <in.png|dir> -o <outdir> [--grid 48] [--colors 16|256] [--dither]
   .venv/bin/python scripts/win95ify.py normalize <in.png|dir> -o <outdir>
   .venv/bin/python scripts/win95ify.py iconback -o app/src/main/res/drawable-nodpi
 
@@ -168,7 +168,7 @@ def main() -> int:
     parser.add_argument("input", nargs="?", help="source image or directory (not used by iconback)")
     parser.add_argument("-o", "--out", required=True, help="output directory")
     parser.add_argument("--size", type=int, default=192, help="output canvas size (default 192)")
-    parser.add_argument("--grid", type=int, default=32, help="pixel grid for win95ify (default 32)")
+    parser.add_argument("--grid", type=int, default=48, help="pixel grid for win95ify (default 48)")
     parser.add_argument("--colors", type=int, default=16, choices=[16, 256], help="palette size for win95ify")
     parser.add_argument("--dither", action="store_true", help="Floyd-Steinberg dithering during quantization")
     parser.add_argument("--strip-bg", action="store_true", help="flood-fill the solid background to transparent (win95ify mode)")
