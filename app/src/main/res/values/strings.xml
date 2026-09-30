@@ -63,7 +63,7 @@
     <string name="summary_system">%1$d Windows 95 system icons</string>
     <string name="request_ellipsis">Request…</string>
     <string name="header_not_themed">Not themed yet (%1$d)</string>
-    <string name="header_not_themed_caption">These keep their own icon on a gray plaque until they get a Win95 one.</string>
+    <string name="header_not_themed_caption">These show their own icon inside a Win95 window until they get one of their own.</string>
     <string name="request_these">Request these</string>
     <string name="system_caption">Assign these to any app from your launcher\'s icon picker.</string>
     <string name="search_results">Results for “%1$s”</string>
@@ -73,7 +73,7 @@
     <string name="icon_themes_here">On this phone it themes:</string>
     <string name="icon_not_installed">None of the apps this icon is for are on this phone.</string>
     <string name="icon_system_props">A Windows 95 system icon. Assign it to any app from your launcher\'s icon picker.</string>
-    <string name="icon_unthemed_props">%1$s doesn\'t have a Win95 icon yet. Until it does, it keeps its own icon on the gray plaque.</string>
+    <string name="icon_unthemed_props">%1$s doesn\'t have a Win95 icon yet. Until then, its own icon shows inside a Win95 window.</string>
 
     <!-- Wallpapers -->
     <string name="wall_teal">Teal</string>

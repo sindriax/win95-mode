@@ -31,7 +31,7 @@ A nostalgic Windows 95-style icon pack and wallpaper manager for Android. Transf
 ## Features
 
 - 250+ icons theming 290+ apps, one icon per app, styled like classic Windows 95
-- Apps without a themed icon get a beveled Win95 plaque, so the whole home screen stays coherent
+- Apps without a themed icon show inside a small Win95 program window, so the whole home screen stays coherent
 - Authentic Win95 UI: Setup wizard, taskbar, Start menu, property-sheet tabs, message boxes, MS Sans Serif pixel font
 - English and Spanish
 - Classic wallpapers (teal, clouds, setup, stars, maze) for home and lock screen, plus the animated Starfield

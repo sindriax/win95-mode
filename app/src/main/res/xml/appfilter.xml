@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Apps without a themed icon get their own icon drawn on the beveled
-         Win95 plaque, scaled down, so the whole launcher stays coherent. -->
+    <!-- Apps without a themed icon are drawn, scaled down, inside a small Win95
+         program window, so they read as programs running in Windows. -->
     <iconback img1="iconback" />
-    <scale factor="0.72" />
+    <scale factor="0.6" />
 
     <!-- Dynamic calendar: launchers that support it show today's date using
          ic_calendar_1..31; the plain <item> mappings below stay as fallback. -->

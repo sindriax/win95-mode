@@ -36,11 +36,11 @@ object IconArt {
         return out
     }
 
-    /** An unthemed app's own icon on the beveled plaque, as launchers draw it (appfilter scale 0.72). */
+    /** An unthemed app's own icon in the Win95 window frame, as launchers draw it (appfilter scale 0.6). */
     fun plaque(context: Context, appIcon: Drawable, px: Int): Bitmap {
         val back = icon(context.resources, R.drawable.iconback, px)
         val out = back.copy(Bitmap.Config.ARGB_8888, true)
-        val inset = (px * (1 - 0.72f) / 2).toInt()
+        val inset = (px * (1 - 0.6f) / 2).toInt()
         appIcon.setBounds(inset, inset, px - inset, px - inset)
         appIcon.draw(Canvas(out))
         return out

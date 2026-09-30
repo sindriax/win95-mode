@@ -59,7 +59,7 @@
     <string name="summary_system">%1$d iconos del sistema de Windows 95</string>
     <string name="request_ellipsis">Pedir…</string>
     <string name="header_not_themed">Aún sin icono (%1$d)</string>
-    <string name="header_not_themed_caption">Mantienen su icono sobre una placa gris hasta que tengan uno Win95.</string>
+    <string name="header_not_themed_caption">Muestran su propio icono dentro de una ventana Win95 hasta que tengan uno.</string>
     <string name="request_these">Pedir estos</string>
     <string name="system_caption">Asígnalos a cualquier app desde el selector de iconos de tu launcher.</string>
     <string name="search_results">Resultados para «%1$s»</string>
@@ -69,7 +69,7 @@
     <string name="icon_themes_here">En este teléfono cambia:</string>
     <string name="icon_not_installed">Ninguna de las apps de este icono está en este teléfono.</string>
     <string name="icon_system_props">Un icono del sistema de Windows 95. Asígnalo a cualquier app desde el selector de iconos de tu launcher.</string>
-    <string name="icon_unthemed_props">%1$s aún no tiene icono Win95. Hasta entonces, mantiene su propio icono sobre la placa gris.</string>
+    <string name="icon_unthemed_props">%1$s aún no tiene icono Win95. Hasta entonces, su icono aparece dentro de una ventana Win95.</string>
 
     <!-- Wallpapers -->
     <string name="wall_teal">Verde azulado</string>
