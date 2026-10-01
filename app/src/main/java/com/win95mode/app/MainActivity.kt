@@ -15,7 +15,6 @@ import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -58,7 +57,7 @@ class MainActivity : AppCompatActivity() {
             finish()
             return
         }
-        enableEdgeToEdge()
+        Win95.edgeToEdge(this)
         setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -267,15 +266,19 @@ class MainActivity : AppCompatActivity() {
                     layoutParams = LinearLayout.LayoutParams(iconPx, iconPx)
                     importantForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_NO
                 })
-                // White label with a dark edge, as desktop icon text on the Win95 desktop.
+                // Win95 drew desktop icon labels on a box of the desktop colour, which
+                // keeps them readable on any wallpaper.
                 addView(TextView(context).apply {
                     setText(label)
                     setTextColor(getColor(R.color.white))
-                    setShadowLayer(0.01f, 1f, 1f, getColor(R.color.black))
+                    setBackgroundColor(getColor(R.color.win95_teal))
                     textSize = 13f
                     gravity = android.view.Gravity.CENTER
                     maxLines = 2
-                    setPadding(0, Win95.dp(context, 4), 0, 0)
+                    setPadding(Win95.dp(context, 3), 0, Win95.dp(context, 3), Win95.dp(context, 1))
+                    layoutParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT
+                    ).apply { topMargin = Win95.dp(context, 4) }
                     importantForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_NO
                 })
             })
@@ -361,8 +364,8 @@ class MainActivity : AppCompatActivity() {
         val total = c.installedCount.coerceAtLeast(1)
         findViewById<BlockProgressBar>(R.id.home_coverage_bar).progress = c.themedCount / total.toFloat()
         findViewById<TextView>(R.id.home_coverage_text).text =
-            if (c.unthemedInstalled.isEmpty()) getString(R.string.coverage_all, c.themedCount)
-            else getString(R.string.coverage_text, c.themedCount, c.installedCount)
+            if (c.unthemedInstalled.isEmpty()) resources.getQuantityString(R.plurals.coverage_all, c.themedCount, c.themedCount)
+            else resources.getQuantityString(R.plurals.coverage_text, c.installedCount, c.themedCount, c.installedCount)
 
         findViewById<TextView>(R.id.btn_home_request).apply {
             visibility = if (c.unthemedInstalled.isEmpty()) View.GONE else View.VISIBLE
@@ -465,7 +468,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             IconTab.ALL -> {
-                summary.text = getString(R.string.summary_all, c.icons.size)
+                summary.text = resources.getQuantityString(R.plurals.summary_all, c.icons.size, c.icons.size)
                 request.visibility = View.GONE
                 c.icons.groupBy { it.category }.forEach { (category, icons) ->
                     rows += IconRow.Header(category)
@@ -473,7 +476,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             IconTab.SYSTEM -> {
-                summary.text = getString(R.string.summary_system, c.system.size)
+                summary.text = resources.getQuantityString(R.plurals.summary_system, c.system.size, c.system.size)
                 request.visibility = View.GONE
                 rows += IconRow.Header(getString(R.string.tab_system), getString(R.string.system_caption))
                 rows += c.system.map(::iconCell)

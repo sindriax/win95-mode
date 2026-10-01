@@ -31,8 +31,14 @@
     <string name="apply_again">Volver a aplicar</string>
     <string name="set_as_home_screen">Usar como pantalla de inicio</string>
     <string name="coverage_title">Cobertura</string>
-    <string name="coverage_text">%1$d de tus %2$d apps tienen icono Win95.</string>
-    <string name="coverage_all">Las %1$d apps que tienes tienen icono Win95.</string>
+    <plurals name="coverage_text">
+        <item quantity="one">%1$d de tu %2$d app tiene icono Win95.</item>
+        <item quantity="other">%1$d de tus %2$d apps tienen icono Win95.</item>
+    </plurals>
+    <plurals name="coverage_all">
+        <item quantity="one">Tu única app tiene icono Win95.</item>
+        <item quantity="other">Las %1$d apps que tienes tienen icono Win95.</item>
+    </plurals>
     <string name="whats_new_title">Novedades de la 3.0</string>
     <string name="whats_new_body">• Iconos para las apps del sistema de Samsung, Xiaomi y OnePlus\n• Más de 220 iconos, uno para cada app\n• Una instalación que busca un launcher compatible\n• Pide iconos para las apps que aún faltan\n• El salvapantallas Starfield como fondo animado\n• Un icono de calendario que muestra la fecha de hoy\n• Iconos más nítidos y fondos a resolución completa</string>
 
@@ -55,8 +61,14 @@
     <string name="tab_all">Todos</string>
     <string name="tab_system">Sistema</string>
     <string name="summary_yours">%1$d con icono · %2$d sin él</string>
-    <string name="summary_all">%1$d iconos</string>
-    <string name="summary_system">%1$d iconos del sistema de Windows 95</string>
+    <plurals name="summary_all">
+        <item quantity="one">%1$d icono</item>
+        <item quantity="other">%1$d iconos</item>
+    </plurals>
+    <plurals name="summary_system">
+        <item quantity="one">%1$d icono del sistema de Windows 95</item>
+        <item quantity="other">%1$d iconos del sistema de Windows 95</item>
+    </plurals>
     <string name="request_ellipsis">Pedir…</string>
     <string name="header_not_themed">Aún sin icono (%1$d)</string>
     <string name="header_not_themed_caption">Muestran su propio icono dentro de una ventana Win95 hasta que tengan uno.</string>

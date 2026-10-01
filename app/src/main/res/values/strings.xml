@@ -35,8 +35,14 @@
     <string name="apply_again">Apply again</string>
     <string name="set_as_home_screen">Set as home screen</string>
     <string name="coverage_title">Coverage</string>
-    <string name="coverage_text">%1$d of your %2$d apps have a Win95 icon.</string>
-    <string name="coverage_all">All %1$d of your apps have a Win95 icon.</string>
+    <plurals name="coverage_text">
+        <item quantity="one">%1$d of your %2$d app has a Win95 icon.</item>
+        <item quantity="other">%1$d of your %2$d apps have a Win95 icon.</item>
+    </plurals>
+    <plurals name="coverage_all">
+        <item quantity="one">Your only app has a Win95 icon.</item>
+        <item quantity="other">All %1$d of your apps have a Win95 icon.</item>
+    </plurals>
     <string name="whats_new_title">What\'s new in 3.0</string>
     <string name="whats_new_body">• Icons for Samsung, Xiaomi and OnePlus system apps\n• Over 220 icons, one for each app\n• Setup that finds a launcher that works\n• Request icons for the apps you still miss\n• The Starfield screensaver as a live wallpaper\n• A calendar icon that shows today\'s date\n• Sharper icons and full-resolution wallpapers</string>
 
@@ -59,8 +65,14 @@
     <string name="tab_all">All</string>
     <string name="tab_system">System</string>
     <string name="summary_yours">%1$d themed · %2$d not yet</string>
-    <string name="summary_all">%1$d icons</string>
-    <string name="summary_system">%1$d Windows 95 system icons</string>
+    <plurals name="summary_all">
+        <item quantity="one">%1$d icon</item>
+        <item quantity="other">%1$d icons</item>
+    </plurals>
+    <plurals name="summary_system">
+        <item quantity="one">%1$d Windows 95 system icon</item>
+        <item quantity="other">%1$d Windows 95 system icons</item>
+    </plurals>
     <string name="request_ellipsis">Request…</string>
     <string name="header_not_themed">Not themed yet (%1$d)</string>
     <string name="header_not_themed_caption">These show their own icon inside a Win95 window until they get one of their own.</string>

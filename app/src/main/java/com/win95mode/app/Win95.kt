@@ -10,6 +10,7 @@ import android.view.Gravity
 import android.view.HapticFeedbackConstants
 import android.view.View
 import android.view.Window
+import androidx.activity.enableEdgeToEdge
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -74,6 +75,13 @@ object Win95 {
             androidx.core.content.res.ResourcesCompat.getFont(context, R.font.win95),
             if (bold) android.graphics.Typeface.BOLD else android.graphics.Typeface.NORMAL
         )
+
+    /** Edge-to-edge with transparent bars and light icons. The default scrim paints a
+     *  white navigation bar on Android 8 and 9, which clashes with the teal desktop. */
+    fun edgeToEdge(activity: androidx.activity.ComponentActivity) {
+        val bars = androidx.activity.SystemBarStyle.dark(Color.TRANSPARENT)
+        activity.enableEdgeToEdge(statusBarStyle = bars, navigationBarStyle = bars)
+    }
 
     fun confirmHaptic(view: View) {
         view.performHapticFeedback(
