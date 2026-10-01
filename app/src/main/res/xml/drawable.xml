@@ -53,6 +53,7 @@
     <item drawable="ic_safety" name="Safety" />
     <item drawable="ic_nowplaying" name="Now Playing" />
     <item drawable="ic_pixel_tips" name="My Pixel" />
+    <item drawable="ic_familylink" name="Family Link" />
 
     <category title="Social" />
     <item drawable="ic_instagram" name="Instagram" />
@@ -70,6 +71,8 @@
     <item drawable="ic_instant_photo" name="BeReal" />
     <item drawable="ic_facebook" name="Facebook" />
     <item drawable="ic_patreon" name="Patreon" />
+    <item drawable="ic_vk" name="VK" />
+    <item drawable="ic_quora" name="Quora" />
 
     <category title="Communication" />
     <item drawable="ic_whatsapp" name="WhatsApp" />
@@ -121,6 +124,11 @@
     <item drawable="ic_youtube_kids" name="YouTube Kids" />
     <item drawable="ic_google_tv" name="Google TV" />
     <item drawable="ic_yt_studio" name="YT Studio" />
+    <item drawable="ic_mxplayer" name="MX Player" />
+    <item drawable="ic_peacock" name="Peacock" />
+    <item drawable="ic_paramount" name="Paramount+" />
+    <item drawable="ic_tubi" name="Tubi" />
+    <item drawable="ic_hulu" name="Hulu" />
 
     <category title="Browser" />
     <item drawable="ic_browser" name="Samsung Internet" />
@@ -155,6 +163,17 @@
     <item drawable="ic_telepizza" name="Telepizza" />
     <item drawable="ic_groupon" name="Groupon" />
     <item drawable="ic_chollometro" name="Chollometro" />
+    <item drawable="ic_flipkart" name="Flipkart" />
+    <item drawable="ic_mercadolibre" name="Mercado Libre" />
+    <item drawable="ic_walmart" name="Walmart" />
+    <item drawable="ic_target" name="Target" />
+    <item drawable="ic_dominos" name="Domino's" />
+    <item drawable="ic_adidas" name="adidas" />
+    <item drawable="ic_subway" name="Subway" />
+    <item drawable="ic_shopee" name="Shopee" />
+    <item drawable="ic_nike" name="Nike" />
+    <item drawable="ic_lazada" name="Lazada" />
+    <item drawable="ic_etsy" name="Etsy" />
 
     <category title="Education" />
     <item drawable="ic_duolingo" name="Duolingo" />
@@ -170,6 +189,9 @@
     <item drawable="ic_substack" name="Substack" />
     <item drawable="ic_photomath" name="Photomath" />
     <item drawable="ic_busuu" name="Busuu" />
+    <item drawable="ic_khanacademy" name="Khan Academy" />
+    <item drawable="ic_ted" name="TED" />
+    <item drawable="ic_nytimes" name="NYTimes" />
 
     <category title="Gaming" />
     <item drawable="ic_tft" name="Teamfight Tactics" />
@@ -194,6 +216,17 @@
     <item drawable="ic_xbox" name="Xbox" />
     <item drawable="ic_playstation" name="PlayStation" />
     <item drawable="ic_kahoot" name="Kahoot!" />
+    <item drawable="ic_hillclimb" name="Hill Climb Racing" />
+    <item drawable="ic_8ballpool" name="8 Ball Pool" />
+    <item drawable="ic_pvz" name="Plants vs. Zombies" />
+    <item drawable="ic_talkingtom" name="Talking Tom" />
+    <item drawable="ic_geforcenow" name="GeForce NOW" />
+    <item drawable="ic_mobilelegends" name="Mobile Legends" />
+    <item drawable="ic_templerun" name="Temple Run 2" />
+    <item drawable="ic_callofduty" name="Call of Duty" />
+    <item drawable="ic_hayday" name="Hay Day" />
+    <item drawable="ic_freefire" name="Free Fire" />
+    <item drawable="ic_coinmaster" name="Coin Master" />
 
     <category title="Apps" />
     <item drawable="ic_paint" name="Canva" />
@@ -232,6 +265,12 @@
     <item drawable="ic_luminar" name="Luminar" />
     <item drawable="ic_oldroll" name="OldRoll" />
     <item drawable="ic_wiz" name="WiZ" />
+    <item drawable="ic_accuweather" name="AccuWeather" />
+    <item drawable="ic_expressvpn" name="ExpressVPN" />
+    <item drawable="ic_windy" name="Windy" />
+    <item drawable="ic_yelp" name="Yelp" />
+    <item drawable="ic_zillow" name="Zillow" />
+    <item drawable="ic_weatherchannel" name="Weather Channel" />
 
     <category title="Productivity" />
     <item drawable="ic_obsidian" name="Obsidian" />
@@ -246,6 +285,8 @@
     <item drawable="ic_github" name="GitHub" />
     <item drawable="ic_linear" name="Linear" />
     <item drawable="ic_incidentio" name="incident.io" />
+    <item drawable="ic_ticktick" name="TickTick" />
+    <item drawable="ic_office" name="Microsoft 365" />
 
     <category title="Finance" />
     <item drawable="ic_revolut" name="Revolut" />
@@ -263,6 +304,11 @@
     <item drawable="ic_splitwise" name="Splitwise" />
     <item drawable="ic_tricount" name="tricount" />
     <item drawable="ic_qonto" name="Qonto" />
+    <item drawable="ic_mercadopago" name="Mercado Pago" />
+    <item drawable="ic_venmo" name="Venmo" />
+    <item drawable="ic_cashapp" name="Cash App" />
+    <item drawable="ic_samsung_wallet" name="Samsung Wallet" />
+    <item drawable="ic_robinhood" name="Robinhood" />
 
     <category title="Travel" />
     <item drawable="ic_airbnb" name="Airbnb" />
@@ -279,6 +325,9 @@
     <item drawable="ic_expedia" name="Expedia" />
     <item drawable="ic_tmobilitat" name="T-mobilitat" />
     <item drawable="ic_smou" name="smou" />
+    <item drawable="ic_freenow" name="FREENOW" />
+    <item drawable="ic_grab" name="Grab" />
+    <item drawable="ic_kayak" name="KAYAK" />
 
     <category title="Health" />
     <item drawable="ic_fitbit" name="Fitbit" />

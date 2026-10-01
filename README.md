@@ -17,8 +17,8 @@ A nostalgic Windows 95-style icon pack and wallpaper manager for Android. Transf
 
 ## What's New in v3
 
-- Samsung, Xiaomi and OnePlus/Oppo support: system apps (dialer, camera, messages, gallery, clock, files and more) are finally themed on non-Pixel phones — the pack now themes 296 apps, up from about 45
-- 202 new icons, one per app: Facebook, Messenger, WeChat, Outlook, Zoom, Teams, Docs, Excel, PowerPoint, Gemini, Claude, Deezer, SoundCloud, Disney+, Uber Eats, Glovo, Wallapop, Vinted, Zara, IKEA, Revolut, BBVA, CaixaBank, Airbnb, Ryanair, Minecraft, Clash of Clans, Steam and many more
+- Samsung, Xiaomi and OnePlus/Oppo support: system apps (dialer, camera, messages, gallery, clock, files and more) are finally themed on non-Pixel phones — the pack now themes 356 apps, up from about 45
+- 250+ new icons, one per app: Facebook, Messenger, WeChat, Outlook, Zoom, Teams, Docs, Excel, PowerPoint, Gemini, Claude, Deezer, SoundCloud, Disney+, Uber Eats, Glovo, Wallapop, Vinted, Zara, IKEA, Revolut, BBVA, CaixaBank, Airbnb, Ryanair, Minecraft, Clash of Clans, Steam, Mercado Libre, Shopee, Flipkart, Hulu, Venmo, Cash App and many more
 - A redesigned app: a Windows 95 Setup wizard that finds a launcher that works, and a taskbar that switches between Home, Icons and Wallpapers
 - Home shows whether your launcher can use the pack and how many of your apps are themed; Icons shows your own apps first
 - Now in Spanish, with the pixel font's missing accented letters drawn in
@@ -30,7 +30,7 @@ A nostalgic Windows 95-style icon pack and wallpaper manager for Android. Transf
 
 ## Features
 
-- 250+ icons theming 290+ apps, one icon per app, styled like classic Windows 95
+- 300+ icons theming 350+ apps, one icon per app, styled like classic Windows 95
 - Apps without a themed icon show inside a small Win95 program window, so the whole home screen stays coherent
 - Authentic Win95 UI: Setup wizard, taskbar, Start menu, property-sheet tabs, message boxes, MS Sans Serif pixel font
 - English and Spanish
