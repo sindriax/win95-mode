@@ -170,7 +170,10 @@ class MainActivity : AppCompatActivity() {
             .forEach { (p, id) ->
                 findViewById<TextView>(id).apply {
                     val active = p == target
-                    setBackgroundResource(if (active) R.drawable.win95_button_pressed else R.drawable.win95_button_selector)
+                    setBackgroundResource(if (active) R.drawable.win95_task_active else R.drawable.win95_button_selector)
+                    // Win95 nudged a pressed button's contents down-right by a pixel.
+                    val nudge = if (active) Win95.dp(context, 1) else 0
+                    setPadding(Win95.dp(context, 5) + nudge, nudge, Win95.dp(context, 3) - nudge, 0)
                     typeface = Win95.font(context, active)
                     isSelected = active
                 }
