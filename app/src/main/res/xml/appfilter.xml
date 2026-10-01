@@ -2104,4 +2104,58 @@
     <item component="ComponentInfo{com.alan.esmobile/com.alan.esmobile.MainActivityDefault}" drawable="ic_alan" />
     <item component="ComponentInfo{com.incidentio.incidentio/com.incidentio.incidentio.MainActivity}" drawable="ic_incidentio" />
 
+    <!-- Same apps under regional or Lite packages, so they share the brand's icon. -->
+    <item component="ComponentInfo{org.telegram.messenger.web/com.exteragram.messenger.AmethystIcon}" drawable="ic_telegram" />
+    <item component="ComponentInfo{org.telegram.messenger.web/com.exteragram.messenger.AyuGramDiscord}" drawable="ic_telegram" />
+    <item component="ComponentInfo{org.telegram.messenger.web/com.exteragram.messenger.AyuGramExtera}" drawable="ic_telegram" />
+    <item component="ComponentInfo{org.telegram.messenger.web/com.exteragram.messenger.AyuGramNothing}" drawable="ic_telegram" />
+    <item component="ComponentInfo{org.telegram.messenger.web/com.exteragram.messenger.AyuGramSpotify}" drawable="ic_telegram" />
+    <item component="ComponentInfo{org.telegram.messenger.web/com.exteragram.messenger.CyberpunkIcon}" drawable="ic_telegram" />
+    <item component="ComponentInfo{org.telegram.messenger.web/com.exteragram.messenger.DefaultIcon}" drawable="ic_telegram" />
+    <item component="ComponentInfo{org.telegram.messenger.web/com.exteragram.messenger.Dsgn480Icon}" drawable="ic_telegram" />
+    <item component="ComponentInfo{org.telegram.messenger.web/com.exteragram.messenger.EditorIcon}" drawable="ic_telegram" />
+    <item component="ComponentInfo{org.telegram.messenger.web/com.exteragram.messenger.MonetIconExtera}" drawable="ic_telegram" />
+    <item component="ComponentInfo{org.telegram.messenger.web/com.exteragram.messenger.MonetIcon}" drawable="ic_telegram" />
+    <item component="ComponentInfo{org.telegram.messenger.web/com.exteragram.messenger.OrbitIcon}" drawable="ic_telegram" />
+    <item component="ComponentInfo{org.telegram.messenger.web/com.exteragram.messenger.SapphireIcon}" drawable="ic_telegram" />
+    <item component="ComponentInfo{org.telegram.messenger.web/com.exteragram.messenger.SpaceIcon}" drawable="ic_telegram" />
+    <item component="ComponentInfo{org.telegram.messenger.web/com.exteragram.messenger.SusIcon}" drawable="ic_telegram" />
+    <item component="ComponentInfo{org.telegram.messenger.web/org.telegram.messenger.AquaIcon}" drawable="ic_telegram" />
+    <item component="ComponentInfo{org.telegram.messenger.web/org.telegram.messenger.CloudIcon}" drawable="ic_telegram" />
+    <item component="ComponentInfo{org.telegram.messenger.web/org.telegram.messenger.DarkIcon}" drawable="ic_telegram" />
+    <item component="ComponentInfo{org.telegram.messenger.web/org.telegram.messenger.DefaultIcon}" drawable="ic_telegram" />
+    <item component="ComponentInfo{org.telegram.messenger.web/org.telegram.messenger.MaterialIcon}" drawable="ic_telegram" />
+    <item component="ComponentInfo{org.telegram.messenger.web/org.telegram.messenger.MerioIcon}" drawable="ic_telegram" />
+    <item component="ComponentInfo{org.telegram.messenger.web/org.telegram.messenger.MusheenIcon}" drawable="ic_telegram" />
+    <item component="ComponentInfo{org.telegram.messenger.web/org.telegram.messenger.NeonIcon}" drawable="ic_telegram" />
+    <item component="ComponentInfo{org.telegram.messenger.web/org.telegram.messenger.NoxIcon}" drawable="ic_telegram" />
+    <item component="ComponentInfo{org.telegram.messenger.web/org.telegram.messenger.OldSchoolIcon}" drawable="ic_telegram" />
+    <item component="ComponentInfo{org.telegram.messenger.web/org.telegram.messenger.PremiumIcon}" drawable="ic_telegram" />
+    <item component="ComponentInfo{org.telegram.messenger.web/org.telegram.messenger.RainbowIcon}" drawable="ic_telegram" />
+    <item component="ComponentInfo{org.telegram.messenger.web/org.telegram.messenger.SpaceIcon}" drawable="ic_telegram" />
+    <item component="ComponentInfo{org.telegram.messenger.web/org.telegram.messenger.TurboIcon}" drawable="ic_telegram" />
+    <item component="ComponentInfo{org.telegram.messenger.web/org.telegram.messenger.VintageIcon}" drawable="ic_telegram" />
+    <item component="ComponentInfo{org.telegram.messenger.web/org.telegram.messenger.market.DefaultIcon}" drawable="ic_telegram" />
+    <item component="ComponentInfo{org.telegram.messenger.web/org.telegram.ui.LaunchActivity}" drawable="ic_telegram" />
+    <item component="ComponentInfo{com.facebook.lite/com.dzebb.handler.a}" drawable="ic_facebook" />
+    <item component="ComponentInfo{com.facebook.lite/com.facebook.lite.MainActivity}" drawable="ic_facebook" />
+    <item component="ComponentInfo{com.facebook.mlite/.coreui.view.MainActivity}" drawable="ic_messenger" />
+    <item component="ComponentInfo{com.facebook.mlite/com.facebook.lite.MainActivity}" drawable="ic_messenger" />
+    <item component="ComponentInfo{com.facebook.mlite/com.facebook.mlite.coreui.view.MainActivity}" drawable="ic_messenger" />
+    <item component="ComponentInfo{com.facebook.mlite/com.facebook.mlite.share.view.ShareActivity}" drawable="ic_messenger" />
+    <item component="ComponentInfo{com.instagram.lite/com.facebook.lite.MainActivity}" drawable="ic_instagram" />
+    <item component="ComponentInfo{com.instagram.lite/com.instagram.lite.IgLiteActivity}" drawable="ic_instagram" />
+    <item component="ComponentInfo{com.spotify.lite/com.spotify.lite.features.launcher.LauncherActivity}" drawable="ic_spotify" />
+    <item component="ComponentInfo{com.spotify.lite/com.spotify.litenavigation.launcher.LauncherActivity}" drawable="ic_spotify" />
+    <item component="ComponentInfo{com.ss.android.ugc.trill/com.ss.android.ugc.aweme.splash.SplashActivity}" drawable="ic_tiktok" />
+    <item component="ComponentInfo{com.ss.android.ugc.trill/com.zhiliaoapp.musically.MainActivity}" drawable="ic_tiktok" />
+    <item component="ComponentInfo{com.ss.android.ugc.aweme.lite/com.ss.android.ugc.aweme.splash.SplashActivity}" drawable="ic_tiktok" />
+    <item component="ComponentInfo{in.amazon.mShop.android.shopping/com.amazon.mShop.amazonbazaar.AmazonBazaarHomeActivityAlias}" drawable="ic_amazon" />
+    <item component="ComponentInfo{in.amazon.mShop.android.shopping/com.amazon.mShop.amazonnow.AmazonNowHomeActivityAlias}" drawable="ic_amazon" />
+    <item component="ComponentInfo{in.amazon.mShop.android.shopping/com.amazon.mShop.amazonpay.AmazonPayHomeActivityAliasWoShortcuts}" drawable="ic_amazon" />
+    <item component="ComponentInfo{in.amazon.mShop.android.shopping/com.amazon.mShop.amazonpay.AmazonPayHomeActivityAlias}" drawable="ic_amazon" />
+    <item component="ComponentInfo{in.amazon.mShop.android.shopping/com.amazon.mShop.home.HomeActivity}" drawable="ic_amazon" />
+    <item component="ComponentInfo{in.amazon.mShop.android.shopping/com.amazon.twa.CustomTWALauncherActivity}" drawable="ic_amazon" />
+    <item component="ComponentInfo{in.amazon.mShop.android.shopping/com.google.android.archive.ReactivateActivity}" drawable="ic_amazon" />
+
 </resources>
