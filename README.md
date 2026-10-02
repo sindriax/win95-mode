@@ -1,80 +1,56 @@
 # Win95 Mode
 
-A nostalgic Windows 95-style icon pack and wallpaper manager for Android. Transform your phone into a retro desktop experience.
+An Android icon pack that makes your phone look like Windows 95. Every app gets
+its own little 1995 object instead of a logo: a CRT TV for Netflix, a cardboard
+box for Amazon, a rubber duck for DuckDuckGo.
 
-## Download
-
-[**Download latest APK**](../../releases/latest)
-
-## Screenshots
+[**Download the latest APK**](../../releases/latest)
 
 <p align="center">
   <img src="screenshots/setup.png" width="200" alt="Setup wizard" />
-  <img src="screenshots/home.png" width="200" alt="Home: launcher status and coverage" />
-  <img src="screenshots/icons.png" width="200" alt="Icons: your apps" />
+  <img src="screenshots/home.png" width="200" alt="Home" />
+  <img src="screenshots/icons.png" width="200" alt="Icons" />
   <img src="screenshots/wallpapers.png" width="200" alt="Wallpapers" />
 </p>
 
-## What's New in v3
+## What's in it
 
-- Samsung, Xiaomi and OnePlus/Oppo support: system apps (dialer, camera, messages, gallery, clock, files and more) are finally themed on non-Pixel phones — the pack now themes 356 apps, up from about 45
-- 250+ new icons, one per app: Facebook, Messenger, WeChat, Outlook, Zoom, Teams, Docs, Excel, PowerPoint, Gemini, Claude, Deezer, SoundCloud, Disney+, Uber Eats, Glovo, Wallapop, Vinted, Zara, IKEA, Revolut, BBVA, CaixaBank, Airbnb, Ryanair, Minecraft, Clash of Clans, Steam, Mercado Libre, Shopee, Flipkart, Hulu, Venmo, Cash App and many more
-- A redesigned app: a Windows 95 Setup wizard that finds a launcher that works, and a taskbar that switches between Home, Icons and Wallpapers
-- Home shows whether your launcher can use the pack and how many of your apps are themed; Icons shows your own apps first
-- Now in Spanish, with the pixel font's missing accented letters drawn in
-- Starfield Screensaver live wallpaper: the classic flying-through-space simulation, forever
-- Dynamic calendar icon that shows today's actual date (Nova, Lawnchair and friends)
-- Request Icons: an Add/Remove Programs screen lists your unthemed apps and sends the request with one tap
-- Wallpapers regenerated at real phone resolution — no more blurry pixel art
-- Releases are now signed with a permanent key, so future updates install in place (this first one needs a one-time uninstall/reinstall — see the release notes)
+- 305 icons for 356 apps, including the system apps on Samsung, Xiaomi and OnePlus phones
+- Apps without an icon yet show up inside a tiny Win95 window
+- A calendar icon that shows today's date
+- Wallpapers, plus the Starfield screensaver as a live wallpaper
+- The app itself is a little Win95 desktop, in English and Spanish
 
-## Features
+Missing an app? Open Win95 Mode, tap **Request Icons**, and send the list.
 
-- 300+ icons theming 350+ apps, one icon per app, styled like classic Windows 95
-- Apps without a themed icon show inside a small Win95 program window, so the whole home screen stays coherent
-- Authentic Win95 UI: Setup wizard, taskbar, Start menu, property-sheet tabs, message boxes, MS Sans Serif pixel font
-- English and Spanish
-- Classic wallpapers (teal, clouds, setup, stars, maze) for home and lock screen, plus the animated Starfield
-- Works with all major Android launchers
+## Installing
 
-## Supported Launchers
+Install the APK and open Win95 Mode. It checks your launcher and helps you
+apply the icons.
 
-- Nova Launcher
-- Lawnchair
-- Action Launcher
-- Apex Launcher
-- Smart Launcher
-- And more...
+You'll need a launcher that supports icon packs, like Nova, Lawnchair, Smart
+Launcher, Action or Apex. The stock Pixel and Samsung launchers don't, but the
+app will point you to a free one.
 
-## Installation
+**Coming from v1 or v2?** Uninstall the old version first. Older builds were
+signed with a temporary key, so Android won't install v3 over them. Only this
+once.
 
-1. Download and install the APK from [Releases](../../releases/latest)
-2. Open Win95 Mode. Setup checks your launcher and walks you through applying the icons.
+## Making icons
 
-Stock Pixel and most Samsung launchers can't use icon packs; Setup offers a free
-launcher (Lawnchair) and picks up where it left off once it's installed.
-
-## Tech Stack
-
-- **Language:** Kotlin
-- **Platform:** Android (API 24 - Android 7.0+)
-- **UI:** XML Layouts with custom drawable resources
-- **Build System:** Gradle with Kotlin DSL
-- **Architecture:** a main activity (taskbar with three windows) and a Setup activity, with intent filters for launcher integration
-- **Icon Pack Protocol:** Supports ADW, Nova, Apex, Action, Lawnchair, and Smart Launcher icon pack formats via `appfilter.xml`
-- **Min SDK:** 24 | **Target SDK:** 36
-
-## Icon Tooling
-
-Icon artwork is normalized with `scripts/win95ify.py` (requires Python 3 with Pillow):
+Icon art is converted to the pack's pixel style with `scripts/win95ify.py`
+(Python 3 and Pillow):
 
 ```bash
 python3 -m venv .venv && .venv/bin/pip install Pillow
 .venv/bin/python scripts/win95ify.py win95ify <source-images> -o app/src/main/res/drawable-nodpi --strip-bg
 ```
 
-It converts any source image to a true pixel grid with a reduced retro palette
-on a 192x192 canvas. Run it with `--help` for all options.
+It turns any image into 48x48 pixel art on a 192px canvas. Run it with `--help`
+for the options. See [CONTRIBUTING.md](CONTRIBUTING.md) if you'd like to add an
+app.
+
+Built with Kotlin; works on Android 7 and up.
 
 ## Credits
 
