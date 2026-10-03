@@ -36,6 +36,9 @@ app will point you to a free one.
 signed with a temporary key, so Android won't install v3 over them. Only this
 once.
 
+To check your download is genuine, its signing certificate's SHA-256 is:
+`9B:DE:C3:F5:B9:25:1B:9B:BE:F2:E3:A4:43:5A:28:E9:F2:C5:96:B4:02:A1:29:EF:57:8A:A4:8D:A4:CF:46:9E`
+
 ## Making icons
 
 Icon art is converted to the pack's pixel style with `scripts/win95ify.py`
@@ -51,6 +54,11 @@ for the options. See [CONTRIBUTING.md](CONTRIBUTING.md) if you'd like to add an
 app.
 
 Built with Kotlin; works on Android 7 and up.
+
+## License
+
+Code is [MIT](LICENSE); the artwork is [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/), so share
+and remix it with credit, but not commercially.
 
 ## Credits
 
