@@ -19,3 +19,4 @@ local.properties
 # IDE and tooling
 /.idea
 /.venv
+__pycache__/

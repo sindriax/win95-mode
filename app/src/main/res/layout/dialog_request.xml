@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="310dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/win95_window_border"
+    android:padding="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:background="@drawable/win95_titlebar"
+        android:gravity="center_vertical"
+        android:paddingStart="6dp"
+        android:paddingEnd="3dp">
+
+        <TextView
+            android:text="@string/add_remove_programs"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:maxLines="1"
+            android:ellipsize="end" />
+
+        <TextView
+            android:id="@+id/btn_close_request"
+            android:layout_width="32dp"
+            android:layout_height="26dp"
+            android:background="@drawable/win95_button_selector"
+            android:contentDescription="@string/close"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="@string/close_button"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp"
+        android:background="@color/win95_gray">
+
+        <TextView
+            style="@style/Win95Body"
+            android:text="@string/request_intro"
+            android:layout_marginBottom="10dp" />
+
+        <android.widget.CheckBox
+            android:id="@+id/request_select_all"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:text="@string/select_all"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:button="@drawable/win95_checkbox"
+            android:paddingStart="8dp"
+            android:visibility="gone" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@drawable/win95_inset"
+            android:padding="4dp"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:id="@+id/request_loading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/request_status"
+                    style="@style/Win95Body"
+                    android:gravity="center"
+                    android:text="@string/request_loading"
+                    android:layout_marginBottom="10dp" />
+
+                <com.win95mode.app.BlockProgressBar
+                    android:id="@+id/request_progress"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
+            </LinearLayout>
+
+            <ScrollView
+                android:id="@+id/request_scroll"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:id="@+id/request_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+
+            </ScrollView>
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end">
+
+            <TextView
+                android:id="@+id/btn_request_share"
+                style="@style/Win95Button"
+                android:text="@string/request_via_share" />
+
+            <TextView
+                android:id="@+id/btn_request_github"
+                style="@style/Win95Button.Primary"
+                android:minHeight="44dp"
+                android:layout_marginStart="8dp"
+                android:text="@string/request_via_github" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

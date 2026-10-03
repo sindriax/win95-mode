@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="300dp"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/win95_window_border"
@@ -8,27 +8,35 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="32dp"
         android:background="@drawable/win95_titlebar"
-        android:padding="3dp"
-        android:gravity="center_vertical">
-
-        <ImageView
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:src="@drawable/ic_my_computer"
-            android:contentDescription="@string/app_icon_desc" />
+        android:gravity="center_vertical"
+        android:paddingStart="6dp"
+        android:paddingEnd="3dp">
 
         <TextView
+            android:text="@string/about_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/about_title"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:paddingStart="6dp"
-            android:paddingEnd="6dp"
-            android:textSize="12sp" />
+            android:textSize="14sp"
+            android:maxLines="1"
+            android:ellipsize="end" />
+
+        <TextView
+            android:id="@+id/btn_close_about"
+            android:layout_width="32dp"
+            android:layout_height="26dp"
+            android:background="@drawable/win95_button_selector"
+            android:contentDescription="@string/close"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="@string/close_button"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -37,29 +45,64 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp"
-        android:gravity="center_horizontal"
         android:background="@color/win95_gray">
 
-        <TextView
-            android:layout_width="240dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/about_text"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            android:layout_marginBottom="12dp" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="14dp">
+
+            <ImageView
+                android:id="@+id/about_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="14dp"
+                android:importantForAccessibility="no" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/Win95Heading"
+                    android:text="@string/app_name" />
+
+                <TextView
+                    android:id="@+id/about_version"
+                    style="@style/Win95Caption" />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/btn_ok"
-            android:layout_width="wrap_content"
+            android:id="@+id/about_text"
+            style="@style/Win95Body"
+            android:layout_marginBottom="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/win95_button_selector"
-            android:paddingStart="24dp"
-            android:paddingEnd="24dp"
-            android:paddingTop="6dp"
-            android:paddingBottom="6dp"
-            android:text="@string/ok"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:orientation="horizontal"
+            android:gravity="end">
+
+            <TextView
+                android:id="@+id/btn_feedback"
+                style="@style/Win95Button"
+                android:text="@string/send_feedback" />
+
+            <TextView
+                android:id="@+id/btn_ok"
+                style="@style/Win95Button.Primary"
+                android:minHeight="44dp"
+                android:layout_marginStart="8dp"
+                android:text="@string/ok" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

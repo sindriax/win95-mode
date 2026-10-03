@@ -15,9 +15,9 @@ Modes:
              launchers as the backdrop for apps the pack does not theme.
 
 Usage:
-  .venv/bin/python scripts/win95ify.py win95ify  <in.png|dir> -o <outdir> [--grid 32] [--colors 16|256] [--dither]
+  .venv/bin/python scripts/win95ify.py win95ify  <in.png|dir> -o <outdir> [--grid 48] [--colors 16|256] [--dither]
   .venv/bin/python scripts/win95ify.py normalize <in.png|dir> -o <outdir>
-  .venv/bin/python scripts/win95ify.py iconback -o app/src/main/res/drawable
+  .venv/bin/python scripts/win95ify.py iconback -o app/src/main/res/drawable-nodpi
 
 Output is always a <size>x<size> RGBA PNG (default 192x192, matching the
 existing pack).
@@ -27,7 +27,7 @@ import argparse
 import sys
 from pathlib import Path
 
-from PIL import Image, ImageEnhance
+from PIL import Image, ImageDraw, ImageEnhance
 
 # The classic Windows 95 16-color VGA palette.
 WIN95_PALETTE = [
@@ -138,21 +138,49 @@ def normalize(src: Image.Image, size: int) -> Image.Image:
 
 
 def iconback(size: int) -> Image.Image:
-    """A beveled raised gray plaque, like a Win95 button face."""
-    img = Image.new("RGBA", (size, size), BEVEL_FACE)
-    px = img.load()
-    bevel = max(2, size // 32)
-    for i in range(bevel):
-        for j in range(size):
-            px[j, i] = BEVEL_LIGHT if j >= i else px[j, i]          # top
-            px[i, j] = BEVEL_LIGHT if j >= i else px[i, j]          # left
-            px[j, size - 1 - i] = BEVEL_DARK if j <= size - 1 - i else px[j, size - 1 - i]  # bottom
-            px[size - 1 - i, j] = BEVEL_DARK if j <= size - 1 - i else px[size - 1 - i, j]  # right
-    inner = bevel
-    for i in range(inner, inner + bevel):
-        for j in range(inner, size - inner):
-            px[j, size - 1 - i] = BEVEL_SHADOW if j <= size - 1 - i else px[j, size - 1 - i]
-            px[size - 1 - i, j] = BEVEL_SHADOW if j <= size - 1 - i else px[size - 1 - i, j]
+    """A small Win95 program window: title bar with its three buttons over a
+    white client area. Launchers draw an unthemed app's own icon, scaled by
+    appfilter's <scale> (0.6), centred on top; the client area is centred on
+    the canvas so the icon sits inside it, under the title bar."""
+    grid = 48
+    p = size // grid  # one art pixel
+
+    img = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    d = ImageDraw.Draw(img)
+
+    def box(x0, y0, x1, y1, color):  # inclusive art-pixel coordinates
+        d.rectangle([x0 * p, y0 * p, (x1 + 1) * p - 1, (y1 + 1) * p - 1], fill=color)
+
+    left, top, right, bottom = 3, 1, 44, 42
+    box(left, top, right, bottom, BEVEL_DARK)
+    box(left, top, right - 1, bottom - 1, BEVEL_FACE)
+    box(left, top, right - 1, top, BEVEL_LIGHT)
+    box(left, top, left, bottom - 1, BEVEL_LIGHT)
+    box(left + 1, bottom - 1, right - 1, bottom - 1, BEVEL_SHADOW)
+    box(right - 1, top + 1, right - 1, bottom - 1, BEVEL_SHADOW)
+
+    # Title bar, navy fading to blue like an active Win95 window.
+    tb_top, tb_bottom = top + 2, top + 5
+    x0, x1 = left + 2, right - 2
+    navy, blue = (0, 0, 128), (16, 132, 208)
+    for x in range(x0, x1 + 1):
+        t = (x - x0) / max(1, x1 - x0)
+        box(x, tb_top, x, tb_bottom, tuple(round(a + (b - a) * t) for a, b in zip(navy, blue)) + (255,))
+    # Minimize, maximize and close as tiny raised buttons; close carries an x.
+    for i in range(3):
+        bx = x1 - 10 + i * 3 + (1 if i == 2 else 0)
+        box(bx, tb_top, bx + 2, tb_bottom - 1, BEVEL_FACE)
+        box(bx, tb_bottom - 1, bx + 2, tb_bottom - 1, BEVEL_SHADOW)
+        box(bx + 2, tb_top, bx + 2, tb_bottom - 1, BEVEL_SHADOW)
+        glyph = [(bx, tb_bottom - 2), (bx + 1, tb_bottom - 2)] if i == 0 else \
+                [(bx, tb_top), (bx + 1, tb_top)] if i == 1 else [(bx, tb_top), (bx + 1, tb_bottom - 2)]
+        for gx, gy in glyph:
+            box(gx, gy, gx, gy, BEVEL_DARK)
+
+    # Sunken white client area, centred on the canvas.
+    c_top, c_bottom = tb_bottom + 2, bottom - 2
+    box(left + 2, c_top, right - 2, c_bottom, BEVEL_SHADOW)
+    box(left + 3, c_top + 1, right - 2, c_bottom, (255, 255, 255, 255))
     return img
 
 
@@ -168,7 +196,7 @@ def main() -> int:
     parser.add_argument("input", nargs="?", help="source image or directory (not used by iconback)")
     parser.add_argument("-o", "--out", required=True, help="output directory")
     parser.add_argument("--size", type=int, default=192, help="output canvas size (default 192)")
-    parser.add_argument("--grid", type=int, default=32, help="pixel grid for win95ify (default 32)")
+    parser.add_argument("--grid", type=int, default=48, help="pixel grid for win95ify (default 48)")
     parser.add_argument("--colors", type=int, default=16, choices=[16, 256], help="palette size for win95ify")
     parser.add_argument("--dither", action="store_true", help="Floyd-Steinberg dithering during quantization")
     parser.add_argument("--strip-bg", action="store_true", help="flood-fill the solid background to transparent (win95ify mode)")

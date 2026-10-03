@@ -45,6 +45,22 @@ def stars() -> Image.Image:
     return img
 
 
+# Blocky pixel art keeps its hard edges with NEAREST; smooth art (gradients,
+# clouds) upscales cleanly with LANCZOS and gets re-dithered by compress().
+NEAREST_ART = {"wall_matrix.png"}
+
+
+def upscale(path: Path) -> None:
+    """Bring an artwork wallpaper up to phone height, preserving aspect."""
+    img = Image.open(path).convert("RGB")
+    if img.height >= HEIGHT:
+        return
+    scale = HEIGHT / img.height
+    resample = Image.Resampling.NEAREST if path.name in NEAREST_ART else Image.Resampling.LANCZOS
+    img.resize((round(img.width * scale), HEIGHT), resample).save(path)
+    print(f"{path.name}: upscaled to {round(img.width * scale)}x{HEIGHT}")
+
+
 def compress(path: Path) -> None:
     """Quantize a wallpaper to a 256-color palette; the Win95 look survives."""
     img = Image.open(path).convert("RGB")
@@ -59,6 +75,7 @@ def main() -> int:
     stars().save(out / "wall_stars.png")
     print(f"generated wall_teal.png and wall_stars.png at {WIDTH}x{HEIGHT}")
     for name in sorted(out.glob("wall_*.png")):
+        upscale(name)
         compress(name)
     return 0
 

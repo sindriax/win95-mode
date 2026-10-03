@@ -1,344 +1,276 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/win95_teal"
-    android:fillViewport="true"
     tools:context=".MainActivity">
 
-    <FrameLayout
+    <ImageView
+        android:id="@+id/desktop_wallpaper"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:importantForAccessibility="no" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- One window; its title, icon and content follow the taskbar selection. It is
+             maximized for Icons and Wallpapers and sized to its content on Home, where
+             the desktop shows below it. -->
         <LinearLayout
+            android:id="@+id/window_frame"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="vertical">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_margin="6dp"
+            android:orientation="vertical"
+            android:background="@drawable/win95_window_border"
+            android:padding="4dp">
 
-            <!-- Window with beveled border -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/win95_window_border"
-                android:padding="4dp">
+                android:layout_height="34dp"
+                android:background="@drawable/win95_titlebar"
+                android:gravity="center_vertical"
+                android:paddingStart="6dp"
+                android:paddingEnd="3dp">
 
-                <!-- Title bar with gradient -->
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:id="@+id/window_icon"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:importantForAccessibility="no" />
+
+                <TextView
+                    android:id="@+id/window_title"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/win95_titlebar"
-                    android:padding="3dp"
-                    android:gravity="center_vertical">
+                    android:layout_weight="1"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:accessibilityHeading="true" />
 
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:src="@drawable/ic_my_computer"
-                        android:contentDescription="@string/app_icon_desc" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/app_name"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"
-                        android:paddingStart="6dp"
-                        android:paddingEnd="6dp"
-                        android:textSize="12sp" />
-
-                    <!-- Window control buttons -->
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <!-- Minimize button (drawn bar, like the original bitmap glyph) -->
-                        <FrameLayout
-                            android:id="@+id/btn_minimize"
-                            android:layout_width="20dp"
-                            android:layout_height="18dp"
-                            android:background="@drawable/win95_button_selector"
-                            android:layout_marginEnd="2dp">
-
-                            <View
-                                android:layout_width="8dp"
-                                android:layout_height="2dp"
-                                android:layout_gravity="bottom|center_horizontal"
-                                android:layout_marginBottom="3dp"
-                                android:background="@color/black" />
-
-                        </FrameLayout>
-
-                        <!-- Maximize button -->
-                        <TextView
-                            android:id="@+id/btn_maximize"
-                            android:layout_width="20dp"
-                            android:layout_height="18dp"
-                            android:background="@drawable/win95_button_selector"
-                            android:fontFamily="sans-serif"
-                            android:gravity="center"
-                            android:text="@string/maximize_button"
-                            android:textColor="@color/black"
-                            android:textSize="8sp"
-                            android:layout_marginEnd="2dp" />
-
-                        <!-- Close button -->
-                        <TextView
-                            android:id="@+id/btn_close"
-                            android:layout_width="20dp"
-                            android:layout_height="18dp"
-                            android:background="@drawable/win95_button_selector"
-                            android:fontFamily="sans-serif"
-                            android:gravity="center"
-                            android:text="@string/close_button"
-                            android:textColor="@color/black"
-                            android:textSize="10sp"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <!-- Content area -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp"
-                    android:background="@color/win95_gray">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/welcome_title"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="12dp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/icon_preview"
-                        android:textColor="@color/black"
-                        android:textSize="12sp"
-                        android:layout_marginBottom="8dp" />
-
-                    <!-- Full icon set, populated from xml/drawable.xml at runtime -->
-                    <GridLayout
-                        android:id="@+id/icon_grid"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="12dp"
-                        android:columnCount="5" />
+                <FrameLayout
+                    android:id="@+id/btn_minimize"
+                    android:layout_width="36dp"
+                    android:layout_height="28dp"
+                    android:background="@drawable/win95_button_selector"
+                    android:contentDescription="@string/minimize"
+                    android:layout_marginEnd="2dp">
 
                     <View
-                        android:layout_width="match_parent"
+                        android:layout_width="10dp"
                         android:layout_height="2dp"
-                        android:background="@color/win95_dark_gray"
-                        android:layout_marginBottom="12dp" />
+                        android:layout_gravity="bottom|center_horizontal"
+                        android:layout_marginBottom="7dp"
+                        android:background="@color/black" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/wallpapers"
-                        android:textColor="@color/black"
-                        android:textSize="12sp"
-                        android:layout_marginBottom="8dp" />
+                </FrameLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        android:layout_marginBottom="4dp">
+                <!-- Drawn disabled, as Win95 does for a maximized window. -->
+                <TextView
+                    android:id="@+id/btn_maximize"
+                    android:layout_width="36dp"
+                    android:layout_height="28dp"
+                    android:background="@drawable/win95_button"
+                    android:enabled="false"
+                    android:importantForAccessibility="no"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center"
+                    android:text="@string/maximize_button"
+                    android:textColor="@color/win95_dark_gray"
+                    android:shadowColor="@color/white"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="0.01"
+                    android:textSize="12sp"
+                    android:layout_marginEnd="4dp" />
 
-                        <ImageView
-                            android:id="@+id/wall_teal"
-                            android:layout_width="48dp"
-                            android:layout_height="85dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/wall_teal"
-                            android:layout_margin="3dp"
-                            android:background="@color/win95_dark_gray"
-                            android:padding="2dp"
-                            android:contentDescription="@string/wall_teal_desc" />
-
-                        <ImageView
-                            android:id="@+id/wall_clouds"
-                            android:layout_width="48dp"
-                            android:layout_height="85dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/wall_clouds"
-                            android:layout_margin="3dp"
-                            android:background="@color/win95_dark_gray"
-                            android:padding="2dp"
-                            android:contentDescription="@string/wall_clouds_desc" />
-
-                        <ImageView
-                            android:id="@+id/wall_setup"
-                            android:layout_width="48dp"
-                            android:layout_height="85dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/wall_setup"
-                            android:layout_margin="3dp"
-                            android:background="@color/win95_dark_gray"
-                            android:padding="2dp"
-                            android:contentDescription="@string/wall_setup_desc" />
-
-                        <ImageView
-                            android:id="@+id/wall_stars"
-                            android:layout_width="48dp"
-                            android:layout_height="85dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/wall_stars"
-                            android:layout_margin="3dp"
-                            android:background="@color/win95_dark_gray"
-                            android:padding="2dp"
-                            android:contentDescription="@string/wall_stars_desc" />
-
-                        <ImageView
-                            android:id="@+id/wall_matrix"
-                            android:layout_width="48dp"
-                            android:layout_height="85dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/wall_matrix"
-                            android:layout_margin="3dp"
-                            android:background="@color/win95_dark_gray"
-                            android:padding="2dp"
-                            android:contentDescription="@string/wall_matrix_desc" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/tap_wallpaper"
-                        android:textColor="@color/win95_dark_gray"
-                        android:textSize="10sp"
-                        android:gravity="center"
-                        android:layout_marginBottom="12dp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="@color/win95_dark_gray"
-                        android:layout_marginBottom="12dp" />
-
-                    <!-- Instructions box with inset style -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:background="@drawable/win95_inset"
-                        android:padding="10dp"
-                        android:layout_marginBottom="12dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/how_to_apply"
-                            android:textColor="@color/black"
-                            android:textStyle="bold"
-                            android:textSize="12sp"
-                            android:layout_marginBottom="6dp" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/apply_instructions"
-                            android:textColor="@color/black"
-                            android:textSize="11sp"
-                            android:lineSpacingExtra="3dp" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/supported_launchers"
-                        android:textColor="@color/win95_dark_gray"
-                        android:textSize="10sp"
-                        android:gravity="center" />
-
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/btn_close"
+                    android:layout_width="36dp"
+                    android:layout_height="28dp"
+                    android:background="@drawable/win95_button_selector"
+                    android:contentDescription="@string/close"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center"
+                    android:text="@string/close_button"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
-            <!-- Taskbar directly below window -->
-            <LinearLayout
+            <FrameLayout
+                android:id="@+id/window_pages"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@drawable/win95_taskbar"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@color/win95_gray">
+
+                <include android:id="@+id/page_home" layout="@layout/window_home" />
+                <include android:id="@+id/page_icons" layout="@layout/window_icons" android:visibility="gone" />
+                <include android:id="@+id/page_wallpapers" layout="@layout/window_wallpapers" android:visibility="gone" />
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/window_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="26dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/win95_clock_inset"
+                android:gravity="center_vertical"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:accessibilityLiveRegion="polite" />
+
+        </LinearLayout>
+
+        <!-- Desktop shortcuts, shown on Home. -->
+        <FrameLayout
+            android:id="@+id/desktop"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:visibility="gone">
+
+            <GridLayout
+                android:id="@+id/desktop_icons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_marginTop="12dp"
+                android:columnCount="3" />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/taskbar"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="@drawable/win95_taskbar"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:paddingTop="2dp">
+
+            <LinearLayout
+                android:id="@+id/btn_start"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:background="@drawable/win95_button_selector"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:paddingStart="4dp"
-                android:paddingEnd="4dp">
+                android:paddingStart="6dp"
+                android:paddingEnd="10dp"
+                android:contentDescription="@string/start_button">
 
-                <!-- Start button -->
-                <LinearLayout
-                    android:id="@+id/btn_start"
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_start"
+                    android:importantForAccessibility="no" />
+
+                <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="28dp"
-                    android:background="@drawable/win95_button_selector"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:paddingStart="4dp"
-                    android:paddingEnd="8dp">
+                    android:layout_height="wrap_content"
+                    android:text="@string/start_button"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:layout_marginStart="5dp"
+                    android:importantForAccessibility="no" />
 
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/ic_start"
-                        android:contentDescription="@string/start_button_desc" />
+            </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/start_button"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"
-                        android:textSize="12sp"
-                        android:layout_marginStart="4dp" />
+            <TextView
+                android:id="@+id/task_home"
+                style="@style/Win95Task"
+                android:text="@string/tab_home" />
 
-                </LinearLayout>
+            <TextView
+                android:id="@+id/task_icons"
+                style="@style/Win95Task"
+                android:text="@string/tab_icons" />
 
-                <!-- Spacer -->
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="1" />
+            <TextView
+                android:id="@+id/task_wallpapers"
+                style="@style/Win95Task"
+                android:text="@string/tab_wallpapers" />
 
-                <!-- Clock area -->
-                <LinearLayout
+            <LinearLayout
+                android:id="@+id/taskbar_clock"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginStart="4dp"
+                android:background="@drawable/win95_clock_inset"
+                android:gravity="center"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp">
+
+                <TextClock
                     android:layout_width="wrap_content"
-                    android:layout_height="26dp"
-                    android:background="@drawable/win95_clock_inset"
-                    android:gravity="center"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp">
-
-                    <TextClock
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:format12Hour="h:mm a"
-                        android:format24Hour="HH:mm"
-                        android:textColor="@color/black"
-                        android:textSize="11sp" />
-
-                </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:format12Hour="h:mm a"
+                    android:format24Hour="HH:mm"
+                    android:textColor="@color/black"
+                    android:textSize="13sp" />
 
             </LinearLayout>
 
         </LinearLayout>
 
-    </FrameLayout>
+    </LinearLayout>
 
-</ScrollView>
+    <View
+        android:id="@+id/start_scrim"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:importantForAccessibility="no" />
+
+    <LinearLayout
+        android:id="@+id/start_menu"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/win95_window_border"
+        android:orientation="horizontal"
+        android:padding="3dp"
+        android:visibility="gone">
+
+        <com.win95mode.app.StartBanner
+            android:layout_width="30dp"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:id="@+id/start_items"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp" />
+
+    </LinearLayout>
+
+</FrameLayout>

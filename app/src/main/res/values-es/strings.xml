@@ -1,0 +1,157 @@
+<resources>
+    <!-- Window chrome and taskbar -->
+    <string name="close">Cerrar</string>
+    <string name="minimize">Minimizar</string>
+    <string name="start_button">Inicio</string>
+    <string name="tab_home">Principal</string>
+    <string name="tab_icons">Iconos</string>
+    <string name="tab_wallpapers">Fondos</string>
+    <string name="title_icons">Iconos</string>
+    <string name="title_wallpapers">Fondos de pantalla</string>
+    <string name="ok">Aceptar</string>
+    <string name="cancel">Cancelar</string>
+
+    <!-- Start menu -->
+    <string name="start_setup">Instalación…</string>
+    <string name="start_request">Pedir iconos…</string>
+    <string name="start_feedback">Enviar comentarios…</string>
+    <string name="start_about">Acerca de Win95 Mode</string>
+    <string name="start_shutdown">Apagar el sistema…</string>
+
+    <!-- Home -->
+    <string name="your_home_screen">Tu pantalla de inicio</string>
+    <string name="state_unsupported">No admite paquetes de iconos</string>
+    <string name="state_unsupported_detail">La mayoría de pantallas de inicio de serie, como la de Pixel o la de Samsung, no admiten paquetes de iconos. Un launcher gratuito lo soluciona.</string>
+    <string name="state_not_home">Instalado, pero no es tu pantalla de inicio</string>
+    <string name="state_ready">Tu pantalla de inicio · lista</string>
+    <string name="state_applied">Tu pantalla de inicio · iconos aplicados</string>
+    <string name="applied_on">Aplicado el %1$s</string>
+    <string name="how_to_fix">Cómo solucionarlo…</string>
+    <string name="apply_icons">Aplicar iconos</string>
+    <string name="apply_again">Volver a aplicar</string>
+    <string name="set_as_home_screen">Usar como pantalla de inicio</string>
+    <string name="coverage_title">Cobertura</string>
+    <plurals name="coverage_text">
+        <item quantity="one">%1$d de tu %2$d app tiene icono Win95.</item>
+        <item quantity="other">%1$d de tus %2$d apps tienen icono Win95.</item>
+    </plurals>
+    <plurals name="coverage_all">
+        <item quantity="one">Tu única app tiene icono Win95.</item>
+        <item quantity="other">Las %1$d apps que tienes tienen icono Win95.</item>
+    </plurals>
+    <string name="whats_new_title">Novedades de la 3.0</string>
+    <string name="whats_new_body">• Iconos para las apps del sistema de Samsung, Xiaomi y OnePlus\n• Más de 220 iconos, uno para cada app\n• Una instalación que busca un launcher compatible\n• Pide iconos para las apps que aún faltan\n• El salvapantallas Starfield como fondo animado\n• Un icono de calendario que muestra la fecha de hoy\n• Iconos más nítidos y fondos a resolución completa</string>
+
+    <!-- Applying in a launcher -->
+    <string name="choose_launcher_title">Propiedades de Pantalla</string>
+    <string name="choose_launcher">Aplicar Win95 Mode con:</string>
+    <string name="open_launcher_title">Aplicar en %1$s</string>
+    <string name="open_launcher_text">Se abrirá %1$s. En sus ajustes, busca Paquete de iconos y elige Win95 Mode.</string>
+    <string name="open_launcher">Abrir %1$s</string>
+    <string name="status_applied">Iconos aplicados en %1$s.</string>
+    <string name="status_opened">%1$s abierto. Elige Win95 Mode en Paquete de iconos.</string>
+    <string name="launchers_title">Launchers</string>
+    <string name="launchers_text">Win95 Mode funciona con estos launchers. Elige uno para abrirlo en Play Store.</string>
+    <string name="get_lawnchair">Instalar Lawnchair (gratis)</string>
+    <string name="other_launchers">Otros launchers…</string>
+
+    <!-- Icons -->
+    <string name="icon_search_hint">Buscar una app o un icono…</string>
+    <string name="tab_your_apps">Tus apps</string>
+    <string name="tab_all">Todos</string>
+    <string name="tab_system">Sistema</string>
+    <string name="summary_yours">%1$d con icono · %2$d sin él</string>
+    <plurals name="summary_all">
+        <item quantity="one">%1$d icono</item>
+        <item quantity="other">%1$d iconos</item>
+    </plurals>
+    <plurals name="summary_system">
+        <item quantity="one">%1$d icono del sistema de Windows 95</item>
+        <item quantity="other">%1$d iconos del sistema de Windows 95</item>
+    </plurals>
+    <string name="request_ellipsis">Pedir…</string>
+    <string name="header_not_themed">Aún sin icono (%1$d)</string>
+    <string name="header_not_themed_caption">Muestran su propio icono dentro de una ventana Win95 hasta que tengan uno.</string>
+    <string name="request_these">Pedir estos</string>
+    <string name="system_caption">Asígnalos a cualquier app desde el selector de iconos de tu launcher.</string>
+    <string name="search_results">Resultados para «%1$s»</string>
+    <string name="search_none">Todavía no hay icono para eso.</string>
+    <string name="request_it">Pedirlo</string>
+    <string name="icon_properties_title">Propiedades de %1$s</string>
+    <string name="icon_themes_here">En este teléfono cambia:</string>
+    <string name="icon_not_installed">Ninguna de las apps de este icono está en este teléfono.</string>
+    <string name="icon_system_props">Un icono del sistema de Windows 95. Asígnalo a cualquier app desde el selector de iconos de tu launcher.</string>
+    <string name="icon_unthemed_props">%1$s aún no tiene icono Win95. Hasta entonces, su icono aparece dentro de una ventana Win95.</string>
+
+    <!-- Wallpapers -->
+    <string name="wall_teal">Verde azulado</string>
+    <string name="wall_clouds">Nubes</string>
+    <string name="wall_setup">Instalación</string>
+    <string name="wall_stars">Estrellas</string>
+    <string name="wall_maze">Laberinto</string>
+    <string name="wall_starfield">Starfield</string>
+    <string name="wall_current">✔ %1$s</string>
+    <string name="wall_current_desc">%1$s, fondo actual</string>
+    <string name="live_badge">ANIMADO</string>
+    <string name="set_wallpaper_title">Establecer fondo</string>
+    <string name="wallpaper_preview_desc">Vista previa del fondo</string>
+    <string name="apply_to">Usar este fondo en:</string>
+    <string name="home_screen">Inicio</string>
+    <string name="lock_screen">Bloqueo</string>
+    <string name="both_screens">Ambas</string>
+    <string name="status_wallpapers">Toca un fondo para establecerlo.</string>
+    <string name="status_wallpaper_set">Fondo establecido.</string>
+    <string name="wallpaper_failed">No se pudo establecer el fondo. Inténtalo de nuevo o hazlo desde los ajustes del teléfono.</string>
+    <string name="live_wallpaper_unavailable">Tu teléfono no admite fondos animados.</string>
+    <string name="starfield_label">Win95 Starfield</string>
+    <string name="starfield_description">El clásico salvapantallas Starfield Simulation, volando por el espacio para siempre.</string>
+
+    <!-- Status bar -->
+    <string name="status_ready">Listo.</string>
+    <string name="status_icons">%1$d iconos · %2$d apps</string>
+    <string name="status_request_sent">Petición enviada. Gracias.</string>
+
+    <!-- Add/Remove Programs -->
+    <string name="add_remove_programs">Agregar o quitar programas</string>
+    <string name="request_intro">Estas apps aún no tienen icono Win95. Marca las que quieras:</string>
+    <string name="select_all">Seleccionar todo</string>
+    <string name="request_all_themed">Todas las apps de tu teléfono ya tienen icono Win95.</string>
+    <string name="request_none_selected">Marca al menos una app.</string>
+    <string name="request_via_github">Enviar por GitHub</string>
+    <string name="request_via_share">Compartir…</string>
+    <string name="request_loading">Buscando apps instaladas…</string>
+
+    <!-- About -->
+    <string name="about_title">Acerca de Win95 Mode</string>
+    <string name="about_version">Versión %1$s</string>
+    <string name="about_text">Un paquete de iconos y fondos de Windows 95 para Android: %1$d iconos para %2$d apps, uno para cada una.\n\n¿Te falta alguna app? Pídela desde el menú Inicio.</string>
+    <string name="send_feedback">Enviar comentarios</string>
+
+    <!-- Setup -->
+    <string name="setup_window_title">Instalación de Win95 Mode</string>
+    <string name="setup_step">Paso %1$d de %2$d</string>
+    <string name="setup_welcome_title">¡Bienvenido a la instalación de Win95 Mode!</string>
+    <string name="setup_welcome_body">La instalación hará que tu teléfono parezca un escritorio de 1995: iconos Win95 para tus apps y un fondo clásico.\n\nTarda más o menos un minuto.</string>
+    <string name="setup_launcher_title">Comprobando tu pantalla de inicio</string>
+    <string name="setup_checking">Buscando un launcher que admita paquetes de iconos…</string>
+    <string name="setup_ready_body">✔ %1$s es tu pantalla de inicio. Es compatible con Win95 Mode.</string>
+    <string name="setup_not_home_body">%1$s es compatible con Win95 Mode, pero aún no es tu pantalla de inicio. Puedes aplicar los iconos ahora y cambiarla más tarde.</string>
+    <string name="setup_unsupported_body">%1$s no admite paquetes de iconos. La mayoría de pantallas de inicio de serie no los admiten.\n\nInstala un launcher gratuito y vuelve aquí. La instalación lo detectará.</string>
+    <string name="setup_apply_title">Aplicar los iconos</string>
+    <string name="setup_apply_body">%1$s cambiará a Win95 Mode, o se abrirá para que lo elijas en Paquete de iconos.</string>
+    <string name="setup_apply_later">Puedes aplicar los iconos más tarde desde Inicio, cuando tengas un launcher compatible.</string>
+    <string name="setup_also_wallpaper">Poner también el fondo verde azulado clásico</string>
+    <string name="setup_applied">✔ Hecho.</string>
+    <string name="setup_finish_title">La instalación ha terminado</string>
+    <string name="setup_finish_body">Tu teléfono está listo.\n\nUsa la barra de tareas de abajo en Win95 Mode para pasar de Principal a Iconos y Fondos. El menú Inicio tiene todo lo demás.</string>
+    <string name="setup_back">&lt; Atrás</string>
+    <string name="setup_next">Siguiente &gt;</string>
+    <string name="setup_finish">Finalizar</string>
+    <string name="request_count">Pedir %1$d…</string>
+    <string name="start_whats_new">Novedades…</string>
+    <string name="desk_icons">Iconos</string>
+    <string name="desk_wallpaper">Fondo</string>
+    <string name="desk_screensaver">Protector de pantalla</string>
+    <string name="desk_setup">Instalación</string>
+    <string name="desk_feedback">Comentarios</string>
+</resources>

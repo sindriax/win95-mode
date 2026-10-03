@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/setup_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/win95_navy">
+
+    <ImageView
+        android:id="@+id/setup_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:importantForAccessibility="no" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="14dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:maxWidth="480dp"
+                android:orientation="vertical"
+                android:background="@drawable/win95_window_border"
+                android:padding="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"
+                    android:background="@drawable/win95_titlebar"
+                    android:gravity="center_vertical"
+                    android:paddingStart="6dp"
+                    android:paddingEnd="3dp">
+
+                    <ImageView
+                        android:id="@+id/setup_title_icon"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:importantForAccessibility="no" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingStart="8dp"
+                        android:text="@string/setup_window_title"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/btn_setup_close"
+                        android:layout_width="36dp"
+                        android:layout_height="28dp"
+                        android:background="@drawable/win95_button_selector"
+                        android:contentDescription="@string/close"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center"
+                        android:text="@string/close_button"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/win95_gray"
+                    android:padding="14dp">
+
+                    <!-- The wizard's picture panel. -->
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="140dp"
+                        android:background="@drawable/win95_clock_inset"
+                        android:padding="2dp"
+                        android:layout_marginBottom="16dp">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/win95_teal">
+
+                            <ImageView
+                                android:id="@+id/setup_picture"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:importantForAccessibility="no" />
+
+                        </FrameLayout>
+
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/setup_step"
+                        style="@style/Win95Caption" />
+
+                    <TextView
+                        android:id="@+id/setup_title"
+                        style="@style/Win95Heading"
+                        android:textSize="19sp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="10dp" />
+
+                    <TextView
+                        android:id="@+id/setup_body"
+                        style="@style/Win95Body" />
+
+                    <com.win95mode.app.BlockProgressBar
+                        android:id="@+id/setup_progress"
+                        android:layout_width="match_parent"
+                        android:layout_height="22dp"
+                        android:layout_marginTop="14dp"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:id="@+id/setup_actions"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:orientation="vertical" />
+
+                    <android.widget.CheckBox
+                        android:id="@+id/setup_wallpaper"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="4dp"
+                        android:checked="true"
+                        android:text="@string/setup_also_wallpaper"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:button="@drawable/win95_checkbox"
+            android:paddingStart="8dp"
+                        android:visibility="gone" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="18dp"
+                        android:layout_marginBottom="12dp"
+                        android:background="@drawable/win95_clock_inset" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="end">
+
+                        <TextView
+                            android:id="@+id/btn_setup_back"
+                            style="@style/Win95Button"
+                            android:minWidth="80dp"
+                            android:text="@string/setup_back" />
+
+                        <TextView
+                            android:id="@+id/btn_setup_next"
+                            style="@style/Win95Button.Primary"
+                            android:minHeight="44dp"
+                            android:minWidth="80dp"
+                            android:layout_marginStart="6dp" />
+
+                        <TextView
+                            android:id="@+id/btn_setup_cancel"
+                            style="@style/Win95Button"
+                            android:minWidth="80dp"
+                            android:layout_marginStart="12dp"
+                            android:text="@string/cancel" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </ScrollView>
+
+</FrameLayout>
